@@ -1,0 +1,24 @@
+const mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/ubcscheduler');
+
+const SectionSchema = mongoose.Schema({
+    "section": String,
+    "activity": String,
+    "term": String,
+    "schedule": [Number],
+    "instructors": [String]
+})
+
+const CourseSchema = mongoose.Schema({
+    "code": {type: String, index: true},
+    "sections": [SectionSchema]
+})
+
+const CourselistSchema = mongoose.Schema({
+    "courselist": [[String]]
+})
+
+module.exports = {
+    Course: mongoose.model('Course', CourseSchema),
+    Courselist: mongoose.model('Courselist', CourselistSchema)
+}

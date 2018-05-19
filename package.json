@@ -1,0 +1,17 @@
+{
+  "name": "ubcscheduler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.1.1",
+    "request": "^2.86.0",
+    "request-promise": "^4.2.2"
+  }
+}
