@@ -15,7 +15,7 @@ module.exports.getCourse = (req, res) => {
         return
     }
     //req.params.course = req.params.course.replace("_", " ");
-    console.log("Getting course: " + req.params.course)
+    // console.log("Getting course: " + req.params.course)
     Model.Course
     .findOne({
         code: req.params.course
@@ -26,16 +26,16 @@ module.exports.getCourse = (req, res) => {
     .exec()
     .then(course => {
         if (course === null) {
-            console.log("No course found. Scraping...")
+            // console.log("No course found. Scraping...")
             Scraper.scrapeCourse(req.params.course)
             .then(Writer.writeCourse)
             .then(newCourse => {
-                console.log(newCourse)
+                // console.log(newCourse)
                 res.status(200)
                 res.send(newCourse)
             })
         } else {
-            console.log("Course found", course)
+            // console.log("Course found", course)
             res.status(200)
             res.send(course)
         }        
@@ -64,7 +64,7 @@ module.exports.getCourseList = (req, res) => {
     .exec()
     .then(courselist => {
         if (courselist === null) {
-            console.log("No courselist found")
+            // console.log("No courselist found")
             Scraper.scrapeCourselist()
             //.then(newCourselist => console.log(newCourselist))
             .then(Writer.writeCourselist)
@@ -73,7 +73,7 @@ module.exports.getCourseList = (req, res) => {
                 res.send(courselist)
             })
         } else {
-            console.log("Courselist found")
+            // console.log("Courselist found")
             res.status(200)
             res.send(courselist) 
         }

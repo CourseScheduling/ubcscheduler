@@ -1,0 +1,1 @@
+export const FETCH_COURSELIST = 'FETCH_COURSELIST';
