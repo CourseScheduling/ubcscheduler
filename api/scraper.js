@@ -1,7 +1,7 @@
 const rp = require('request-promise')
 const xml2js = require('xml2js')
-const parser = new xml2js.Parser();
-
+const parser = new xml2js.Parser()
+const cheerio = require('cheerio')
 
 //Converts from format HH:MM to ith 30 minute block from 8:00
 function timeToInt(time) {
@@ -54,14 +54,17 @@ Scrapes course from UBC
 Writes to database
 resolve scraped course
 */
-function scrapeCourse(course) {
+module.exports.scrapeCourse = function (course) {
     return new Promise((resolve, reject) => {
-        const XML_URL = "https://courses.students.ubc.ca/cs/servlets/SRVCourseSchedule?sessyr=2018&sesscd=W&output=5&req=4&dept=CPSC&course=221";
+        let dept = course.split("_")[0]
+        let courseCode = course.split("_")[1]
+        const XML_URL = `https://courses.students.ubc.ca/cs/servlets/SRVCourseSchedule?sessyr=2018&sesscd=W&output=5&req=4&dept=${dept}&course=${courseCode}`
+
         var courseObj = {
             "code": course,
             "sections": []
         }
-
+        
         rp(XML_URL)
         .then(xml => {
             parser.parseString(xml, (err, result) => {
@@ -76,4 +79,44 @@ function scrapeCourse(course) {
 }
 
 
-module.exports.scrapeCourse = scrapeCourse
+module.exports.scrapeCourselist = function () {
+    return new Promise((resolve, reject) => {
+        console.log("Scraping courselist")
+        var courselist = {
+            uni: "ubc",
+            list: []
+        }
+        var subjects = []
+        const SUBJ_URL = "https://courses.students.ubc.ca/cs/main?pname=subjarea&tname=subjareas&sessyr=2018&sesscd=W"
+        rp(SUBJ_URL)
+        .then(html => {
+            //Collect all subjects
+            let $ = cheerio.load(html)
+            $("table#mainTable").find('tbody > tr').each((i, row) => {
+                subj = $($(row).find('td')[0]).text().trim();
+                if (!subj.includes('*')) subjects.push(subj)
+            });
+            console.log(subjects)
+            //Collect all courses
+            var count = subjects.length
+            subjects.forEach(dept => {
+                let DEPT_URL = SUBJ_URL + `&dept=${dept}&req=1`
+                rp(DEPT_URL)
+                .then(html => {
+                    let $ = cheerio.load(html)
+                    $("table#mainTable").find('tbody > tr').each((i, row) => {
+                        tds = $(row).find('td')
+                        code = $(tds[0]).text().trim()
+                        title = $(tds[1]).text().trim()
+                        //console.log(code + title)
+                        courselist.list.push([code, title]);
+                    });
+                    count--
+                    if (count === 0) resolve(courselist)
+                })
+            });
+        })
+
+        //resolve(courselist)
+    });
+}

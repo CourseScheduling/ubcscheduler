@@ -15,7 +15,8 @@ const CourseSchema = mongoose.Schema({
 })
 
 const CourselistSchema = mongoose.Schema({
-    "courselist": [[String]]
+    "uni": {type: String, index: true},
+    "list": [[String]]
 })
 
 module.exports = {

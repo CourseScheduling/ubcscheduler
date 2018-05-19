@@ -55,4 +55,27 @@ module.exports.getCourse = (req, res) => {
  */
 module.exports.getCourseList = (req, res) => {
     console.log("Getting course list")
+    Model.Courselist
+    .findOne({
+        uni: "ubc"
+    }, {
+        _id: 0
+    })
+    .exec()
+    .then(courselist => {
+        if (courselist === null) {
+            console.log("No courselist found")
+            Scraper.scrapeCourselist()
+            //.then(newCourselist => console.log(newCourselist))
+            .then(Writer.writeCourselist)
+            .then(courselist => {
+                res.status(200)
+                res.send(courselist)
+            })
+        } else {
+            console.log("Courselist found")
+            res.status(200)
+            res.send(courselist) 
+        }
+    })
 }

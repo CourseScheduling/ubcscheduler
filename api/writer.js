@@ -1,7 +1,8 @@
 const Model = require('./model')
 const Course = Model.Course
+const Courselist = Model.Courselist
 
-function writeCourse(course) {
+module.exports.writeCourse = function (course) {
     return new Promise((resolve, reject) => {
         Course.update({code: course.code}, course, { upsert : true }, (err, newCourse) => {
             if (err) reject(err);
@@ -10,4 +11,13 @@ function writeCourse(course) {
     });
 }
 
-module.exports.writeCourse = writeCourse
+module.exports.writeCourselist = function (courselist) {
+    return new Promise((resolve, reject) => {
+        Courselist.update({uni: 'ubc'}, courselist, { upsert : true }, (err, newCourselist) => {
+            if (err) reject(err);
+            console.log("Writing courselist success")
+            resolve(courselist)
+        })
+    });
+}
+
