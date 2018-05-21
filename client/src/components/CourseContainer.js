@@ -5,6 +5,8 @@ import classNames from 'classnames';
 
 import { schedule } from '../actions/schedulerActions'
 
+import Course from './Course.js'
+
 class CourseContainer extends Component {
     constructor(props) {
         super(props)
@@ -13,17 +15,9 @@ class CourseContainer extends Component {
         }
     }
     render() {
-
         const courseElements = this.state.courses.map((course, i) => {
-            console.log("courselement")
-            const courseClasses = classNames(
-                'course',
-                { 'course--active': true }
-            );
             return (
-                <div className={courseClasses} key={course.code + "_code"}>
-                    <div className="course__code">{course.code}</div>
-                </div>
+                <Course {...{course: course}} key={course.code + "_element"}/>
             )
         });
 

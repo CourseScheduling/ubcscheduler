@@ -13,7 +13,6 @@
 
 function filterWaitingList(section) {
     if (section.activity == "Waiting List") {
-        console.log("Found waiting list!")
         section.activity = "Lecture"
     }
     return section
