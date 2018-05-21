@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
-import './css/layout.css';
+import './css/layout/layout.css';
+import './css/search-tool.css';
 import { Provider } from 'react-redux';
 
 import SearchTool from './components/SearchTool';
@@ -13,14 +14,27 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
-          </header>
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
-          <SearchTool />
+          <div className="header">
+            <div className="logo">
+              UBC Scheduler
+            </div>
+            <div className="instructions">
+              Add courses and schedule things
+            </div>
+            <div className="saved-schedules">
+              Saved schedules:
+            </div>
+          </div>
+          
+
+          <div className="side-panel">
+            <SearchTool />
+            <Courses /> 
+          </div>
+
+          <div className="calendar">
+            Calendar
+          </div>
         </div>        
       </Provider>
     );
