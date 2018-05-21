@@ -3,6 +3,8 @@ const xml2js = require('xml2js')
 const parser = new xml2js.Parser()
 const cheerio = require('cheerio')
 
+const Rules = require('./rules')
+
 //Converts from format HH:MM to ith 30 minute block from 8:00
 function timeToInt(time) {
     time = time.replace(":", "");
@@ -62,16 +64,39 @@ module.exports.scrapeCourse = function (course) {
 
         var courseObj = {
             "code": course,
-            "sections": []
+            "t1": [],
+            "t2": [],
+            "activity_types": []
         }
         
         rp(XML_URL)
         .then(xml => {
             parser.parseString(xml, (err, result) => {
                 result.sections.section.forEach(sectionObj => {
-                    courseObj.sections.push(parseSection(sectionObj))
+                    section = parseSection(sectionObj);
+                    section = Rules.filterWaitingList(section)
+                    
+                    let activityIdx = courseObj.activity_types.indexOf(section.activity)
+                    if (activityIdx === -1) {
+                        activityIdx = courseObj.activity_types.length
+                        courseObj.activity_types.push(section.activity)
+                        courseObj.t1.push([])
+                        courseObj.t2.push([])
+                    } 
+
+                    if (section.term === "1") {
+                        courseObj.t1[activityIdx].push(section)
+                    } else if (section.term === "2") {
+                        courseObj.t2[activityIdx].push(section)
+                    } else if (section.term === "1-2") {
+                        courseObj.t1[activityIdx].push(section)
+                        courseObj.t2[activityIdx].push(section)
+                    } else {
+                        console.log("Term invalid! Section not added")
+                    }
                 })
             })
+
             resolve(courseObj)
         })
     });
@@ -116,7 +141,7 @@ module.exports.scrapeCourselist = function () {
                 })
             });
         })
-
+        
         //resolve(courselist)
     });
 }

@@ -14,9 +14,13 @@ export default function(state = initialState, action) {
           courselist: action.payload
         };
       case ADD_COURSE:
+        let idx = state.courses.findIndex(element => {
+          return element.code === action.payload.code
+        });
+        if (idx !== -1) return state;
         return {
           ...state,
-          courses: state.courses.push(action.payload)
+          courses: [...state.courses, action.payload]
         }
       default:
         return state;

@@ -87,7 +87,7 @@ class SearchTool extends Component {
                 {'search-result__course--hover': this.state.currentIndex === i}
             );
             return (
-                <div className={resultClasses} key={result.code} onClick={this.resultOnClick(i)}>
+                <div className={resultClasses} key={result.code + "_result"} onClick={this.resultOnClick(i)}>
                     <div className="search-result-head__course">
                         {result.code}
                     </div>
