@@ -120,7 +120,7 @@ SearchTool.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    courselist: state.courses.courselist
+    courselist: state.course.courselist
 });
 
 export default connect(mapStateToProps, { fetchCourselist, addCourse })(SearchTool)

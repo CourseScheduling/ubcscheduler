@@ -6,6 +6,7 @@ import './css/search-tool.css';
 import { Provider } from 'react-redux';
 
 import SearchTool from './components/SearchTool';
+import CourseContainer from './components/CourseContainer';
 
 import store from './store';
 
@@ -29,7 +30,10 @@ class App extends Component {
 
           <div className="side-panel">
             <SearchTool />
-            <Courses /> 
+            <CourseContainer />
+            Add Breaks
+            Lock Sections
+            Create STT 
           </div>
 
           <div className="calendar">
