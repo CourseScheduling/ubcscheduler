@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import './css/layout.css';
 import { Provider } from 'react-redux';
 
 import SearchTool from './components/SearchTool';
