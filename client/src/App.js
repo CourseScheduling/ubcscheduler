@@ -9,12 +9,13 @@ import './css/side-panel.css';
 import './css/course-container.css';
 import './css/search-tool.css';
 import './css/common.css';
+import './css/calendar.css';
 
 import { Provider } from 'react-redux';
 
 import SearchTool from './components/SearchTool';
 import CourseContainer from './components/CourseContainer';
-import CalendarTable from './components/CalendarTable';
+import CalendarContainer from './components/CalendarContainer';
 
 import store from './store';
 
@@ -27,9 +28,7 @@ class App extends Component {
             <div className="logo">
               UBC Scheduler
             </div>
-            <div className="instructions">
-              <span>Guide: Add breaks by dragging on the calendar and lock sections by right clicking sections</span>
-            </div>
+
             <div className="saved-schedules">
               <span>Saved schedules:</span>
             </div>
@@ -53,10 +52,9 @@ class App extends Component {
               <div className="calendar__term">Term 1</div>
               <div className="calendar__term">Term 2</div>
             </div>
-            <div className="calendar__container">
-              <CalendarTable term="t1"/>
-              <CalendarTable term="t2"/>
-            </div>
+            
+            <CalendarContainer />
+            
             <div className="calendar__index">
               <span>1</span>
               <span>/</span>

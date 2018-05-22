@@ -1,0 +1,90 @@
+.calendar__term-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.calendar__term {
+    display: inline-block;
+    border-radius: 3px;
+    border: 1px solid grey;
+    padding: 5px;
+    background-color: #ddd;
+    margin: 5px;
+    cursor: pointer;
+}
+.calendar__term:hover {
+    background-color: #fff;
+}
+
+.calendar-container-wrapper {
+    width: 100%;
+}
+.calendar-container {
+    display: inline-block;
+    position: relative;
+}
+
+.calendar__table-container {
+    display: inline-block;
+    margin: 20px;
+}
+.calendar__table {
+    width: 500px;
+    overflow: visible;
+    color: #000;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    background-color: #ddd;
+}
+
+.calendar__row {
+    
+}
+    .calendar__row--days {
+        height: 30px;
+        text-transform: uppercase;
+    }
+    .calendar__block {
+        width: calc(92% / 5);
+        height: 25px;
+        padding: 0px;
+        background-color: #FFF;
+    }
+    .calendar__block--time {
+        width: 8%;
+    }
+table, th, td {
+    border: 1px solid #ddd;
+    font-size: 12px;
+}
+
+.arrow-container {
+    position:absolute;
+    margin: auto;
+    top: 0; bottom: 0; 
+    width: 100%;
+    height: 40px;
+}
+.arrow {
+    display: inline-block;
+    color: rgb(5, 150, 255);
+    cursor: pointer;
+}
+.arrow:hover {
+    color: rgb(0, 83, 144);
+}
+.arrow i {
+    font-size: 50px;
+}
+.arrow--left {
+    margin-left: -50px;
+    float: left;
+}
+.arrow--right {
+    margin-right: -50px;
+    float: right;
+}
+
+.calendar__index {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

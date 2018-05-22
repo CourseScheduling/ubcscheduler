@@ -42,8 +42,6 @@ class CalendarTable extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    
-});
 
-export default connect(mapStateToProps, {})(CalendarTable)
+
+export default connect(null, {})(CalendarTable)
