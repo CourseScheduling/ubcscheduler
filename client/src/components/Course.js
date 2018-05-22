@@ -73,10 +73,10 @@ class Course extends Component {
                         <div className={"course__term course__term--one " + (this.state.course.term === "t1" ? "course__term--active" : "")} onClick={this.toggleCourseTerm("t1")}>Term 1</div>
                         <div className={"course__term course__term--two " + (this.state.course.term === "t2" ? "course__term--active" : "")} onClick={this.toggleCourseTerm("t2")}>Term 2</div>
                     </div>
-                    <div className="course__t1__container">
+                    <div className={"course__container " + (this.state.course.term === "t1" ? "course__container--active" : "")}>
                         { this.sectionsByTermJSX("t1") }
                     </div>
-                    <div className="course__t2__container">
+                    <div className={"course__container " + (this.state.course.term === "t2" ? "course__container--active" : "")}>
                         { this.sectionsByTermJSX("t2") }
                     </div>
                 </div>              

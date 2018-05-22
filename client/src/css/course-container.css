@@ -87,6 +87,9 @@
  }
 
 
-.course__t2__container {
+.course__container {
     display: none;
+}
+.course__container--active {
+    display: block;
 }
