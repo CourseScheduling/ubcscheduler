@@ -3,7 +3,10 @@ import { SCHEDULE, ADD_COURSE } from '../actions/types';
 const initialState = {
     schedules: [],
     lockedSections : [],
-    breaks: []
+    breaks: {
+        "t1": [0,0,0,0,0],
+        "t2": [0,0,0,0,0]
+    }
 }
 
 

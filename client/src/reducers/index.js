@@ -4,5 +4,5 @@ import scheduleReducer from './scheduleReducer';
 
 export default combineReducers({
     course: courseReducer,
-    schedule: scheduleReducer
+    scheduler: scheduleReducer
   });
