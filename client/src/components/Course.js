@@ -9,8 +9,11 @@ class Course extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            course: props.course,
+            course: props.courses[props.i],
+            i: props.i
         }
+        console.log("Course constructor")
+        console.log(this.state)
         this.sectionsByTermJSX = this.sectionsByTermJSX.bind(this)
         this.toggleCourse = this.toggleCourse.bind(this)
         this.removeCourse = this.removeCourse.bind(this)
@@ -93,8 +96,12 @@ class Course extends Component {
 
 Course.getDerivedStateFromProps = (nextProps, prevState)=>  {
     return {
-        course: nextProps.course
+        courses: nextProps.courses
     }
 }
 
-export default connect(null, { removeCourse, toggleCourseTerm })(Course)
+const mapStateToProps = state => ({
+    courses: state.course.courses
+});
+
+export default connect(mapStateToProps, { removeCourse, toggleCourseTerm })(Course)
