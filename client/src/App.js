@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 
 import SearchTool from './components/SearchTool';
 import CourseContainer from './components/CourseContainer';
+import CalendarTable from './components/CalendarTable';
 
 import store from './store';
 
@@ -37,7 +38,19 @@ class App extends Component {
           </div>
 
           <div className="calendar">
-            Calendar
+            <div className="calendar__term-container">
+              <div className="calendar__term">Term 1</div>
+              <div className="calendar__term">Term 2</div>
+            </div>
+            <div className="calendar__container">
+              <CalendarTable />
+              <CalendarTable />
+            </div>
+            <div className="calendar__index">
+              <span>1</span>
+              <span>/</span>
+              <span>1</span>
+            </div>
           </div>
         </div>        
       </Provider>
