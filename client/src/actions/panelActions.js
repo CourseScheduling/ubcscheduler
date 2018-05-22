@@ -20,6 +20,7 @@ export const addCourse = (courseCode) => dispatch => {
     fetch(`/api/v1/course/${courseCode}`)
     .then(res => res.json())
     .then(course => {
+        course.active = true;
         dispatch({
             type: ADD_COURSE,
             payload: course

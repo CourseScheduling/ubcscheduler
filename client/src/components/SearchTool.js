@@ -29,6 +29,7 @@ class SearchTool extends Component {
             //ENTER
             case 13:
                 if (currentIndex >= 0) {
+                    this.setState({'searchText': ''})
                     this.props.addCourse(this.state.searchResults[currentIndex].code)
                 }
                 break;
@@ -77,6 +78,7 @@ class SearchTool extends Component {
     }
 
     resultOnClick = (i) => e => {
+        this.setState({'searchText': ''})
         this.props.addCourse(this.state.searchResults[i].code)
     }
 
@@ -106,6 +108,7 @@ class SearchTool extends Component {
                     onKeyDown={this.onKeyDown}
                     onChange={this.onChange}
                     className="search__input"
+                    value={this.state.searchText}
                 />
                 <div className="search__result-wrapper">
                     {searchResults}
