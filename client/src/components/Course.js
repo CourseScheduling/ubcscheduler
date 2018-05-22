@@ -96,7 +96,8 @@ class Course extends Component {
 
 Course.getDerivedStateFromProps = (nextProps, prevState)=>  {
     return {
-        courses: nextProps.courses
+        course: nextProps.courses[prevState.i],
+        i: prevState.i
     }
 }
 
