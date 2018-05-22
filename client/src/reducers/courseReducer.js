@@ -1,4 +1,4 @@
-import { FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE } from '../actions/types';
+import { FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM } from '../actions/types';
 
 const initialState = {
     courselist: [],
@@ -7,6 +7,7 @@ const initialState = {
 
 
 export default function(state = initialState, action) {
+    let newCourses;
     switch (action.type) {
       case FETCH_COURSELIST:
         return {
@@ -23,8 +24,19 @@ export default function(state = initialState, action) {
           courses: [...state.courses, action.payload]
         }
       case REMOVE_COURSE:
-        let newCourses = [...state.courses].filter(course => course.code !== action.payload);
+        newCourses = [...state.courses].filter(course => course.code !== action.payload);
         console.log("newCourses", newCourses)
+        return {
+          ...state,
+          courses: newCourses
+        }
+      case TOGGLE_COURSE_TERM:
+        newCourses = [...state.courses]
+        newCourses.forEach(e => {
+          if (e.code === action.payload.code) {
+            e.term = action.payload.term
+          }
+        })
         return {
           ...state,
           courses: newCourses

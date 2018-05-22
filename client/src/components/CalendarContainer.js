@@ -13,10 +13,10 @@ class CalendarContainer extends Component {
                 <div className="calendar-container">
                     <div className="arrow-container">
                         <div className="arrow arrow--left">
-                            <i class="material-icons">&#xE5CB;</i>
+                            <i className="material-icons">&#xE5CB;</i>
                         </div>
                         <div className="arrow arrow--right">
-                            <i class="material-icons">&#xE5CC;</i>
+                            <i className="material-icons">&#xE5CC;</i>
                         </div>
                     </div>
                     <CalendarTable term="t1" />

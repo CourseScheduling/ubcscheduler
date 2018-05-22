@@ -4,6 +4,7 @@ import rootReducer from './reducers';
 
 import {FETCH_COURSELIST, ADD_COURSE, SCHEDULE} from './actions/types'
 
+import { schedule } from './scheduler'
 
 const initialState = {};
 
@@ -15,6 +16,7 @@ const scheduler = (store) => (next) => (action) => {
   console.log(store.getState())
   if (action.type === ADD_COURSE) {
     console.log("Add course detected")
+    
     action.schedules = []
   }
 
