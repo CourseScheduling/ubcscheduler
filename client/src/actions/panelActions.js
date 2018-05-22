@@ -1,4 +1,4 @@
-import { FETCH_COURSELIST, ADD_COURSE } from '../actions/types';
+import { FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE } from '../actions/types';
 
 
 export const fetchCourselist = () => dispatch => {
@@ -24,5 +24,13 @@ export const addCourse = (courseCode) => dispatch => {
             type: ADD_COURSE,
             payload: course
         })
+    })
+};
+
+export const removeCourse = (code) => dispatch => {
+    console.log("removing coures")
+    dispatch({
+        type: REMOVE_COURSE,
+        payload: code
     })
 };

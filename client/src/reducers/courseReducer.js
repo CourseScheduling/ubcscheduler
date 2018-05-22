@@ -1,4 +1,4 @@
-import { FETCH_COURSELIST, ADD_COURSE } from '../actions/types';
+import { FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE } from '../actions/types';
 
 const initialState = {
     courselist: [],
@@ -21,6 +21,13 @@ export default function(state = initialState, action) {
         return {
           ...state,
           courses: [...state.courses, action.payload]
+        }
+      case REMOVE_COURSE:
+        let newCourses = [...state.courses].filter(course => course.code !== action.payload);
+        console.log("newCourses", newCourses)
+        return {
+          ...state,
+          courses: newCourses
         }
       default:
         return state;

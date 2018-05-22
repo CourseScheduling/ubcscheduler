@@ -83,15 +83,15 @@ class SearchTool extends Component {
     render() {
         const searchResults = this.state.searchResults.map((result, i) => {
             const resultClasses = classNames(
-                'search-result__course',
-                {'search-result__course--hover': this.state.currentIndex === i}
+                'search__result',
+                {'search__result--hover': this.state.currentIndex === i}
             );
             return (
                 <div className={resultClasses} key={result.code + "_result"} onClick={this.resultOnClick(i)}>
-                    <div className="search-result-head__course">
+                    <div className="search__result__head">
                         {result.code}
                     </div>
-                    <div className="search-result-body__course">
+                    <div className="search__result__body">
                         {result.name}
                     </div>
                 </div>
@@ -99,14 +99,15 @@ class SearchTool extends Component {
         });
 
         return (
-            <div>
+            <div className="search-tool">
                 <input 
                     type="text" 
                     placeholder="ENTER YOUR COURSES e.g. CPSC 110" 
                     onKeyDown={this.onKeyDown}
                     onChange={this.onChange}
+                    className="search__input"
                 />
-                <div className="search-result-wrapper__course">
+                <div className="search__result-wrapper">
                     {searchResults}
                 </div>
             </div>

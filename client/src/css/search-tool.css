@@ -1,2 +1,54 @@
-@import './design/search-tool_design.css';
-@import './layout/search-tool_layout.css';
+.search-tool {
+    font-family: Montserrat;
+}
+    .search__input {
+        padding-left: 40px;
+        width: calc(100% - 8px);
+        border: 0;
+        height: 40px;
+        background: url(../img/glass.png) center left 7.5px no-repeat;
+        background-size: 25px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        outline: 0;
+        font-size: 10px;
+        box-sizing: border-box;
+        float: left;
+        background-color: #FFF;
+        border: 1px solid #EEE;
+        border-radius: 5px;
+        margin: 4px;
+    }
+    .search__result-wrapper {
+        display: inline-block;
+        background-color: #FFF;
+        border-top: 1px solid #EEE;
+        padding: 0;
+        width: 100%;
+        float: left;
+    }
+    .search__result{
+        border-bottom: 1px solid #EEE;
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        float: left;
+    }
+    .search__result__head {
+        font-size: 12px;
+        letter-spacing: 1px;
+        text-align: left;
+        width: 100%;
+    }
+    .search__result__body {
+        font-size: 10px;
+        color: #999;
+        float: left;
+    }
+    .search__result:hover{
+        background-color: #F2f2F2;
+        cursor: pointer;
+    }
+    .search__result--hover{
+        background-color: rgba(137, 196, 244, 0.3);
+    }

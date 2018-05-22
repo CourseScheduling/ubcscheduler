@@ -1,0 +1,16 @@
+.side-panel {
+    background-color: #F0F8FF;
+}
+
+.side-panel > div {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.control__container {
+    background-color: #EEE;
+    border-radius: 2px;
+    overflow: hidden;
+    width: 90%;
+}

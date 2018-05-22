@@ -15,7 +15,7 @@ html, body, #root, .App {
 .header {
     grid-area: header;
     display: grid;
-    grid-template-columns: 10% 45% auto;
+    grid-template-columns: 20% 40% auto;
 }
     
 

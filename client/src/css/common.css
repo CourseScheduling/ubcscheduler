@@ -1,0 +1,32 @@
+/* .btn {
+    padding: 10px;
+    border-radius: 3px;
+    background-color: #DDD;
+    box-shadow: 0px 1px 1px rgba(0,0,0,0.4);
+    display: inline-block;
+    font-family: Montserrat;
+    font-size: 11px;
+    cursor: pointer;
+    margin: 5px;
+    text-transform: uppercase;
+  }
+   */
+.remove-btn-parent {
+    position: relative;
+}
+
+.remove-btn-parent:hover .remove-btn {
+    display: inline-block;
+}
+.remove-btn {
+    display: none;
+    position: absolute;
+    top: 0px;
+    right:0px;
+    cursor: pointer;
+}
+.remove-btn i {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 20px;
+    font-weight: bold;
+}

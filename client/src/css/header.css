@@ -1,0 +1,25 @@
+.header {
+    border-bottom: 1px solid grey;
+}
+    .header > div {
+        display: flex;
+        align-items: center;
+    }
+    .header span {
+        padding: 5px;
+    }
+
+.logo {
+    justify-content: center;
+    font-size: 30px;
+    font-weight: bold; 
+    background-color:#123B5C;
+    color: white;
+}
+.instructions {
+
+}
+.saved-schedules {
+
+}
+

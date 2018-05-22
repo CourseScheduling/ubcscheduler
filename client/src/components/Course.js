@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-export default class Course extends Component {
+import { removeCourse } from '../actions/panelActions';
+
+class Course extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -9,6 +13,8 @@ export default class Course extends Component {
             term: "t1"
         }
         this.sectionsByTermJSX = this.sectionsByTermJSX.bind(this)
+        this.toggleCourse = this.toggleCourse.bind(this)
+        this.removeCourse = this.removeCourse.bind(this)
     }
 
     sectionsByTermJSX(term) {
@@ -25,34 +31,58 @@ export default class Course extends Component {
                         </div>
                     ))
                 }
-                <div className="course__section"></div>
             </div>
         ));
     }
 
+    toggleCourse() {
+        console.log("Toggling")
+        let isActive = this.state.course.active ? false : true;
+        this.setState({ 
+            "course": {...this.state.course, active:isActive}
+        })   
+    }
+
+    removeCourse() {
+        console.log("removing course")
+        this.props.removeCourse(this.state.course.code);
+        
+    }
     render() {
-
-
         const courseClasses = classNames(
+            'remove-btn-parent',
             'course',
-            { 'course--active': true }
+            { 'course--active': this.state.course.active }
         );
-
+        let courseExtra;
+        if (this.state.course.active) {
+            courseExtra = (
+                <div className="course__extra">
+                    <div className="course__term-container">
+                        <div className="course__term course__term--one">Term 1</div>
+                        <div className="course__term course__term--two">Term 2</div>
+                    </div>
+                    <div className="course__t1__container">
+                        { this.sectionsByTermJSX("t1") }
+                    </div>
+                    <div className="course__t2__container">
+                        { this.sectionsByTermJSX("t2") }
+                    </div>
+                </div>              
+            )
+        }
         return (
-            <div className={courseClasses}>
+            <div className={courseClasses} onClick={this.toggleCourse}>
+                <div className="remove-btn" onClick={this.removeCourse}>
+                    <i className="material-icons">&#xE5CD;</i>
+                </div>
                 <div className="course__code">{this.state.course.code}</div>
-                <div className="course__term">
-                    <div className="course__term__one">Term 1</div>
-                    <div className="course__term__two">Term 2</div>
-                </div>
-                <div className="course__t1__container">
-                    { this.sectionsByTermJSX("t1") }
-                </div>
-                <div className="course__t2__container">
-                    Term 2 sections
-                </div>
+                {courseExtra}
             </div>
         )
     }
 }
 
+
+
+export default connect(null, { removeCourse })(Course)
