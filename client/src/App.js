@@ -43,8 +43,8 @@ class App extends Component {
               <div className="calendar__term">Term 2</div>
             </div>
             <div className="calendar__container">
-              <CalendarTable />
-              <CalendarTable />
+              <CalendarTable term="t1"/>
+              <CalendarTable term="t2"/>
             </div>
             <div className="calendar__index">
               <span>1</span>

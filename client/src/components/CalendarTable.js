@@ -17,20 +17,20 @@ class CalendarTable extends Component {
                         <tr className="calendar__row calendar__row--days">
                             <td className="calendar__block calendar__block--time"></td>
                             {['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].map(day => (
-                                <td className="calendar__block calendar__block--day">{day}</td>
+                                <td className="calendar__block calendar__block--day" key={"block--day_" + this.props.term + day}>{day}</td>
                             ))}
                         </tr>
                         {hours.map((hour, hourIdx) => (
-                            <React.Fragment>
-                                <tr className="calendar_row">
-                                    <td className="calendar__block calendar__block--time" rowspan="2">{hour}</td>
+                            <React.Fragment key={"calendar__row-duple_" + this.props.term + hourIdx}>
+                                <tr className="calendar_row" key={"calendar__row_" + this.props.term + hourIdx}>
+                                    <td className="calendar__block calendar__block--time" rowSpan="2">{hour}</td>
                                     {[0, 1, 2, 3, 4].map(dayIdx => (
-                                        <td className="calendar__block" data-day={dayIdx} data-time={hourIdx}></td>
+                                        <td className="calendar__block" data-day={dayIdx} data-time={hourIdx} key={"block_" + this.props.term + dayIdx + hourIdx}></td>
                                     ))}
                                 </tr>
-                                <tr className="calendar_row">
+                                <tr className="calendar_row" key={"calendar__row_" + this.props.term + (hourIdx + 1).toString()}>
                                     {[0, 1, 2, 3, 4].map(dayIdx => (
-                                        <td className="calendar__block" data-day={dayIdx} data-time={hourIdx}></td>
+                                        <td className="calendar__block" data-day={dayIdx} data-time={hourIdx+1} key={"block_" + this.props.term + dayIdx + (hourIdx + 1).toString()}></td>
                                     ))}
                                 </tr>
                             </React.Fragment>
