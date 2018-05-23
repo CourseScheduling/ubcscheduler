@@ -1,5 +1,6 @@
 
 .course-container-header {
+    display: inline-block;
     width: 100%;
     text-align: left;
     margin: 5px;
