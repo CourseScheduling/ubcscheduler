@@ -1,0 +1,23 @@
+.block__daycol {
+    width: calc(100% / 5);
+    display: inline-block;
+    height: calc(100% - 30px);
+    position: relative;
+}
+
+.block__section {
+    position: absolute;
+    color: #FFF;
+    border-radius: 5px;
+    font-size: 11px;
+    background-color: #999;
+    padding: 2px;
+    box-sizing: border-box;
+    display: table;
+    width: 100%;
+}
+
+.block__section span {
+    display: table-cell;
+    vertical-align: middle;
+}

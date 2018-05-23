@@ -10,6 +10,8 @@ import './css/course-container.css';
 import './css/search-tool.css';
 import './css/common.css';
 import './css/calendar.css';
+import './css/calendar-block.css';
+
 
 import { Provider } from 'react-redux';
 

@@ -18,7 +18,7 @@ class CalendarBlocks extends Component {
             <div className="calendar__blocks">
                 {   
                     [0,1,2,3,4].map(day => (
-                    <div className="block__dayCol" key={"block__dayCol" + day}>
+                    <div className="block__daycol" key={"block__daycol" + day}>
                         {
                             this.state.schedule.map(section => {
                                 if (section.schedule[day] === 0) return
