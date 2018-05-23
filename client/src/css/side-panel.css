@@ -1,5 +1,6 @@
 .side-panel {
     background-color: #F0F8FF;
+    min-width: 300px;
 }
 
 .side-panel > div {
