@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
-import {FETCH_COURSELIST, ADD_COURSE, TOGGLE_COURSE_TERM} from './actions/types'
+import {FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM} from './actions/types'
 
 import schedule from './js/scheduler'
 
@@ -24,7 +24,11 @@ const scheduler = (store) => (next) => (action) => {
         courses.push(action.payload)
         action.schedules = schedule(courses, state.scheduler.breaks, state.scheduler.lockedSections)
       }
-      break;    
+      break;   
+    case REMOVE_COURSE:
+      courses = [...state.course.courses].filter(course => course.code !== action.payload)
+      action.schedules = schedule(courses, state.scheduler.breaks, state.scheduler.lockedSections)
+      break;
     case TOGGLE_COURSE_TERM: 
       courses = [...state.course.courses]
       courses.forEach(e => {

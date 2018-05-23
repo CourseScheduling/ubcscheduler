@@ -1,4 +1,4 @@
-import { ADD_COURSE, TOGGLE_COURSE_TERM, JUMP_TO } from '../actions/types';
+import { ADD_COURSE, TOGGLE_COURSE_TERM, JUMP_TO, REMOVE_COURSE } from '../actions/types';
 
 const initialState = {
     schedules: {t1:[[]], t2:[[]]},
@@ -15,6 +15,7 @@ const initialState = {
 export default function(state = initialState, action) {
     switch (action.type) {
         case ADD_COURSE:
+        case REMOVE_COURSE:
         case TOGGLE_COURSE_TERM:
             console.log("ADD COURSE!")
             return {
