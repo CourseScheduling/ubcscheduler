@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
-import { schedule } from '../actions/schedulerActions'
 import { removeCourse, toggleCourseTerm } from '../actions/panelActions';
 import Course from './Course.js'
 
@@ -51,4 +50,4 @@ const mapStateToProps = state => ({
     courses: state.course.courses
 });
 
-export default connect(mapStateToProps, { schedule, removeCourse, toggleCourseTerm })(CourseContainer)
+export default connect(mapStateToProps, { removeCourse, toggleCourseTerm })(CourseContainer)

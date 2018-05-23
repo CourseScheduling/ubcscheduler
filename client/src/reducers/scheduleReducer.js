@@ -3,6 +3,7 @@ import { SCHEDULE, ADD_COURSE, TOGGLE_COURSE_TERM } from '../actions/types';
 const initialState = {
     schedules: {t1:[[]], t2:[[]]},
     index: {t1: 0, t2: 0},
+    term: "t1",
     breaks: {
         "t1": [0,0,0,0,0],
         "t2": [0,0,0,0,0]

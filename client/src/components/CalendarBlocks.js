@@ -30,7 +30,6 @@ export default class CalendarBlocks extends Component {
                                     />
                                 )
                             })
-                            
                         }
                     </div>
                 ))}
