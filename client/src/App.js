@@ -19,6 +19,8 @@ import SearchTool from './components/SearchTool';
 import CourseContainer from './components/CourseContainer';
 import CalendarContainer from './components/CalendarContainer';
 import CalendarIndex from './components/CalendarIndex';
+import CalendarTerms from './components/CalendarTerms';
+
 import store from './store';
 
 class App extends Component {
@@ -50,11 +52,8 @@ class App extends Component {
           </div>
 
           <div className="calendar">
-            <div className="calendar__term-container">
-              <div className="calendar__term">Term 1</div>
-              <div className="calendar__term">Term 2</div>
-            </div>
-            
+            <CalendarTerms />
+
             <CalendarContainer />
             
             <CalendarIndex />

@@ -1,7 +1,7 @@
 .block__daycol {
     width: calc(100% / 5);
     display: inline-block;
-    height: calc(100% - 30px);
+    height: 100%;
     position: relative;
 }
 
