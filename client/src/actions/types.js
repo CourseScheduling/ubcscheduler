@@ -3,4 +3,4 @@ export const ADD_COURSE = "ADD_COURSE";
 export const REMOVE_COURSE = "REMOVE_COURSE";
 export const TOGGLE_COURSE_TERM = "TOGGLE_COURSE_TERM";
 
-export const SCHEDULE = "SCHEDULE";
+export const JUMP_TO = "JUMP_TO";

@@ -36,7 +36,8 @@ class CourseContainer extends Component {
 }
 
 CourseContainer.propTypes = {
-    schedule: PropTypes.func.isRequired
+    removeCourse: PropTypes.func.isRequired,
+    toggleCourseTerm: PropTypes.func.isRequired
 }
 
 CourseContainer.getDerivedStateFromProps = (nextProps, prevState)=>  {

@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
-import {FETCH_COURSELIST, ADD_COURSE, SCHEDULE, TOGGLE_COURSE_TERM} from './actions/types'
+import {FETCH_COURSELIST, ADD_COURSE, TOGGLE_COURSE_TERM} from './actions/types'
 
 import schedule from './js/scheduler'
 
