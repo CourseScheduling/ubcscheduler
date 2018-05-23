@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
-class CalendarTable extends Component {
+export default class CalendarTable extends Component {
     constructor(props) {
         super(props)
     }
@@ -41,7 +41,3 @@ class CalendarTable extends Component {
         )
     }
 }
-
-
-
-export default connect(null, {})(CalendarTable)

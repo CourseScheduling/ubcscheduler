@@ -6,11 +6,11 @@ import classNames from 'classnames';
 import BlockSection from './BlockSection';
 
 
-class CalendarBlocks extends Component {
+export default class CalendarBlocks extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            schedule: []
+            schedule: this.props.schedule
         }
     }
     render() {
@@ -20,7 +20,7 @@ class CalendarBlocks extends Component {
                     [0,1,2,3,4].map(day => (
                     <div className="block__daycol" key={"block__daycol" + day}>
                         {
-                            this.state.schedule.map(section => {
+                            this.props.schedule.map(section => {
                                 if (section.schedule[day] === 0) return
                                 return  (
                                     <BlockSection 
@@ -38,22 +38,3 @@ class CalendarBlocks extends Component {
         )
     }
 }
-
-CalendarBlocks.getDerivedStateFromProps = (nextProps, prevState) => {
-    console.log("CalendarBlock.getDerivedStateFromProps", nextProps)
-    const term = nextProps.term
-    let nextSchedule = nextProps.schedules[term][nextProps.index[term]]
-    if (!nextSchedule) {
-        nextSchedule = [] 
-    }
-    return {
-        schedule: nextSchedule
-    }
-}
-
-const mapStateToProps = state => ({
-    schedules: state.scheduler.schedules,
-    index: state.scheduler.index
-});
-
-export default connect(mapStateToProps, {})(CalendarBlocks)
