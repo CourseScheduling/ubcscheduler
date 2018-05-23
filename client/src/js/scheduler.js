@@ -12,7 +12,7 @@ const schedule = function (courses, breaks, lockedSections) {
     console.log("t2 courses", t2Courses)
 
     const t1SectionsByActivity = t1Courses.reduce((acc, course, i, courses) => acc.concat(course.t1), [])
-    const t2SectionsbyActivity = t2Courses.reduce((acc, course, i, courses) => acc.concat(course.t1), [])
+    const t2SectionsbyActivity = t2Courses.reduce((acc, course, i, courses) => acc.concat(course.t2), [])
     console.log("t1SectionsByActivity", t1SectionsByActivity)
     console.log("t2SectionsbyActivity", t2SectionsbyActivity)
     const numT1Sections = t1SectionsByActivity.length

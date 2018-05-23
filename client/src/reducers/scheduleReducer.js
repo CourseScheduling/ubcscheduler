@@ -1,4 +1,4 @@
-import { SCHEDULE, ADD_COURSE } from '../actions/types';
+import { SCHEDULE, ADD_COURSE, TOGGLE_COURSE_TERM } from '../actions/types';
 
 const initialState = {
     schedules: {t1:[[]], t2:[[]]},
@@ -19,6 +19,7 @@ export default function(state = initialState, action) {
                 schedules : action.payload
             };
         case ADD_COURSE:
+        case TOGGLE_COURSE_TERM:
             console.log("ADD COURSE!")
             return {
                 ...state,

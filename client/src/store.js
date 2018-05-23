@@ -2,9 +2,9 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
-import {FETCH_COURSELIST, ADD_COURSE, SCHEDULE} from './actions/types'
+import {FETCH_COURSELIST, ADD_COURSE, SCHEDULE, TOGGLE_COURSE_TERM} from './actions/types'
 
-import schedule from './scheduler'
+import schedule from './js/scheduler'
 
 const initialState = {};
 
@@ -13,16 +13,29 @@ const initialState = {};
  */
 const scheduler = (store) => (next) => (action) => {
   let state = store.getState()
-  if (action.type === ADD_COURSE) {
-    console.log("Add course detected in middleware")
-    let courses = [...state.course.courses]
-    let idx = state.course.courses.findIndex(element => {
-      return element.code === action.payload.code
-    });
-    if (idx === -1) {
-      courses.push(action.payload)
+  let courses;
+  switch (action.type) {
+    case ADD_COURSE:
+      courses = [...state.course.courses]
+      let idx = state.course.courses.findIndex(element => {
+        return element.code === action.payload.code
+      });
+      if (idx === -1) {
+        courses.push(action.payload)
+        action.schedules = schedule(courses, state.scheduler.breaks, state.scheduler.lockedSections)
+      }
+      break;    
+    case TOGGLE_COURSE_TERM: 
+      courses = [...state.course.courses]
+      courses.forEach(e => {
+        if (e.code === action.payload.code) {
+          e.term = action.payload.term
+        }
+      })
       action.schedules = schedule(courses, state.scheduler.breaks, state.scheduler.lockedSections)
-    }    
+      break;
+    default:
+      console.log("Not scheduling for ", action.type)
   }
 
   next(action)
