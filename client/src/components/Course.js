@@ -18,24 +18,6 @@ export default class Course extends Component {
         this.toggleCourseTerm = this.toggleCourseTerm.bind(this)
     }
 
-    sectionsByTermJSX(term) {
-        return this.state.course[term].map((sectionsByActivity, i) => (
-            <div className="course__sections" key={this.state.course.code + "_sections_" + i}>
-                <div className="course__sections__activity">{this.state.course.activity_types[i]}</div>
-                {
-
-                    sectionsByActivity.map(section => (
-                        <div 
-                            className="course__button course__section" 
-                            key={this.state.course.code + "_sections_" + section.section}>
-                            {section.section}
-                        </div>
-                    ))
-                }
-            </div>
-        ));
-    }
-
     toggleCourse() {
         console.log("Toggling")
         let isActive = this.state.course.active ? false : true;
@@ -57,6 +39,24 @@ export default class Course extends Component {
             this.props.toggleCourseTerm(this.state.course.code, term)
         }
         e.stopPropagation();
+    }
+
+    sectionsByTermJSX(term) {
+        return this.state.course[term].map((sectionsByActivity, i) => (
+            <div className="course__sections" key={this.state.course.code + "_sections_" + i}>
+                <div className="course__sections__activity">{this.state.course.activity_types[i]}</div>
+                {
+
+                    sectionsByActivity.map(section => (
+                        <div 
+                            className={"course__button course__section " + (section.active ? "course__button--selected" : "")} 
+                            key={this.state.course.code + "_sections_" + section.section}>
+                            {section.section}
+                        </div>
+                    ))
+                }
+            </div>
+        ));
     }
 
     render() {
