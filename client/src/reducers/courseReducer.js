@@ -19,9 +19,14 @@ export default function(state = initialState, action) {
           return element.code === action.payload.code
         });
         if (idx !== -1) return state;
+
+        newCourses = [...state.courses]
+        newCourses.forEach(course => course.active = false)
+        newCourses.push(action.payload)
+
         return {
           ...state,
-          courses: [...state.courses, action.payload]
+          courses: newCourses
         }
       case REMOVE_COURSE:
         newCourses = [...state.courses].filter(course => course.code !== action.payload);
