@@ -17,7 +17,7 @@ class CourseContainer extends Component {
     render() {
         const courseElements = this.state.courses.map((course, i) => {
             return (
-                <Course i={i} key={course.code + " element"}/>
+                <Course i={i} key={course.code + " element"} />
             )
         });
 
@@ -34,6 +34,7 @@ CourseContainer.propTypes = {
 }
 
 CourseContainer.getDerivedStateFromProps = (nextProps, prevState)=>  {
+    console.log("CourseContainer.getDerivedStateFromProps", nextProps.courses)
     return {
         courses: nextProps.courses
     }

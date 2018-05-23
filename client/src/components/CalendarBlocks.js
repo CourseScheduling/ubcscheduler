@@ -30,6 +30,7 @@ class CalendarBlocks extends Component {
                                     />
                                 )
                             })
+                            
                         }
                     </div>
                 ))}
@@ -41,8 +42,12 @@ class CalendarBlocks extends Component {
 CalendarBlocks.getDerivedStateFromProps = (nextProps, prevState) => {
     console.log("CalendarBlock.getDerivedStateFromProps", nextProps)
     const term = nextProps.term
+    let nextSchedule = nextProps.schedules[term][nextProps.index[term]]
+    if (!nextSchedule) {
+        nextSchedule = [] 
+    }
     return {
-        schedule: nextProps.schedules[term][nextProps.index[term]],
+        schedule: nextSchedule
     }
 }
 

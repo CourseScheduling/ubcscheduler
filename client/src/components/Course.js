@@ -14,10 +14,6 @@ class Course extends Component {
             i: props.i,
             color: ColorManager.add(props.courses[props.i].code)
         }
-        console.log(ColorManager)
-        console.log("Course constructor")
-        console.log(this.state)
-        this.sectionsByTermJSX = this.sectionsByTermJSX.bind(this)
         this.toggleCourse = this.toggleCourse.bind(this)
         this.removeCourse = this.removeCourse.bind(this)
         this.toggleCourseTerm = this.toggleCourseTerm.bind(this)
@@ -49,11 +45,11 @@ class Course extends Component {
         })   
     }
 
-    removeCourse() {
+    removeCourse(e) {
         console.log("removing course")
         ColorManager.remove(this.state.course.code)
         this.props.removeCourse(this.state.course.code);
-        
+        e.stopPropagation();
     }
 
     toggleCourseTerm = (term) => e => {
@@ -64,6 +60,8 @@ class Course extends Component {
     }
 
     render() {
+
+        console.log("Render in course: " , this.state)
         const courseClasses = classNames(
             'remove-btn-parent',
             'course',
