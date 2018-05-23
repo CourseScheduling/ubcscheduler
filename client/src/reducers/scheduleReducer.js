@@ -1,8 +1,8 @@
 import { SCHEDULE, ADD_COURSE } from '../actions/types';
 
 const initialState = {
-    schedules: [],
-    lockedSections : [],
+    schedules: {t1:[[]], t2:[[]]},
+    index: {t1: 0, t2: 0},
     breaks: {
         "t1": [0,0,0,0,0],
         "t2": [0,0,0,0,0]
@@ -20,7 +20,11 @@ export default function(state = initialState, action) {
             };
         case ADD_COURSE:
             console.log("ADD COURSE!")
-            return state
+            return {
+                ...state,
+                schedules: action.schedules,
+                index: {t1: 0, t2: 0}
+            }
         default:
             return state
     }

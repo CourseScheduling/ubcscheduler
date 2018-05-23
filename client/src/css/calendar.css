@@ -15,17 +15,16 @@
     background-color: #fff;
 }
 
-.calendar-container-wrapper {
+.calendarsContainer-wrapper {
     width: 100%;
 }
-.calendar-container {
+.calendarsContainer {
     display: inline-block;
     position: relative;
 }
 
 .calendar__table-container {
     display: inline-block;
-    margin: 20px;
 }
 .calendar__table {
     width: 500px;
@@ -35,6 +34,22 @@
     border-spacing: 0px;
     background-color: #ddd;
 }
+
+.calendarContainer {
+    display: inline-block;
+    position: relative;
+    margin: 20px;
+    
+}
+
+.calendar__blocks {
+    position: absolute;
+    top: 30px;
+    left: 8%;
+    width: 92%;
+    height: calc(100% - 25px);
+}
+
 
 .calendar__row {
     
