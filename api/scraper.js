@@ -36,12 +36,15 @@ function parseSection(sectionObj) {
     var section = {
         "section": sectionObj.$.key,
         "activity": sectionObj.$.activity,
+        "status": sectionObj.$.status,
         "term": "",
         "schedule": [0,0,0,0,0],
         "instructors": [] 
     }
     let teachingunit = sectionObj.teachingunits[0].teachingunit[0]
     section.term = teachingunit.$.termcd
+   
+    if (!teachingunit.meetings) throw "No meetings found"
     let meetings = teachingunit.meetings[0].meeting
     const Days = {"Mon": 0, "Tue": 1, "Wed": 2, "Thu": 3, "Fri": 4}
     meetings.forEach(meeting => {
@@ -73,9 +76,17 @@ module.exports.scrapeCourse = function (course) {
         .then(xml => {
             parser.parseString(xml, (err, result) => {
                 result.sections.section.forEach(sectionObj => {
-                    section = parseSection(sectionObj);
-                    section = Rules.filterWaitingList(section)
+                    try {
+                        section = parseSection(sectionObj);
+                    } catch (e) {
+                        return;
+                    }
                     
+                    section.course = course
+                    if (Rules.isInvalid(section)) return;
+
+
+
                     let activityIdx = courseObj.activity_types.indexOf(section.activity)
                     if (activityIdx === -1) {
                         activityIdx = courseObj.activity_types.length
@@ -92,7 +103,7 @@ module.exports.scrapeCourse = function (course) {
                         courseObj.t1[activityIdx].push(section)
                         courseObj.t2[activityIdx].push(section)
                     } else {
-                        console.log("Term invalid! Section not added")
+                        console.log("Term invalid! Section not added", section.section)
                     }
                 })
             })

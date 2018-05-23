@@ -4,6 +4,7 @@ mongoose.connect('mongodb://localhost/ubcscheduler');
 const SectionSchema = mongoose.Schema({
     "section": String,
     "activity": String,
+    "status": String,
     "term": String,
     "schedule": [Number],
     "instructors": [String]

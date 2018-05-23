@@ -24,8 +24,8 @@ class CalendarBlocks extends Component {
                                 if (section.schedule[day] === 0) return
                                 return  (
                                     <BlockSection 
-                                        key={section.code + section.section + day} 
-                                        name={section.code + " " + section.section}
+                                        key={section.course + section.section + day} 
+                                        name={section.course + " " + section.section}
                                         schedule={section.schedule[day]}
                                     />
                                 )
