@@ -3,16 +3,15 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { removeCourse, toggleCourseTerm } from '../actions/panelActions';
 import ColorManager from '../js/colorManager'
 
-class Course extends Component {
+
+export default class Course extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            course: props.courses[props.i],
-            i: props.i,
-            color: ColorManager.add(props.courses[props.i].code)
+            course: props.course,
+            color: ColorManager.add(props.course.code)
         }
         this.toggleCourse = this.toggleCourse.bind(this)
         this.removeCourse = this.removeCourse.bind(this)
@@ -53,6 +52,7 @@ class Course extends Component {
     }
 
     toggleCourseTerm = (term) => e => {
+        console.log("Togglign course term")
         if (this.state.course.term !== term) {
             this.props.toggleCourseTerm(this.state.course.code, term)
         }
@@ -99,15 +99,3 @@ class Course extends Component {
     }
 }
 
-Course.getDerivedStateFromProps = (nextProps, prevState)=>  {
-    return {
-        course: nextProps.courses[prevState.i],
-        i: prevState.i
-    }
-}
-
-const mapStateToProps = state => ({
-    courses: state.course.courses
-});
-
-export default connect(mapStateToProps, { removeCourse, toggleCourseTerm })(Course)

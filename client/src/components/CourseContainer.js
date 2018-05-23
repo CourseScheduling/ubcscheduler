@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 
 import { schedule } from '../actions/schedulerActions'
-
+import { removeCourse, toggleCourseTerm } from '../actions/panelActions';
 import Course from './Course.js'
+
+
 
 class CourseContainer extends Component {
     constructor(props) {
@@ -17,7 +19,12 @@ class CourseContainer extends Component {
     render() {
         const courseElements = this.state.courses.map((course, i) => {
             return (
-                <Course i={i} key={course.code + " element"} />
+                <Course 
+                    key={course.code + " element"} 
+                    course={course} 
+                    toggleCourseTerm={this.props.toggleCourseTerm}
+                    removeCourse={this.props.removeCourse}
+                />
             )
         });
 
@@ -44,4 +51,4 @@ const mapStateToProps = state => ({
     courses: state.course.courses
 });
 
-export default connect(mapStateToProps, { schedule })(CourseContainer)
+export default connect(mapStateToProps, { schedule, removeCourse, toggleCourseTerm })(CourseContainer)
