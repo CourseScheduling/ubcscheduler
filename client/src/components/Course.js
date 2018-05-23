@@ -4,14 +4,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { removeCourse, toggleCourseTerm } from '../actions/panelActions';
+import ColorManager from '../js/colorManager'
 
 class Course extends Component {
     constructor(props) {
         super(props)
         this.state = {
             course: props.courses[props.i],
-            i: props.i
+            i: props.i,
+            color: ColorManager.add(props.courses[props.i].code)
         }
+        console.log(ColorManager)
         console.log("Course constructor")
         console.log(this.state)
         this.sectionsByTermJSX = this.sectionsByTermJSX.bind(this)
@@ -48,6 +51,7 @@ class Course extends Component {
 
     removeCourse() {
         console.log("removing course")
+        ColorManager.remove(this.state.course.code)
         this.props.removeCourse(this.state.course.code);
         
     }
@@ -65,6 +69,9 @@ class Course extends Component {
             'course',
             { 'course--active': this.state.course.active }
         );
+        const courseStyle = {
+            'backgroundColor' : this.state.color
+        }
         let courseExtra;
         if (this.state.course.active) {
             courseExtra = (
@@ -83,7 +90,7 @@ class Course extends Component {
             )
         }
         return (
-            <div className={courseClasses} onClick={this.toggleCourse}>
+            <div className={courseClasses} style={courseStyle} onClick={this.toggleCourse}>
                 <div className="remove-btn" onClick={this.removeCourse}>
                     <i className="material-icons">&#xE5CD;</i>
                 </div>

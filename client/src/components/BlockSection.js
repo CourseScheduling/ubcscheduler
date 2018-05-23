@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import ColorManager from '../js/colorManager'
+
 export default class BlockSection extends Component {
   getStart(schedule) {
     for (let i = 0; i < 32; i++) {
@@ -27,11 +29,13 @@ export default class BlockSection extends Component {
     height *= BLOCK_HEIGHT
     top *= BLOCK_HEIGHT
 
+    let course = this.props.name.split("_")
+    course = course[0] + "_" + course[1]
 
     return {
       'top': top + 'px',
-      'height':  height + 'px',
-      'backgroundColor': 'blue'
+      'height': height + 'px',
+      'backgroundColor': ColorManager.get(course)
     }
   }
 

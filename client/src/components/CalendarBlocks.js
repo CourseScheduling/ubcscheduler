@@ -25,7 +25,7 @@ class CalendarBlocks extends Component {
                                 return  (
                                     <BlockSection 
                                         key={section.course + section.section + day} 
-                                        name={section.course + " " + section.section}
+                                        name={section.course + "_" + section.section}
                                         schedule={section.schedule[day]}
                                     />
                                 )
