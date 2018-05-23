@@ -21,7 +21,6 @@ export default class BlockSection extends Component {
 
   getStyle() {
     const BLOCK_HEIGHT = 25
-    console.log("Styling...", this)
     const schedule = this.props.schedule
 
     let top = this.getStart(schedule)
@@ -29,8 +28,8 @@ export default class BlockSection extends Component {
     height *= BLOCK_HEIGHT
     top *= BLOCK_HEIGHT
 
-    let course = this.props.name.split("_")
-    course = course[0] + "_" + course[1]
+    let course = this.props.name.split(" ")
+    course = course[0] + " " + course[1]
 
     return {
       'top': top + 'px',

@@ -17,7 +17,7 @@ class CourseContainer extends Component {
     render() {
         const courseElements = this.state.courses.map((course, i) => {
             return (
-                <Course i={i} key={course.code + "_element"}/>
+                <Course i={i} key={course.code + " element"}/>
             )
         });
 

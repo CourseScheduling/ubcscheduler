@@ -28,7 +28,7 @@ class ColorManager {
     }
     /**
      * Called when a new course is added to assign a color to a course
-     * @param {String} course - CPSC_110
+     * @param {String} course - CPSC 110
      */
     add(course) {
         console.log("ColorManager adding course", this)
@@ -48,7 +48,7 @@ class ColorManager {
     }
     /**
      * Called when a course is removed to free up color
-     * @param {String} course - CPSC_110
+     * @param {String} course - CPSC 110
      */
     remove(course) {
         const i = this.colorMap[course]
@@ -58,7 +58,7 @@ class ColorManager {
 
     /**
      * Returns the color a course was assigned to
-     * @param {String} course - CPSC_110 
+     * @param {String} course - CPSC 110 
      */
     get(course) {
         return COLORS[this.colorMap[course]]

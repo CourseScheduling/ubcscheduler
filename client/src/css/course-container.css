@@ -41,21 +41,15 @@
     font-size: 12px;
 }
 .course__term {
-    background-color: #EEE;
-    padding: 5px;
-    border-radius: 3px;
-    font-size: 11px;
-    cursor: pointer;
-    display: inline-block;
-    margin: 5px;
-    color: #000;
+
 }
-.course__term--active {
-    background-color: #fff9c7;
+.course__term--selected {
+
+    border: 2px solid rgba(0,0,0,0.7) !important;
+    
+
 }
-.course__term:hover {
-    background-color: #ffe712;
-}
+
 
 .course__sections__activity {
     width: 100%;
@@ -66,7 +60,7 @@
     float: left;
     text-align: left;
 }
-.course__section {
+.course__button {
     padding: 5px;
     color: #000;
     border-radius: 4px;
@@ -76,16 +70,17 @@
     border: 1px solid transparent;
     transition: background-color .25s;
 }
-.course__section:hover{
+.course__button:hover {
     background-color: transparent;
     color: #FFF;
     border-color: #FFF;
     transition: background-color .25s;
 }
- .course__section--selected {
+.course__button--selected {
     background-color: transparent; 
     color: #FFF;
- }
+}
+
 
 
 .course__container {

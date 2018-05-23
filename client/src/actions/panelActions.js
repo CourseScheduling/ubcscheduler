@@ -20,6 +20,7 @@ export const addCourse = (courseCode) => dispatch => {
     fetch(`/api/v1/course/${courseCode}`)
     .then(res => res.json())
     .then(course => {
+        course.code = course.code.replace("_", " ")
         course.active = true;
         course.term = "t1";
         dispatch({

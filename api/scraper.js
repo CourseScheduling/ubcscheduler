@@ -82,7 +82,7 @@ module.exports.scrapeCourse = function (course) {
                         return;
                     }
                     
-                    section.course = course
+                    section.course = course.replace("_", " ")
                     if (Rules.isInvalid(section)) return;
 
 
