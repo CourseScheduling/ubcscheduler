@@ -19,11 +19,7 @@ export default class Course extends Component {
     }
 
     toggleCourse() {
-        console.log("Toggling")
-        let isActive = this.state.course.active ? false : true;
-        this.setState({ 
-            "course": {...this.state.course, active:isActive}
-        })   
+        this.props.toggleCourse(this.state.course)
     }
 
     removeCourse(e) {

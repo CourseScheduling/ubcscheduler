@@ -20,7 +20,6 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 schedules: action.schedules,
-                term: action.payload.term,
                 index: {t1: 0, t2: 0}
             }
         case JUMP_TO:

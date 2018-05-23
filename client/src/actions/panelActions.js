@@ -1,4 +1,4 @@
-import { FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM } from '../actions/types';
+import { FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, TOGGLE_COURSE } from '../actions/types';
 
 
 export const fetchCourselist = () => dispatch => {
@@ -43,5 +43,13 @@ export const toggleCourseTerm = (code, term) => dispatch => {
     dispatch({
         type: TOGGLE_COURSE_TERM,
         payload: {code: code, term: term}
+    })
+}
+
+export const toggleCourse = (course) => dispatch => {
+    console.log("Togglign course in panelActions")
+    dispatch({
+        type: TOGGLE_COURSE,
+        payload: course
     })
 }

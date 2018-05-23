@@ -1,4 +1,4 @@
-import { FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, UPDATE_ACTIVE_SECTIONS } from '../actions/types';
+import { FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, UPDATE_ACTIVE_SECTIONS, TOGGLE_COURSE } from '../actions/types';
 
 const initialState = {
   courselist: [],
@@ -45,6 +45,14 @@ export default function (state = initialState, action) {
       return {
         ...state,
         courses: newCourses
+      }
+    case TOGGLE_COURSE:
+      // ANTI-PATTERN: mutating course.active
+        let isActive = action.payload.active ? false : true
+        action.payload.active = isActive
+      return {
+        ...state,
+        courses: [...state.courses]
       }
     case UPDATE_ACTIVE_SECTIONS:
       // ANTI-PATTERN: mutating sections
