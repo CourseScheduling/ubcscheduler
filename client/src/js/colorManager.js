@@ -65,7 +65,7 @@ class ColorManager {
     }
 
     getTemp() {
-        return '#272c56'
+        return '#505050'
     }
 }
 
