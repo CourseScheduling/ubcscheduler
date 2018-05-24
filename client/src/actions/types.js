@@ -5,5 +5,7 @@ export const TOGGLE_COURSE_TERM = "TOGGLE_COURSE_TERM";
 export const TOGGLE_COURSE = "TOGGLE_COURSE"
 
 export const JUMP_TO = "JUMP_TO";
+export const TOGGLE_TERM = "TOGGLE_TERM";
+
 
 export const UPDATE_ACTIVE_SECTIONS = "UPDATE_ACTIVE_SECTIONS"

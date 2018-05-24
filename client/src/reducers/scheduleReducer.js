@@ -1,4 +1,4 @@
-import { ADD_COURSE, TOGGLE_COURSE_TERM, JUMP_TO, REMOVE_COURSE } from '../actions/types';
+import { ADD_COURSE, TOGGLE_COURSE_TERM, JUMP_TO, REMOVE_COURSE, TOGGLE_TERM } from '../actions/types';
 
 const initialState = {
     schedules: {t1:[[]], t2:[[]]},
@@ -30,6 +30,12 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 index: newIdx
+            }
+        case TOGGLE_TERM:
+            console.log("Toggle term in schedulereducer")
+            return {
+                ...state,
+                term: action.payload
             }
         default:
             return state

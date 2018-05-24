@@ -1,4 +1,4 @@
-import { JUMP_TO, UPDATE_ACTIVE_SECTIONS } from '../actions/types';
+import { JUMP_TO, UPDATE_ACTIVE_SECTIONS, TOGGLE_TERM } from '../actions/types';
 
 export const jumpTo = (idx) => dispatch => {
     console.log("Jumpto action fired")
@@ -14,5 +14,12 @@ export const updateActiveSections = (prevSections, nextSections) => dispatch => 
         type: UPDATE_ACTIVE_SECTIONS,
         prevSections:  prevSections,
         nextSections: nextSections
+    })
+}
+
+export const toggleTerm = (term) => dispatch => {
+    dispatch({
+        type: TOGGLE_TERM,
+        payload: term
     })
 }
