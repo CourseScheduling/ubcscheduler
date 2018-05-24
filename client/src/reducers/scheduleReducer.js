@@ -1,4 +1,4 @@
-import { ADD_COURSE, TOGGLE_COURSE_TERM, JUMP_TO, REMOVE_COURSE, TOGGLE_TERM, UPDATE_BREAKS } from '../actions/types';
+import { ADD_COURSE, TOGGLE_COURSE_TERM, JUMP_TO, REMOVE_COURSE, TOGGLE_TERM, UPDATE_BREAKS, TOGGLE_LOCK } from '../actions/types';
 
 const initialState = {
     schedules: {t1:[[]], t2:[[]]},
@@ -7,7 +7,8 @@ const initialState = {
     breaks: {
         "t1": [0,0,0,0,0],
         "t2": [0,0,0,0,0]
-    }
+    },
+    lockedSections: []
 }
 
 
@@ -48,6 +49,21 @@ export default function(state = initialState, action) {
                 schedules: action.schedules,
                 index: {t1: 0, t2: 0},
                 breaks: newBreaks
+            }
+        case TOGGLE_LOCK:
+            console.log("locking section")
+            let newLockedSections;
+            if (state.lockedSections.includes(action.payload)) {
+                // Unlock
+                newLockedSections = state.lockedSections.filter(s => s !== action.payload)
+            } else {
+                // Lock
+                newLockedSections = [...state.lockedSections]
+                newLockedSections.push(action.payload)
+            }
+            return {
+                ...state,
+                lockedSections : newLockedSections
             }
         default:
             return state

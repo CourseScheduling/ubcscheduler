@@ -54,6 +54,8 @@ export default class CalendarBlocks extends Component {
                                                 key={section.course + section.section + day} 
                                                 name={section.course + " " + section.section}
                                                 schedule={section.schedule[day]}
+                                                toggleLock={this.props.toggleLock}
+                                                lockedSections={this.props.lockedSections}
                                             />
                                         )
                                     })

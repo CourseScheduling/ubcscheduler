@@ -5,6 +5,7 @@ import BreakDragHelper from '../js/breakDragHelper'
 import UTILS from '../js/utils'
 
 export default class BlockSection extends Component {
+
   getStart(schedule) {
     for (let i = 0; i < 32; i++) {
       if ((schedule >> i) & 1) {
@@ -88,14 +89,29 @@ export default class BlockSection extends Component {
         break;
     }
   }
+
+  toggleLock(e) {
+    console.log("Locking section")
+    //e.preventDefault()
+    const sectionName = e.currentTarget.attributes["data-section"].value
+    this.props.toggleLock(sectionName)
+
+  }
+
   render() {
     const blockStyle = this.getStyle()
+    console.log("Blocksection render: ", this.props)
     return (
-      <div  className="block__section" 
+      <div  className={"block__section " + (this.props.lockedSections.includes(this.props.name) ? "block__section--locked" : "")}
             style={blockStyle}
             onMouseDown={this.triggerLower}
-            onMouseOver={this.triggerLower}>
+            onMouseOver={this.triggerLower}
+            onContextMenu={this.toggleLock.bind(this)}
+            data-section={this.props.name}>
         <span>{this.props.name}</span>
+        <div class="block__section__lock">
+          <i class="material-icons">&#xE897;</i>
+        </div>
       </div>
     )
   }

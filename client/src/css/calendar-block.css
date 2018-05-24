@@ -29,6 +29,21 @@
     pointer-events: auto;
     cursor: pointer;
 }
+.block__section--locked .block__section__lock {
+    display: inline-block;
+}
+
+.block__section__lock {
+    display: none;
+    position:absolute;
+    top:0px;
+    right:0px;        
+}
+.block__section__lock i {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 18px;
+    padding: 4px;
+}
 
 .block__section span {
     display: table-cell;
