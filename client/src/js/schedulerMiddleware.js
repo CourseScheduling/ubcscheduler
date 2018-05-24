@@ -17,6 +17,7 @@ const schedulerMiddleware = (store) => (next) => (action) => {
         if (idx === -1) {
           courses.push(action.payload)
           action.schedules = schedule(courses, state.scheduler.breaks, state.scheduler.lockedSections)
+          
         }
         break;   
       case REMOVE_COURSE:
@@ -31,6 +32,7 @@ const schedulerMiddleware = (store) => (next) => (action) => {
           }
         })
         action.schedules = schedule(courses, state.scheduler.breaks, state.scheduler.lockedSections)
+        action.newCourses = courses
         break;
       case UPDATE_BREAKS:
         courses = [...state.course.courses]
@@ -39,6 +41,7 @@ const schedulerMiddleware = (store) => (next) => (action) => {
         }
         newBreaks[action.payload.term] = action.payload.breakArr
         action.schedules = schedule(state.course.courses, newBreaks, state.scheduler.lockedSections)
+        action.newBreaks = newBreaks
         break;
       case TOGGLE_LOCK:
         let newLockedSections;
@@ -50,6 +53,7 @@ const schedulerMiddleware = (store) => (next) => (action) => {
             newLockedSections = [...state.scheduler.lockedSections]
             newLockedSections.push(action.payload)
         }
+        action.newLockedSections = newLockedSections
         action.schedules = schedule(state.course.courses, state.scheduler.breaks, newLockedSections)
       default:
         console.log("Not scheduling for ", action.type)

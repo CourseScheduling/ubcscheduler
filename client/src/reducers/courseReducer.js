@@ -37,15 +37,10 @@ export default function (state = initialState, action) {
         courses: newCourses
       }
     case TOGGLE_COURSE_TERM:
-      newCourses = [...state.courses]
-      newCourses.forEach(e => {
-        if (e.code === action.payload.code) {
-          e.term = action.payload.term
-        }
-      })
+      // Preprocessed in middleware
       return {
         ...state,
-        courses: newCourses
+        courses: action.newCourses
       }
     case TOGGLE_COURSE:
       // ANTI-PATTERN: mutating course.active

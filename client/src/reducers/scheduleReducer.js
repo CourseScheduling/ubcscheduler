@@ -39,33 +39,23 @@ export default function(state = initialState, action) {
                 term: action.payload
             }
         case UPDATE_BREAKS:
+            //Preprocessed in middleware
             console.log("Update breaks in scheduler reducer")
-            let newBreaks = {
-                ...state.breaks
-            }
-            newBreaks[action.payload.term] = action.payload.breakArr
             return {
                 ...state,
                 schedules: action.schedules,
                 index: {t1: 0, t2: 0},
-                breaks: newBreaks
+                breaks: action.newBreaks
             }
         case TOGGLE_LOCK:
+            // Preprocessed in middleware
             console.log("locking section")
-            let newLockedSections;
-            if (state.lockedSections.includes(action.payload)) {
-                // Unlock
-                newLockedSections = state.lockedSections.filter(s => s !== action.payload)
-            } else {
-                // Lock
-                newLockedSections = [...state.lockedSections]
-                newLockedSections.push(action.payload)
-            }
+            
             return {
                 ...state,
                 schedules: action.schedules,
                 index: {t1: 0, t2: 0},
-                lockedSections : newLockedSections,
+                lockedSections : action.newLockedSections,
             }
         default:
             return state
