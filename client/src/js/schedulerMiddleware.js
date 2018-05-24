@@ -50,13 +50,20 @@ const schedulerMiddleware = (store) => (next) => (action) => {
             newLockedSections = state.scheduler.lockedSections.filter(s => s !== action.payload)
         } else {
             // Lock
-            newLockedSections = [...state.scheduler.lockedSections]
+            let newSectionSplit = action.payload.split(" ")
+            // Remove lockedSections of the same course type
+            newLockedSections = state.scheduler.lockedSections.filter(section => {
+              let sectionSplit = section.split(" ")
+              return !(sectionSplit[0] === newSectionSplit[0] && sectionSplit[1] === newSectionSplit[1] && sectionSplit[2][0] === newSectionSplit[2][0])
+            })          
+ 
             newLockedSections.push(action.payload)
         }
         action.newLockedSections = newLockedSections
         action.schedules = schedule(state.course.courses, state.scheduler.breaks, newLockedSections)
+        break;
       default:
-        console.log("Not scheduling for ", action.type)
+        break;
     }
   
     next(action)
