@@ -1,4 +1,4 @@
-import { FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, TOGGLE_COURSE } from '../actions/types';
+import { FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, TOGGLE_COURSE, ADD_TEMP, REMOVE_TEMP } from '../actions/types';
 
 
 export const fetchCourselist = () => dispatch => {
@@ -51,5 +51,20 @@ export const toggleCourse = (course) => dispatch => {
     dispatch({
         type: TOGGLE_COURSE,
         payload: course
+    })
+}
+
+export const addTemp = (section) => dispatch => {
+    console.log("Add temp in panelActions")
+    dispatch({
+        type: ADD_TEMP,
+        payload: section
+    })
+}
+
+export const removeTemp = () => dispatch => {
+    console.log("remove temp in panelActions")
+    dispatch({
+        type: REMOVE_TEMP
     })
 }

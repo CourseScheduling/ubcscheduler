@@ -1,8 +1,9 @@
-import { FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, UPDATE_ACTIVE_SECTIONS, TOGGLE_COURSE } from '../actions/types';
+import { FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, UPDATE_ACTIVE_SECTIONS, TOGGLE_COURSE, ADD_TEMP } from '../actions/types';
 
 const initialState = {
   courselist: [],
-  courses: []
+  courses: [],
+  tempSection: {}
 };
 
 
@@ -66,6 +67,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         courses: [...state.courses]
+      }
+    case ADD_TEMP:
+      console.log("courseReducer - addtemp", action)
+      return {
+        ...state,
+        tempSection: action.payload
       }
     default:
       return state;

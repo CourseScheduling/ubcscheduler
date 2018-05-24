@@ -16,7 +16,8 @@ class CalendarContainer extends Component {
         this.state = {
             schedules: {t1: [[]], t2: [[]]},
             index: {t1: 0, t2: 0},
-            term: "t1"
+            term: "t1",
+            tempSection: {}
         }
 
         this.displayPrev = this.displayPrev.bind(this)
@@ -51,6 +52,7 @@ class CalendarContainer extends Component {
                         <CalendarBlocks 
                             term="t1"
                             schedule={this.state.schedules.t1[this.state.index.t1]}
+                            tempSection={this.state.tempSection}
                         />
                     </div>
                     <div className="calendarContainer">
@@ -58,6 +60,7 @@ class CalendarContainer extends Component {
                         <CalendarBlocks 
                             term="t2" 
                             schedule={this.state.schedules.t2[this.state.index.t2]}
+                            tempSection={this.state.tempSection}
                         />
                     </div>
                 </div>
@@ -94,7 +97,8 @@ CalendarContainer.getDerivedStateFromProps = (nextProps, prevState) => {
 const mapStateToProps = state => ({
     schedules: state.scheduler.schedules,
     index: state.scheduler.index,
-    term: state.scheduler.term
+    term: state.scheduler.term,
+    tempSection: state.course.tempSection
 });
 
 export default connect(mapStateToProps, { jumpTo, updateActiveSections })(CalendarContainer)

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
-import { removeCourse, toggleCourseTerm, toggleCourse } from '../actions/panelActions';
+import { removeCourse, toggleCourseTerm, toggleCourse, addTemp, removeTemp } from '../actions/panelActions';
 import Course from './Course.js'
 
 
@@ -24,6 +24,8 @@ class CourseContainer extends Component {
                     toggleCourseTerm={this.props.toggleCourseTerm}
                     removeCourse={this.props.removeCourse}
                     toggleCourse={this.props.toggleCourse}
+                    addTemp={this.props.addTemp}
+                    removeTemp={this.props.removeTemp}
                 />
             )
         });
@@ -52,4 +54,4 @@ const mapStateToProps = state => ({
     courses: state.course.courses
 });
 
-export default connect(mapStateToProps, { removeCourse, toggleCourseTerm, toggleCourse })(CourseContainer)
+export default connect(mapStateToProps, { removeCourse, toggleCourseTerm, toggleCourse, addTemp, removeTemp })(CourseContainer)

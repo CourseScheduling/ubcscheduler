@@ -17,22 +17,33 @@ export default class CalendarBlocks extends Component {
         return (
             <div className="calendar__blocks">
                 {   
-                    [0,1,2,3,4].map(day => (
-                    <div className="block__daycol" key={"block__daycol" + day}>
-                        {
-                            this.props.schedule.map(section => {
-                                if (section.schedule[day] === 0) return
-                                return  (
-                                    <BlockSection 
-                                        key={section.course + section.section + day} 
-                                        name={section.course + " " + section.section}
-                                        schedule={section.schedule[day]}
-                                    />
-                                )
-                            })
+                                      
+                    [0,1,2,3,4].map(day => {
+                        let tempSection;
+                        if (this.props.tempSection.schedule && this.props.tempSection.schedule[day]) {
+                            tempSection =   (<BlockSection
+                                                name={this.props.tempSection.course + " " + this.props.tempSection.section}
+                                                schedule={this.props.tempSection.schedule[day]}
+                                            />)
                         }
-                    </div>
-                ))}
+                        return (
+                            <div className="block__daycol" key={"block__daycol" + day}>
+                                {
+                                    this.props.schedule.map(section => {
+                                        if (section.schedule[day] === 0) return
+                                        return  (
+                                            <BlockSection 
+                                                key={section.course + section.section + day} 
+                                                name={section.course + " " + section.section}
+                                                schedule={section.schedule[day]}
+                                            />
+                                        )
+                                    })
+                                }
+                                {tempSection}
+                            </div>
+                        )
+                })}
             </div>
         )
     }

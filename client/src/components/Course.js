@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import ColorManager from '../js/colorManager'
 
 
+import Section from './Section'
+
 export default class Course extends Component {
     constructor(props) {
         super(props)
@@ -44,11 +46,12 @@ export default class Course extends Component {
                 {
 
                     sectionsByActivity.map(section => (
-                        <div 
-                            className={"course__button course__section " + (section.active ? "course__button--selected" : "")} 
-                            key={this.state.course.code + "_sections_" + section.section}>
-                            {section.section}
-                        </div>
+                        <Section 
+                            key={this.state.course.code + "_sections_" + section.section}
+                            section={section}
+                            addTemp={this.props.addTemp}
+                            removeTemp={this.props.removeTemp}
+                        />
                     ))
                 }
             </div>
