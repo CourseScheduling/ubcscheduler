@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import ColorManager from '../js/colorManager'
+import BreakManager from '../js/breakManager'
 
 export default class BlockSection extends Component {
   getStart(schedule) {
