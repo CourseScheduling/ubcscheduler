@@ -15,6 +15,7 @@ export default class Course extends Component {
             course: props.course,
             color: ColorManager.add(props.course.code)
         }
+        console.log("ColorManager: ", ColorManager)
         this.toggleCourse = this.toggleCourse.bind(this)
         this.removeCourse = this.removeCourse.bind(this)
         this.toggleCourseTerm = this.toggleCourseTerm.bind(this)

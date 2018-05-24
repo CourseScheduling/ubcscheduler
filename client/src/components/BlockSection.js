@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import ColorManager from '../js/colorManager'
 import BreakManager from '../js/breakManager'
+import UTILS from '../js/utils'
 
 export default class BlockSection extends Component {
   getStart(schedule) {
@@ -54,9 +55,13 @@ export default class BlockSection extends Component {
     }
     const mouseX = e.pageX
     const mouseY = e.pageY
-    const lowerElement = document.elementsFromPoint(mouseX, mouseY).find((element) => {
+    let lowerElement;
+    if (!document.elementsFromPoint) document.elementsFromPoint = UTILS.elementsFromPoint
+
+    lowerElement = document.elementsFromPoint(mouseX, mouseY).find((element) => {
       return element.classList.contains("calendar__block")
     });
+
     if (!lowerElement) return;
     let event
     const parentElement = e.target.parentElement
