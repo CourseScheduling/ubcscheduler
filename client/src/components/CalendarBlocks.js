@@ -41,6 +41,7 @@ export default class CalendarBlocks extends Component {
                             tempSection =   (<BlockSection
                                                 name={this.props.tempSection.course + " " + this.props.tempSection.section}
                                                 schedule={this.props.tempSection.schedule[day]}
+                                                temp={true}
                                             />)
                         }
                         return (

@@ -63,6 +63,10 @@ class ColorManager {
     get(course) {
         return COLORS[this.colorMap[course]]
     }
+
+    getTemp() {
+        return '#272c56'
+    }
 }
 
 export default new ColorManager()

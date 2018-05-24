@@ -14,7 +14,7 @@ export default class Section extends Component {
     }
     removeTemp(e) {
         console.log("removing temp")
-        //this.props.removeTemp()
+        this.props.removeTemp()
     }
     render() {
         return (

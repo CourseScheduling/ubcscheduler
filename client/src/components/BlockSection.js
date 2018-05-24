@@ -31,10 +31,16 @@ export default class BlockSection extends Component {
     let course = this.props.name.split(" ")
     course = course[0] + " " + course[1]
 
+    let color;
+    if (this.props.temp) {
+      color = ColorManager.getTemp()
+    } else {
+      color = ColorManager.get(course)
+    }
     return {
       'top': top + 'px',
       'height': height + 'px',
-      'backgroundColor': ColorManager.get(course)
+      'backgroundColor': color
     }
   }
 
