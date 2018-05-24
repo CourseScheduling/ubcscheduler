@@ -35,8 +35,6 @@ export default class CalendarBlocks extends Component {
                                       
                     [0,1,2,3,4].map(day => {
                         let tempSection;
-                        console.log("Rendering calendar blocks")
-                        console.log(this.props.tempSection)
                         if (this.props.tempSection.schedule && this.props.tempSection.schedule[day] && this.isTempSectionTerm()) {
                             tempSection =   (<BlockSection
                                                 name={this.props.tempSection.course + " " + this.props.tempSection.section}

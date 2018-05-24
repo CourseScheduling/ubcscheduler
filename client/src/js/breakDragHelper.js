@@ -21,12 +21,15 @@ class BreakDragHelper {
     }
 
     resetBlockSections() {
-        console.log("resetBlockSections", this.foregroundElements)
-        this.foregroundElements.forEach(element => {
-            element.style.pointerEvents = 'auto'
-        })
-        this.foregroundElements = []
-        this.mousedown = false
+        if (this.mousedown) {
+            console.log("resetBlockSections", this.foregroundElements)
+            this.foregroundElements.forEach(element => {
+                element.style.pointerEvents = 'auto'
+            })
+            this.foregroundElements = []
+            this.mousedown = false
+        }
+
     }
 }
 

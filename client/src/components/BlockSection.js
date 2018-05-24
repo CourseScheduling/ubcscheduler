@@ -91,6 +91,7 @@ export default class BlockSection extends Component {
   }
 
   toggleLock(e) {
+    if (this.props.temp) return
     console.log("Locking section")
     //e.preventDefault()
     const sectionName = e.currentTarget.attributes["data-section"].value
@@ -102,15 +103,15 @@ export default class BlockSection extends Component {
     const blockStyle = this.getStyle()
     console.log("Blocksection render: ", this.props)
     return (
-      <div  className={"block__section " + (this.props.lockedSections.includes(this.props.name) ? "block__section--locked" : "")}
+      <div  className={"block__section " + (this.props.lockedSections && this.props.lockedSections.includes(this.props.name) ? "block__section--locked" : "")}
             style={blockStyle}
             onMouseDown={this.triggerLower}
             onMouseOver={this.triggerLower}
             onContextMenu={this.toggleLock.bind(this)}
             data-section={this.props.name}>
         <span>{this.props.name}</span>
-        <div class="block__section__lock">
-          <i class="material-icons">&#xE897;</i>
+        <div className="block__section__lock">
+          <i className="material-icons">&#xE897;</i>
         </div>
       </div>
     )
