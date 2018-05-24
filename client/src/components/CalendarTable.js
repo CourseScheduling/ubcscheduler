@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
-import BreakManager from '../js/breakManager'
+import BreakDragHelper from '../js/breakDragHelper'
 
 class CalendarTable extends Component {
     constructor(props) {
@@ -11,17 +11,61 @@ class CalendarTable extends Component {
         //Manages when to add breaks while dragging
         this.state = {
             breaks: [0,0,0,0,0],
+            rescheduleTimeout: null,
+            addBreak: false,
+            mousedown: false,
+            mouseupInit: false,
+            
         }
         this.toggleBreak = this.toggleBreak.bind(this)
         this.fireUpdateBreaks = this.fireUpdateBreaks.bind(this)
     }
 
     fireUpdateBreaks() {
-        console.log("Update breaks fired!", this.state)
+        console.log("Update breaks fired!", this.props.term)
     }
 
     toggleBreak(e) {
-        BreakManager.toggleBreak(e, this);        
+        // set this.state.breaks[dataDay] at the correct bit to this.state.addBreak
+        function updateBreaks (dataDay, dataTime) {
+            console.log("updating state break")            
+            let mask = 1 << dataTime
+            let newBreaks = [...this.state.breaks]
+            if (this.state.addBreak) newBreaks[dataDay] |= mask
+            else newBreaks[dataDay] &= ~mask
+            // setState to rerender
+            this.setState({ breaks: newBreaks }) 
+        }
+
+        if (!this.state.mouseupInit) {
+            // If mouseup after mousedown, schedule action to update breaks in the future
+            const onmouseupHandler = (e) => {
+                if (this.state.mousedown == true) this.state.rescheduleTimeout = setTimeout(this.fireUpdateBreaks, 1000);
+                this.state.mousedown = false
+                BreakDragHelper.resetBlockSections()                  
+            }
+            document.addEventListener('mouseup', onmouseupHandler.bind(this))
+            this.state.mouseupInit = true
+        }
+
+        const dataDay = parseInt(e.target.attributes["data-day"].value)
+        const dataTime = parseInt(e.target.attributes["data-time"].value)    
+        switch (e.type) {
+            case 'mousedown':
+                // Only trigger when left click
+                if (e.button === 0) {
+                    clearTimeout(this.state.rescheduleTimeout);                            
+                    const breakWhereClicked = this.state.breaks[dataDay] >> dataTime & 1
+                    this.state.addBreak = !breakWhereClicked
+                    this.state.mousedown = true
+                    updateBreaks.call(this, dataDay, dataTime) 
+                }
+                break;
+            case 'mouseover':
+                if (this.state.mousedown) updateBreaks.call(this, dataDay, dataTime)
+            default:
+                break;
+        }
     }
 
     render() {

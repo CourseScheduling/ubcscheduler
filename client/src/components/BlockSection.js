@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import ColorManager from '../js/colorManager'
-import BreakManager from '../js/breakManager'
+import BreakDragHelper from '../js/breakDragHelper'
 import UTILS from '../js/utils'
 
 export default class BlockSection extends Component {
@@ -64,17 +64,19 @@ export default class BlockSection extends Component {
 
     if (!lowerElement) return;
     let event
-    const parentElement = e.target.parentElement
+    const parentElement = e.target
     switch (e.type) {
       case "mousedown":
         event = new MouseEvent('mousedown', {
           bubbles: true,
         });
         parentElement.style.pointerEvents = 'none'
+        BreakDragHelper.addForegroundElement(parentElement)
         lowerElement.dispatchEvent(event)
 
       case "mouseover": 
         parentElement.style.pointerEvents = 'none'
+        BreakDragHelper.addForegroundElement(parentElement)
         event = new MouseEvent('mouseover', {
           bubbles: true,
         });
