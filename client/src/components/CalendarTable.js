@@ -23,6 +23,7 @@ class CalendarTable extends Component {
 
     fireUpdateBreaks() {
         console.log("Update breaks fired!", this.props.term)
+        this.props.updateBreaks(this.state.breaks, this.props.term)
     }
 
     toggleBreak(e) {
