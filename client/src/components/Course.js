@@ -52,6 +52,7 @@ export default class Course extends Component {
                             section={section}
                             addTemp={this.props.addTemp}
                             removeTemp={this.props.removeTemp}
+                            toggleLock={this.props.toggleLock}
                         />
                     ))
                 }

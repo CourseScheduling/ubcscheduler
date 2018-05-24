@@ -65,7 +65,7 @@ export default function(state = initialState, action) {
                 ...state,
                 schedules: action.schedules,
                 index: {t1: 0, t2: 0},
-                lockedSections : newLockedSections
+                lockedSections : newLockedSections,
             }
         default:
             return state

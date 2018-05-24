@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 
 import { removeCourse, toggleCourseTerm, toggleCourse, addTemp, removeTemp } from '../actions/panelActions';
+import { toggleLock } from '../actions/scheduleActions';
 import Course from './Course.js'
 
 
@@ -26,6 +27,7 @@ class CourseContainer extends Component {
                     toggleCourse={this.props.toggleCourse}
                     addTemp={this.props.addTemp}
                     removeTemp={this.props.removeTemp}
+                    toggleLock={this.props.toggleLock}
                 />
             )
         });
@@ -54,4 +56,4 @@ const mapStateToProps = state => ({
     courses: state.course.courses
 });
 
-export default connect(mapStateToProps, { removeCourse, toggleCourseTerm, toggleCourse, addTemp, removeTemp })(CourseContainer)
+export default connect(mapStateToProps, { removeCourse, toggleCourseTerm, toggleCourse, addTemp, removeTemp, toggleLock })(CourseContainer)
