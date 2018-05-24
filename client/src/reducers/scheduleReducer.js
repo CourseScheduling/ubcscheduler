@@ -45,6 +45,8 @@ export default function(state = initialState, action) {
             newBreaks[action.payload.term] = action.payload.breakArr
             return {
                 ...state,
+                schedules: action.schedules,
+                index: {t1: 0, t2: 0},
                 breaks: newBreaks
             }
         default:
