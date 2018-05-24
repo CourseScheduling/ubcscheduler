@@ -31,7 +31,6 @@ export const addCourse = (courseCode) => dispatch => {
 };
 
 export const removeCourse = (code) => dispatch => {
-    console.log("removing coures")
     dispatch({
         type: REMOVE_COURSE,
         payload: code
@@ -39,7 +38,6 @@ export const removeCourse = (code) => dispatch => {
 };
 
 export const toggleCourseTerm = (code, term) => dispatch => {
-    console.log("toggling course term")
     dispatch({
         type: TOGGLE_COURSE_TERM,
         payload: {code: code, term: term}
@@ -47,7 +45,6 @@ export const toggleCourseTerm = (code, term) => dispatch => {
 }
 
 export const toggleCourse = (course) => dispatch => {
-    console.log("Togglign course in panelActions")
     dispatch({
         type: TOGGLE_COURSE,
         payload: course
@@ -55,7 +52,6 @@ export const toggleCourse = (course) => dispatch => {
 }
 
 export const addTemp = (section) => dispatch => {
-    console.log("Add temp in panelActions")
     dispatch({
         type: ADD_TEMP,
         payload: section
@@ -63,7 +59,6 @@ export const addTemp = (section) => dispatch => {
 }
 
 export const removeTemp = () => dispatch => {
-    console.log("remove temp in panelActions")
     dispatch({
         type: REMOVE_TEMP
     })

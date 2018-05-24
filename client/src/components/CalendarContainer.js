@@ -82,7 +82,6 @@ class CalendarContainer extends Component {
 }
 
 CalendarContainer.getDerivedStateFromProps = (nextProps, prevState) => {
-    console.log("Calendarcontainer.getDerivedStateFromProps", nextProps)
     // Set previously rendered sections.active to false    
     // Set new rendered sections.active to true
     const prevT1Index = prevState.index.t1

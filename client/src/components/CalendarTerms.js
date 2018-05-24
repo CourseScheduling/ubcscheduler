@@ -15,7 +15,6 @@ class CalendarTerms extends Component {
 
 
     toggleTerm = (term) => e => {
-        console.log("Togglign term")
         if (this.state.term !== term) {
             this.props.toggleTerm(term)
         }
@@ -40,7 +39,6 @@ class CalendarTerms extends Component {
 
 
 CalendarTerms.getDerivedStateFromProps = (nextProps, prevState) => {
-    console.log("CalendarTerms.getDerivedStateFromProps", nextProps)
     return {
         term: nextProps.term
     }

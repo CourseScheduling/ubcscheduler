@@ -15,7 +15,6 @@ export default class Course extends Component {
             course: props.course,
             color: ColorManager.add(props.course.code)
         }
-        console.log("ColorManager: ", ColorManager)
         this.toggleCourse = this.toggleCourse.bind(this)
         this.removeCourse = this.removeCourse.bind(this)
         this.toggleCourseTerm = this.toggleCourseTerm.bind(this)
@@ -26,14 +25,12 @@ export default class Course extends Component {
     }
 
     removeCourse(e) {
-        console.log("removing course")
         ColorManager.remove(this.state.course.code)
         this.props.removeCourse(this.state.course.code);
         e.stopPropagation();
     }
 
     toggleCourseTerm = (term) => e => {
-        console.log("Togglign course term")
         if (this.state.course.term !== term) {
             this.props.toggleCourseTerm(this.state.course.code, term)
         }
@@ -62,7 +59,6 @@ export default class Course extends Component {
 
     render() {
 
-        console.log("Render in course: " , this.state)
         const courseClasses = classNames(
             'remove-btn-parent',
             'course',

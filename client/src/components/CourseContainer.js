@@ -46,7 +46,6 @@ CourseContainer.propTypes = {
 }
 
 CourseContainer.getDerivedStateFromProps = (nextProps, prevState)=>  {
-    console.log("CourseContainer.getDerivedStateFromProps", nextProps.courses)
     return {
         courses: nextProps.courses
     }

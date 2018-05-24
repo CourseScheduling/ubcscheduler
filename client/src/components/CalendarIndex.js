@@ -21,7 +21,6 @@ class CalendarIndex extends Component {
     }
 }
 CalendarIndex.getDerivedStateFromProps = (nextProps, prevState) => {
-    console.log("Calendarcontainer.getDerivedStateFromProps", nextProps)
     return {
         position: nextProps.position,
         numSchedules: nextProps.numSchedules

@@ -29,7 +29,6 @@ class ColorManager {
      * @param {String} course - CPSC 110
      */
     add(course) {
-        console.log("ColorManager adding course", this)
 
         if (this.colorMap[course]) return this.COLORS[this.colorMap[course]];
         // Find next available color
@@ -59,7 +58,6 @@ class ColorManager {
      * @param {String} course - CPSC 110 
      */
     get(course) {
-        console.log("Getting color", this.COLORS[this.colorMap[course]])
         return this.COLORS[this.colorMap[course]]
     }
 

@@ -49,7 +49,6 @@ export default class BlockSection extends Component {
 
   // Propagates mousedown and mouseover to block underneath
   triggerLower(e) {
-    console.log("Triggering lower in blocksection")
     //Skip if not left click
     if (e.button !== 0) {
       return false;
@@ -92,7 +91,6 @@ export default class BlockSection extends Component {
 
   toggleLock(e) {
     if (this.props.temp) return
-    console.log("Locking section")
     //e.preventDefault()
     const sectionName = e.currentTarget.attributes["data-section"].value
     this.props.toggleLock(sectionName)
@@ -101,7 +99,6 @@ export default class BlockSection extends Component {
 
   render() {
     const blockStyle = this.getStyle()
-    console.log("Blocksection render: ", this.props)
     return (
       <div  className={"block__section " + (this.props.lockedSections && this.props.lockedSections.includes(this.props.name) ? "block__section--locked" : "")}
             style={blockStyle}

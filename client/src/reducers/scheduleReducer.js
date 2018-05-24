@@ -14,50 +14,58 @@ const initialState = {
 
 //TODO: Add break, lock section
 export default function(state = initialState, action) {
+    let newState;
     switch (action.type) {
         case ADD_COURSE:
         case REMOVE_COURSE:
         case TOGGLE_COURSE_TERM:
-            console.log("ADD COURSE!")
-            return {
+            newState = {
                 ...state,
                 schedules: action.schedules,
                 index: {t1: 0, t2: 0}
             }
+            break;
         case JUMP_TO:
-            console.log("Jump to action recieved in reducer")
             let newIdx = {...state.index}
             newIdx[state.term] = action.payload
-            return {
+            newState = {
                 ...state,
                 index: newIdx
             }
+            break;
         case TOGGLE_TERM:
-            console.log("Toggle term in schedulereducer")
-            return {
+            newState = {
                 ...state,
                 term: action.payload
             }
+            break;
         case UPDATE_BREAKS:
             //Preprocessed in middleware
-            console.log("Update breaks in scheduler reducer")
-            return {
+            newState = {
                 ...state,
                 schedules: action.schedules,
                 index: {t1: 0, t2: 0},
                 breaks: action.newBreaks
             }
+            break;
         case TOGGLE_LOCK:
             // Preprocessed in middleware
-            console.log("locking section")
             
-            return {
+            newState = {
                 ...state,
                 schedules: action.schedules,
                 index: {t1: 0, t2: 0},
                 lockedSections : action.newLockedSections,
             }
+            break;
         default:
-            return state
+            newState = state
+            break;
+    }
+    if (newState.schedules.t1.length === 0 || newState.schedules.t2.length === 0) {
+        console.log("No schedules found!")
+        return state
+    } else {
+        return newState
     }
 }

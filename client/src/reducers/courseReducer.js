@@ -31,7 +31,6 @@ export default function (state = initialState, action) {
       }
     case REMOVE_COURSE:
       newCourses = [...state.courses].filter(course => course.code !== action.payload);
-      console.log("newCourses", newCourses)
       return {
         ...state,
         courses: newCourses
@@ -52,7 +51,6 @@ export default function (state = initialState, action) {
       }
     case UPDATE_ACTIVE_SECTIONS:
       // ANTI-PATTERN: mutating sections
-      console.log("courseRecuer - update active sections: ", action)
       action.prevSections.forEach(section => {
         section.active = false
       })
@@ -64,13 +62,11 @@ export default function (state = initialState, action) {
         courses: [...state.courses]
       }
     case ADD_TEMP:
-      console.log("courseReducer - addtemp", action)
       return {
         ...state,
         tempSection: action.payload
       }
     case REMOVE_TEMP:
-      console.log("courseReducer - removetemp", action)
       return {
         ...state,
         tempSection: {}

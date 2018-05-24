@@ -10,15 +10,12 @@ export default class Section extends Component {
     }
 
     addTemp(e) {
-        console.log("Hovering section")
         if (!this.props.section.active) this.props.addTemp(this.props.section)
     }
     removeTemp(e) {
-        console.log("removing temp")
         this.props.removeTemp()
     }
     toggleLock(e) {
-        console.log("Toggling lock")
         this.props.toggleLock(this.props.section.course + " " + this.props.section.section)
         e.stopPropagation()
     }

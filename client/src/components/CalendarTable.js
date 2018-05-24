@@ -22,14 +22,12 @@ class CalendarTable extends Component {
     }
 
     fireUpdateBreaks() {
-        console.log("Update breaks fired!", this.props.term)
         this.props.updateBreaks(this.state.breaks, this.props.term)
     }
 
     toggleBreak(e) {
         // set this.state.breaks[dataDay] at the correct bit to this.state.addBreak
         function updateBreaks (dataDay, dataTime) {
-            console.log("updating state break")            
             let mask = 1 << dataTime
             let newBreaks = [...this.state.breaks]
             if (this.state.addBreak) newBreaks[dataDay] |= mask
@@ -108,7 +106,6 @@ class CalendarTable extends Component {
     }
 }
 CalendarTable.getDerivedStateFromProps = (nextProps, prevState)=>  {
-    console.log("CalendarTable.getDerivedStateFromProps", nextProps)
     return {
         ...prevState,
         breaks: nextProps.breaks
