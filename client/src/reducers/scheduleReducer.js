@@ -1,4 +1,4 @@
-import { ADD_COURSE, TOGGLE_COURSE_TERM, JUMP_TO, REMOVE_COURSE, TOGGLE_TERM } from '../actions/types';
+import { ADD_COURSE, TOGGLE_COURSE_TERM, JUMP_TO, REMOVE_COURSE, TOGGLE_TERM, UPDATE_BREAKS } from '../actions/types';
 
 const initialState = {
     schedules: {t1:[[]], t2:[[]]},
@@ -36,6 +36,16 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 term: action.payload
+            }
+        case UPDATE_BREAKS:
+            console.log("Update breaks in scheduler reducer")
+            let newBreaks = {
+                ...state.breaks
+            }
+            newBreaks[action.payload.term] = action.payload.breakArr
+            return {
+                ...state,
+                breaks: newBreaks
             }
         default:
             return state

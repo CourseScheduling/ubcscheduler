@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import CalendarTable from './CalendarTable';
 import CalendarBlocks from './CalendarBlocks';
 
-import { jumpTo, updateActiveSections } from '../actions/calendarActions';
+import { jumpTo, updateActiveSections, updateBreaks } from '../actions/calendarActions';
 
 
 class CalendarContainer extends Component {
@@ -48,7 +48,7 @@ class CalendarContainer extends Component {
                         </div>
                     </div>
                     <div className="calendarContainer">
-                        <CalendarTable term="t1" />
+                        <CalendarTable term="t1" updateBreaks={this.props.updateBreaks}/>
                         <CalendarBlocks 
                             term="t1"
                             schedule={this.state.schedules.t1[this.state.index.t1]}
@@ -56,7 +56,7 @@ class CalendarContainer extends Component {
                         />
                     </div>
                     <div className="calendarContainer">
-                        <CalendarTable term="t2" />
+                        <CalendarTable term="t2" updateBreaks={this.props.updateBreaks}/>
                         <CalendarBlocks 
                             term="t2" 
                             schedule={this.state.schedules.t2[this.state.index.t2]}
@@ -102,4 +102,4 @@ const mapStateToProps = state => ({
     tempSection: state.course.tempSection
 });
 
-export default connect(mapStateToProps, { jumpTo, updateActiveSections })(CalendarContainer)
+export default connect(mapStateToProps, { jumpTo, updateActiveSections, updateBreaks })(CalendarContainer)

@@ -1,4 +1,4 @@
-import {FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM} from '../actions/types'
+import {FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, UPDATE_BREAKS} from '../actions/types'
 
 import schedule from './scheduler'
 
@@ -31,6 +31,14 @@ const schedulerMiddleware = (store) => (next) => (action) => {
           }
         })
         action.schedules = schedule(courses, state.scheduler.breaks, state.scheduler.lockedSections)
+        break;
+      case UPDATE_BREAKS:
+        courses = [...state.course.courses]
+        let newBreaks = {
+            ...state.scheduler.breaks
+        }
+        newBreaks[action.payload.term] = action.payload.breakArr
+        action.schedules = schedule(state.course.courses, newBreaks, state.scheduler.lockedSections)
         break;
       default:
         console.log("Not scheduling for ", action.type)

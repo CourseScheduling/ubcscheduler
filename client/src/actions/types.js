@@ -10,6 +10,6 @@ export const REMOVE_TEMP = "REMOVE_TEMP"
 
 export const JUMP_TO = "JUMP_TO";
 export const TOGGLE_TERM = "TOGGLE_TERM";
-
+export const UPDATE_BREAKS = "UPDATE_BREAKS";
 
 export const UPDATE_ACTIVE_SECTIONS = "UPDATE_ACTIVE_SECTIONS"

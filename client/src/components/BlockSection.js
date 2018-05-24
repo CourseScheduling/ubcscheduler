@@ -56,6 +56,7 @@ export default class BlockSection extends Component {
     const lowerElement = document.elementsFromPoint(mouseX, mouseY).find((element) => {
       return element.classList.contains("calendar__block")
     });
+    if (!lowerElement) return;
     let event;
     switch (e.type) {
       case "mousedown":

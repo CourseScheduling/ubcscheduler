@@ -12,6 +12,7 @@ export default class CalendarTable extends Component {
 
     toggleBreak(e) {
         console.log("toggling break", e.target)
+        //this.props.updateBreaks()
     }
 
     render() {
