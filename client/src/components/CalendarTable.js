@@ -59,6 +59,7 @@ class CalendarTable extends Component {
                     const breakWhereClicked = this.state.breaks[dataDay] >> dataTime & 1
                     this.state.addBreak = !breakWhereClicked
                     this.state.mousedown = true
+                    BreakDragHelper.setMousedown(true)
                     updateBreaks.call(this, dataDay, dataTime) 
                 }
                 break;

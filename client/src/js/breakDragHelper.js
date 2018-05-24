@@ -4,7 +4,14 @@
 class BreakDragHelper {
     constructor() {
        this.foregroundElements = []
-       
+       this.mousedown = false
+    }
+
+    setMousedown(mousedown) {
+        this.mousedown = mousedown
+    }
+    getMousedown() {
+        return this.mousedown
     }
 
     addForegroundElement(element) {
@@ -19,6 +26,7 @@ class BreakDragHelper {
             element.style.pointerEvents = 'auto'
         })
         this.foregroundElements = []
+        this.mousedown = false
     }
 }
 

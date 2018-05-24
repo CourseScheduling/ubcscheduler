@@ -75,12 +75,15 @@ export default class BlockSection extends Component {
         lowerElement.dispatchEvent(event)
 
       case "mouseover": 
-        parentElement.style.pointerEvents = 'none'
-        BreakDragHelper.addForegroundElement(parentElement)
-        event = new MouseEvent('mouseover', {
-          bubbles: true,
-        });
-        lowerElement.dispatchEvent(event)
+        if (BreakDragHelper.getMousedown()) {
+          parentElement.style.pointerEvents = 'none'
+          BreakDragHelper.addForegroundElement(parentElement)
+          event = new MouseEvent('mouseover', {
+            bubbles: true,
+          });
+          lowerElement.dispatchEvent(event)
+        }
+        break;
       default:
         break;
     }

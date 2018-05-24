@@ -27,6 +27,7 @@
     display: table;
     width: 100%;
     pointer-events: auto;
+    cursor: pointer;
 }
 
 .block__section span {
