@@ -13,6 +13,21 @@ export default class CalendarBlocks extends Component {
             schedule: this.props.schedule
         }
     }
+    
+    isTempSectionTerm() {
+        const sectionTerm = this.props.tempSection.term
+        if (sectionTerm === '1') {
+            return this.props.term === 't1'
+        } else if (sectionTerm === '2') {
+            return this.props.term === 't2'
+        } else if (sectionTerm === '1-2') {
+            return true
+        } else {
+            console.log("Incorrect term in section")
+            return false
+        }
+    }
+
     render() {
         return (
             <div className="calendar__blocks">
@@ -20,7 +35,9 @@ export default class CalendarBlocks extends Component {
                                       
                     [0,1,2,3,4].map(day => {
                         let tempSection;
-                        if (this.props.tempSection.schedule && this.props.tempSection.schedule[day]) {
+                        console.log("Rendering calendar blocks")
+                        console.log(this.props.tempSection)
+                        if (this.props.tempSection.schedule && this.props.tempSection.schedule[day] && this.isTempSectionTerm()) {
                             tempSection =   (<BlockSection
                                                 name={this.props.tempSection.course + " " + this.props.tempSection.section}
                                                 schedule={this.props.tempSection.schedule[day]}

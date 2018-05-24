@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/ubcscheduler');
 
 const SectionSchema = mongoose.Schema({
+    "course": String,
     "section": String,
     "activity": String,
     "status": String,

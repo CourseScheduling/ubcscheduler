@@ -90,7 +90,8 @@ CalendarContainer.getDerivedStateFromProps = (nextProps, prevState) => {
     return {
         schedules: nextProps.schedules,
         index: nextProps.index,
-        term: nextProps.term
+        term: nextProps.term,
+        tempSection: nextProps.tempSection
     }
 }
 

@@ -71,7 +71,9 @@ module.exports.scrapeCourse = function (course) {
             "t2": [],
             "activity_types": []
         }
-        
+        console.log(dept)
+        console.log(courseCode)
+        console.log(XML_URL)
         rp(XML_URL)
         .then(xml => {
             parser.parseString(xml, (err, result) => {
