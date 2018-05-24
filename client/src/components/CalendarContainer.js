@@ -48,7 +48,10 @@ class CalendarContainer extends Component {
                         </div>
                     </div>
                     <div className="calendarContainer">
-                        <CalendarTable term="t1" updateBreaks={this.props.updateBreaks}/>
+                        <CalendarTable 
+                            term="t1" 
+                            updateBreaks={this.props.updateBreaks}
+                            breaks={this.props.breaks.t1}/>
                         <CalendarBlocks 
                             term="t1"
                             schedule={this.state.schedules.t1[this.state.index.t1]}
@@ -56,7 +59,10 @@ class CalendarContainer extends Component {
                         />
                     </div>
                     <div className="calendarContainer">
-                        <CalendarTable term="t2" updateBreaks={this.props.updateBreaks}/>
+                        <CalendarTable 
+                            term="t2" 
+                            updateBreaks={this.props.updateBreaks}
+                            breaks={this.props.breaks.t2}/>
                         <CalendarBlocks 
                             term="t2" 
                             schedule={this.state.schedules.t2[this.state.index.t2]}
@@ -99,7 +105,8 @@ const mapStateToProps = state => ({
     schedules: state.scheduler.schedules,
     index: state.scheduler.index,
     term: state.scheduler.term,
-    tempSection: state.course.tempSection
+    tempSection: state.course.tempSection,
+    breaks: state.scheduler.breaks
 });
 
 export default connect(mapStateToProps, { jumpTo, updateActiveSections, updateBreaks })(CalendarContainer)

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
-export default class CalendarTable extends Component {
+class CalendarTable extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -15,7 +15,7 @@ export default class CalendarTable extends Component {
 
     toggleBreak(e) {
         console.log("toggling break", e.target)
-        //this.props.updateBreaks()
+        this.props.updateBreaks([1,1,1,1,1], this.props.term)
         function updateBreaks () {
 
         }
@@ -49,7 +49,7 @@ export default class CalendarTable extends Component {
                                     {calendarBlockTime}
                                     {[0, 1, 2, 3, 4].map(dayIdx => (
                                         <td key={"block_" + this.props.term + dayIdx + hourIdx}
-                                            className="calendar__block" 
+                                            className={"calendar__block " + ((this.state.breaks[dayIdx] >> hourIdx & 1) ? "calendar__block--break" : "")} 
                                             data-day={dayIdx} 
                                             data-time={hourIdx}
                                             onMouseDown={this.toggleBreak}
@@ -64,3 +64,12 @@ export default class CalendarTable extends Component {
         )
     }
 }
+CalendarTable.getDerivedStateFromProps = (nextProps, prevState)=>  {
+    console.log("CalendarTable.getDerivedStateFromProps", nextProps)
+    return {
+        ...prevState,
+        breaks: nextProps.breaks
+    }
+}
+
+export default CalendarTable
