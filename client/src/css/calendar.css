@@ -48,22 +48,7 @@
 
 
 
-.calendar__row {
-    
-}
-    .calendar__row--days {
-        height: 30px;
-        text-transform: uppercase;
-    }
-    .calendar__block {
-        width: calc(92% / 5);
-        height: 25px;
-        padding: 0px;
-        background-color: #FFF;
-    }
-    .calendar__block--time {
-        width: 8%;
-    }
+
 table, th, td {
     border: 1px solid #ddd;
     font-size: 12px;

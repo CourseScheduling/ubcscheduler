@@ -33,3 +33,23 @@
     display: table-cell;
     vertical-align: middle;
 }
+
+.calendar__row {
+    
+}
+    .calendar__row--days {
+        height: 30px;
+        text-transform: uppercase;
+    }
+    .calendar__block {
+        width: calc(92% / 5);
+        height: 25px;
+        padding: 0px;
+        background-color: #FFF;
+    }
+    .calendar__block--break {
+        background-color: #ccc;
+    }
+    .calendar__block--time {
+        width: 8%;
+    }

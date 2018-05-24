@@ -57,15 +57,19 @@ export default class BlockSection extends Component {
       return element.classList.contains("calendar__block")
     });
     if (!lowerElement) return;
-    let event;
+    let event
+    const parentElement = e.target.parentElement
     switch (e.type) {
       case "mousedown":
         event = new MouseEvent('mousedown', {
           bubbles: true,
         });
+        parentElement.style.pointerEvents = 'none'
         lowerElement.dispatchEvent(event)
-      case "mouseover":    
-        event = new MouseEvent('mousedown', {
+
+      case "mouseover": 
+        parentElement.style.pointerEvents = 'none'
+        event = new MouseEvent('mouseover', {
           bubbles: true,
         });
         lowerElement.dispatchEvent(event)
