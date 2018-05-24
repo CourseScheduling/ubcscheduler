@@ -1,6 +1,13 @@
 const MAX_SCHEDULES = 1000
 
-
+function filterLockedSections (sectionsByActivity, lockedSections) {
+    for (let i = 0; i < sectionsByActivity.length; i++) {
+        let lockedSection = sectionsByActivity[i].find(section => {
+            return lockedSections.includes(section.course + " " + section.section)
+        })
+        if (lockedSection) sectionsByActivity[i] = [lockedSection]
+    }
+}
 
 const schedule = function (courses, breaks, lockedSections) {
     console.log("scheduling")
@@ -19,10 +26,15 @@ const schedule = function (courses, breaks, lockedSections) {
     const numT2Sections = t2SectionsbyActivity.length
     console.log("numT1Sections: ", numT1Sections);
     console.log("numT2Sections: ", numT2Sections);
+
+    // Filter out lockedSections
+    filterLockedSections (t1SectionsByActivity, lockedSections)
+    filterLockedSections (t2SectionsbyActivity, lockedSections)
+    console.log(t1SectionsByActivity, lockedSections)
+
     let t1Schedules = []
     let t2Schedules = []
-    
-    
+
     function recursiveSchedule (numSections, validSchedules, sectionsByActivity, m, t, w, r, f, count, acc) {
         if (count === numSections) {
             validSchedules.push(acc.slice())

@@ -63,6 +63,8 @@ export default function(state = initialState, action) {
             }
             return {
                 ...state,
+                schedules: action.schedules,
+                index: {t1: 0, t2: 0},
                 lockedSections : newLockedSections
             }
         default:
