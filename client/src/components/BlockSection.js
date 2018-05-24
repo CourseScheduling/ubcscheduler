@@ -44,10 +44,41 @@ export default class BlockSection extends Component {
     }
   }
 
+  // Propagates mousedown and mouseover to block underneath
+  triggerLower(e) {
+    console.log("Triggering lower in blocksection")
+    //Skip if not left click
+    if (e.button !== 0) {
+      return false;
+    }
+    const mouseX = e.pageX
+    const mouseY = e.pageY
+    const lowerElement = document.elementsFromPoint(mouseX, mouseY).find((element) => {
+      return element.classList.contains("calendar__block")
+    });
+    let event;
+    switch (e.type) {
+      case "mousedown":
+        event = new MouseEvent('mousedown', {
+          bubbles: true,
+        });
+        lowerElement.dispatchEvent(event)
+      case "mouseover":    
+        event = new MouseEvent('mousedown', {
+          bubbles: true,
+        });
+        lowerElement.dispatchEvent(event)
+      default:
+        break;
+    }
+  }
   render() {
     const blockStyle = this.getStyle()
     return (
-      <div className="block__section" style={blockStyle}>
+      <div  className="block__section" 
+            style={blockStyle}
+            onMouseDown={this.triggerLower}
+            onMouseOver={this.triggerLower}>
         <span>{this.props.name}</span>
       </div>
     )

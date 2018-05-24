@@ -1,8 +1,19 @@
+.calendar__blocks {
+    position: absolute;
+    top: 30px;
+    left: 8%;
+    width: 92%;
+    height: calc(100% - 25px);
+    pointer-events:none;
+}
+
+
 .block__daycol {
     width: calc(100% / 5);
     display: inline-block;
     height: 100%;
     position: relative;
+    pointer-events: none;
 }
 
 .block__section {
@@ -15,6 +26,7 @@
     box-sizing: border-box;
     display: table;
     width: 100%;
+    pointer-events: auto;
 }
 
 .block__section span {

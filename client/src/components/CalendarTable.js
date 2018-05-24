@@ -6,6 +6,12 @@ import classNames from 'classnames';
 export default class CalendarTable extends Component {
     constructor(props) {
         super(props)
+
+        this.toggleBreak = this.toggleBreak.bind(this)
+    }
+
+    toggleBreak(e) {
+        console.log("toggling break", e.target)
     }
 
     render() {
@@ -25,12 +31,22 @@ export default class CalendarTable extends Component {
                                 <tr className="calendar_row" key={"calendar__row_" + this.props.term + hourIdx}>
                                     <td className="calendar__block calendar__block--time" rowSpan="2">{hour}</td>
                                     {[0, 1, 2, 3, 4].map(dayIdx => (
-                                        <td className="calendar__block" data-day={dayIdx} data-time={hourIdx} key={"block_" + this.props.term + dayIdx + hourIdx}></td>
+                                        <td key={"block_" + this.props.term + dayIdx + hourIdx}
+                                            className="calendar__block" 
+                                            data-day={dayIdx} 
+                                            data-time={hourIdx}
+                                            onMouseDown={this.toggleBreak}
+                                            onMouseOver={this.toggleBreak} ></td>
                                     ))}
                                 </tr>
                                 <tr className="calendar_row" key={"calendar__row_" + this.props.term + (hourIdx + 1).toString()}>
                                     {[0, 1, 2, 3, 4].map(dayIdx => (
-                                        <td className="calendar__block" data-day={dayIdx} data-time={hourIdx+1} key={"block_" + this.props.term + dayIdx + (hourIdx + 1).toString()}></td>
+                                        <td key={"block_" + this.props.term + dayIdx + (hourIdx + 1).toString()}
+                                            className="calendar__block" 
+                                            data-day={dayIdx} 
+                                            data-time={hourIdx+1} 
+                                            onMouseDown={this.toggleBreak}
+                                            onMouseOver={this.toggleBreak} ></td>
                                     ))}
                                 </tr>
                             </React.Fragment>
