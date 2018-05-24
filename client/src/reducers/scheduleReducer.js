@@ -11,6 +11,13 @@ const initialState = {
     lockedSections: []
 }
 
+function mergeBreaks(break1, break2) {
+    let mergedBreaks = [0,0,0,0,0]
+    for (let i = 0; i < 5; i++) {
+        mergedBreaks[i] = break1[i] & break2[i]
+    }
+    return mergedBreaks
+}
 
 //TODO: Add break, lock section
 export default function(state = initialState, action) {
@@ -64,7 +71,14 @@ export default function(state = initialState, action) {
     }
     if (newState.schedules.t1.length === 0 || newState.schedules.t2.length === 0) {
         console.log("No schedules found!")
-        return state
+        // Merge old breaks and newState.breaks to take the less constrained option
+        let lessConstrainedBreaks = {}
+        lessConstrainedBreaks.t1 = mergeBreaks(state.breaks.t1, newState.breaks.t1)
+        lessConstrainedBreaks.t2 = mergeBreaks(state.breaks.t2, newState.breaks.t2)
+        return {
+            ...state,
+            breaks: lessConstrainedBreaks
+        }
     } else {
         return newState
     }
