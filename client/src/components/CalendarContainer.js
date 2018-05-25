@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import CalendarTable from './CalendarTable';
 import CalendarBlocks from './CalendarBlocks';
 
-import { jumpTo, updateActiveSections, updateBreaks } from '../actions/calendarActions';
+import { updateActiveSections, updateBreaks } from '../actions/calendarActions';
 import { toggleLock } from '../actions/scheduleActions';
 
 class CalendarContainer extends Component {
@@ -22,33 +22,15 @@ class CalendarContainer extends Component {
             tempSection: {}
         }
 
-        this.displayPrev = this.displayPrev.bind(this)
-        this.displayNext = this.displayNext.bind(this)
+        
     }
-    displayPrev(e) {
-        const numSchedules = this.state.schedules[this.state.term].length
-        let newIdx = (this.state.index[this.state.term] - 1) % numSchedules
-        if (newIdx === -1) newIdx = numSchedules - 1
-        this.props.jumpTo(newIdx)
-    }
-    displayNext(e) {
-        const numSchedules = this.state.schedules[this.state.term].length
-        let newIdx = (this.state.index[this.state.term] + 1) % numSchedules
-        this.props.jumpTo(newIdx)
-    }
+
 
     render() {
         return (
             <div className="calendarsContainer-wrapper">
                 <div className="calendarsContainer">
-                    <div className="arrow-container">
-                        <div className="arrow arrow--left" onClick={this.displayPrev}>
-                            <i className="material-icons">&#xE5CB;</i>
-                        </div>
-                        <div className="arrow arrow--right" onClick={this.displayNext}>
-                            <i className="material-icons">&#xE5CC;</i>
-                        </div>
-                    </div>
+
                     <div className="calendarContainer">
                         <CalendarTable 
                             term="t1" 
@@ -118,4 +100,4 @@ const mapStateToProps = state => ({
 
 });
 
-export default connect(mapStateToProps, { jumpTo, updateActiveSections, updateBreaks, toggleLock })(CalendarContainer)
+export default connect(mapStateToProps, { updateActiveSections, updateBreaks, toggleLock })(CalendarContainer)
