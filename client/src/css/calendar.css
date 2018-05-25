@@ -5,8 +5,8 @@
 .calendar__term {
     display: inline-block;
     border-radius: 2px;
-    border: 2px solid #2b4aa5;
-    color: #2b4aa5;
+    border: 2px solid #969db5;
+    color: #969db5;
     padding: 7px;
     background-color: #fff;
     margin: 5px;
@@ -98,9 +98,9 @@ table, th, td {
 
 .index__jump-btn {
     display: inline-block;
-    border-radius: 2px;
-    border: 2px solid #2b4aa5;
-    color: #2b4aa5;
+    border: 2px solid #969db5;
+    color: #969db5;
+    color: #969db5;
     background-color: #fff;
     margin: 5px;
     cursor: pointer;
