@@ -15,11 +15,12 @@ import './css/saved-schedules.css';
 
 import { Provider } from 'react-redux';
 
-import SearchTool from './components/SearchTool';
-import CourseContainer from './components/CourseContainer';
+
 import CalendarContainer from './components/CalendarContainer';
 import CalendarIndex from './components/CalendarIndex';
 import CalendarTerms from './components/CalendarTerms';
+import Control from './components/Control';
+import BreakForm from './components/BreakForm';
 
 import store from './store';
 
@@ -45,24 +46,19 @@ class App extends Component {
           
 
           <div className="side-panel">
-            <div className="control__container">
-              <SearchTool />
-              <div className="course-container-header">:: COURSES ::</div>
-              <CourseContainer />
+            <div className="side-panel__contents">
+              <Control />
+              <BreakForm />
+              {/* Add Breaks
+              Lock Sections
+              Create STT  */}
             </div>
-            
-            {/* Add Breaks
-            Lock Sections
-            Create STT  */}
           </div>
 
           <div className="calendar">
             <CalendarTerms />
-
-            <CalendarContainer />
-            
+            <CalendarContainer />            
             <CalendarIndex />
-
           </div>
         </div>        
       </Provider>
