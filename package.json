@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "run": "node app.js && cd client && sudo serve -s -p 80 build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

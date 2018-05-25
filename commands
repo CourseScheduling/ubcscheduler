@@ -1,0 +1,6 @@
+Installing Mongodb on Ubuntu 18.04:
+https://websiteforstudents.com/install-mongodb-on-ubuntu-18-04-lts-beta-server/
+sudo systemctl start mongod.service
+
+SSH:
+ssh ubcscheduleradmin@13.66.168.215
