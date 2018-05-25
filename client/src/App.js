@@ -11,7 +11,7 @@ import './css/search-tool.css';
 import './css/common.css';
 import './css/calendar.css';
 import './css/calendar-block.css';
-
+import './css/saved-schedules.css';
 
 import { Provider } from 'react-redux';
 
@@ -34,7 +34,12 @@ class App extends Component {
             </div>
 
             <div className="saved-schedules">
-              <span>Saved schedules:</span>
+              <div className="saved-schedules__content">
+                <div className="save__btn">
+                  <i className="material-icons">favorite</i>
+                  <span> Save Schedule</span>
+                </div>
+              </div>
             </div>
           </div>
           

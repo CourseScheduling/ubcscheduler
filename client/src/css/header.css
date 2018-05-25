@@ -15,11 +15,10 @@
     font-weight: 500; 
     background-color:#123B5C;
     color: white;
+    min-width: 300px;
 }
-.instructions {
 
-}
 .saved-schedules {
-    margin-left: 20px;
+    text-align: center;
 }
 
