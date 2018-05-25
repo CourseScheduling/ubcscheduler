@@ -12,12 +12,14 @@ class CalendarIndex extends Component {
         }
         this.displayPrev = this.displayPrev.bind(this)
         this.displayNext = this.displayNext.bind(this)
+        this.jump = this.jump.bind(this)
+        this.updatePosition = this.updatePosition.bind(this)
     }
 
     displayPrev(e) {
         const numSchedules = this.state.numSchedules
         let newIdx = (this.state.position - 2) % numSchedules
-        if (newIdx === -1) newIdx = numSchedules - 1
+        if (newIdx <= -1) newIdx = numSchedules - 1
         this.props.jumpTo(newIdx)
     }
     displayNext(e) {
@@ -26,6 +28,18 @@ class CalendarIndex extends Component {
         this.props.jumpTo(newIdx)
     }
 
+    jump(e) {
+        // Clip off negative indices and indices larger than numSchedules
+        let newIdx = this.state.position - 1;
+        if (newIdx >= this.state.numSchedules) newIdx = this.state.numSchedules - 1
+        else if (newIdx < 0) newIdx = 0
+        this.props.jumpTo(newIdx) 
+    }
+    updatePosition(e) {
+        this.setState({
+            position: e.target.value
+        })
+    }
     render() {
         return (
             <div className="calendar__index-container">
@@ -34,13 +48,14 @@ class CalendarIndex extends Component {
                         <i className="material-icons">&#xE5CB;</i>
                     </div>
                     <div className="calendar__index">
-                        <span>{this.state.position}</span>
+                        <input type="number" placeholder="1" value={this.state.position} className="calendar__index__position" onChange={this.updatePosition}/>
                         <span className="index__break">/</span>
                         <span>{this.state.numSchedules}</span>
                     </div>
                     <div className="arrow arrow--right" onClick={this.displayNext}>
                         <i className="material-icons">&#xE5CC;</i>
                     </div>
+                    <div className="index__jump-btn" onClick={this.jump}>Jump</div>
                 </div>
 
             </div>

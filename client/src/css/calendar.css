@@ -71,14 +71,8 @@ table, th, td {
 .arrow i {
     font-size: 50px;
 }
-/* .arrow--left {
-    margin-left: -50px;
-    float: left;
-}
-.arrow--right {
-    margin-right: -50px;
-    float: right;
-} */
+
+
 .calendar__index-container {
     display: inline-block;
 }
@@ -90,4 +84,28 @@ table, th, td {
 }
 .index__break {
     padding: 10px;
+}
+
+.calendar__index__position {
+    text-align: right;
+    font-size: 14px;
+    padding: 2px;
+    width: 80px;
+}
+
+.index__jump-btn {
+    display: inline-block;
+    border-radius: 3px;
+    padding: 5px 10px;
+    background-color: #fff;
+    margin: 5px;
+    cursor: pointer;
+    line-height: 30px;
+    font-size: 15px;
+    color: white;
+    background-color: #0055B7;
+}
+
+.index__jump-btn:hover {
+    background-color: #50a1ff
 }
