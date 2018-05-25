@@ -12,6 +12,7 @@ import './css/common.css';
 import './css/calendar.css';
 import './css/calendar-block.css';
 import './css/saved-schedules.css';
+import './css/breakform.css';
 
 import { Provider } from 'react-redux';
 

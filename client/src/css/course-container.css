@@ -52,6 +52,10 @@
     border-color: #FFF;
     transition: background-color .25s;
 }
+.course__button--selected {
+    background-color: rgba(255,255,255,0.2); 
+    color: #FFF;
+}
 .course__code {
     font-size: 13px;
 }
@@ -74,10 +78,7 @@
     text-align: left;
 }
 
-.course__button--selected {
-    background-color: rgba(255,255,255,0.2); 
-    color: #FFF;
-}
+
 
 .course__container {
     display: none;

@@ -30,3 +30,29 @@
     font-size: 20px;
     font-weight: bold;
 }
+
+.btn {
+    display: inline-block;
+    border-radius: 2px;
+    padding: 7px;
+    margin: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 2px solid #b1b1b1;
+    color: #949494;
+    background-color: #fff;
+}
+.btn:hover {
+    color: #fff;
+    background-color: #9c9c9c;
+    border: 2px solid #9c9c9c;
+}
+.btn-icon > i {
+    display: inline-flex;
+    vertical-align: top;
+    margin-right: 10px;
+}
+.btn-icon > span {
+    line-height: 26px;
+}

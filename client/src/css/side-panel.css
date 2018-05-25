@@ -9,9 +9,43 @@
     margin-top: 20px;
 }
 
-.control__container {
+.tool__container {
     background-color: #b5cfff;
     border-radius: 2px;
     overflow: hidden;
     width: 90%;
+}
+
+.panel__btn {
+    padding: 5px;
+    color: #000;
+    border-radius: 2px;
+    display: inline-block;
+    margin: 3px;
+    background-color: #FFF;
+    border: 1px solid transparent;
+    transition: background-color .25s;
+}
+.panel__btn:hover {
+    background-color: transparent;
+    color: #FFF;
+    border-color: #FFF;
+    transition: background-color .25s;
+}
+.panel__btn--selected {
+    background-color: rgba(255,255,255,0.2); 
+    color: #FFF;
+}
+
+.panel__header {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    margin: 5px;
+    font-size: 10px;
+    color: #525252;
+    padding-left: 10px;
+    margin-top: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }

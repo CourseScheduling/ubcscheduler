@@ -1,0 +1,61 @@
+.breakform__days {
+    margin: 20px;    
+}
+.breakform__day {
+    display: inline-block;
+    padding: 7px;
+    background-color: #fff;
+    border-radius: 3px;
+    margin: 0px 3px;
+    font-size: 12px;
+    font-weight: 500;
+    width: 40px;
+}
+
+.breakform__input-container > * {
+    margin: 5px;
+}
+
+.breakform__input {
+    padding: 3px;
+    border-radius: 3px;
+    border: none;
+}
+
+.breakform__add-btn {
+    font-size: 12px;
+    padding: 5px 15px;
+    border: 2px solid #6197ff;
+    color: #6197ff;
+    margin: 15px;
+}
+.breakform__add-btn:hover {
+    background-color: #6197ff;
+    color: #fff;
+    border: 2px solid #6197ff;
+}
+
+.breakform__breaks-container {
+    margin-bottom: 20px;
+}
+.breakform__break {
+    line-height: 25px;
+    background-color: #fff;
+    width: 90%;
+    margin: 10px auto;
+    border-radius: 3px;
+    padding: 3px;
+}
+.break__component {
+    margin: 5px;
+}
+.break__remove-btn {
+    display: inline-flex;
+    vertical-align: top;
+    color: #ffa29b;
+    font-weight: bold;
+}
+.break__remove-btn:hover {
+    cursor: pointer;
+    color: #ff1100;
+}
