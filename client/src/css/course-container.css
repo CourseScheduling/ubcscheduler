@@ -53,11 +53,10 @@
     transition: background-color .25s;
 }
 .course__code {
-    font-size: 12px;
+    font-size: 14px;
 }
 .course__term {
     text-transform: uppercase;
-    font-weight: 500;
 }
 .course__term--selected {
     background-color: rgba(255,255,255,0.2); 
