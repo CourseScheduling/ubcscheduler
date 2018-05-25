@@ -22,6 +22,9 @@
     border: none;
 }
 
+span.breakform__span {
+    color: #525252;
+}
 .breakform__add-btn {
     font-size: 12px;
     padding: 5px 15px;
