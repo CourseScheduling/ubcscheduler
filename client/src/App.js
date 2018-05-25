@@ -13,6 +13,7 @@ import './css/calendar.css';
 import './css/calendar-block.css';
 import './css/saved-schedules.css';
 import './css/breakform.css';
+import './css/register.css';
 
 import { Provider } from 'react-redux';
 
@@ -23,6 +24,7 @@ import CalendarTerms from './components/CalendarTerms';
 import Control from './components/Control';
 import BreakForm from './components/BreakForm';
 import CreateCourseForm from './components/createCourseForm';
+import Register from './components/Register';
 
 import store from './store';
 
@@ -52,9 +54,7 @@ class App extends Component {
               <Control />
               <BreakForm />
               <CreateCourseForm />
-              {/* Add Breaks
-              Lock Sections
-              Create STT  */}
+              <Register />
             </div>
           </div>
 
