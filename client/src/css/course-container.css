@@ -5,7 +5,7 @@
     text-align: left;
     margin: 5px;
     font-size: 10px;
-    color: #999;
+    color: #525252;
     padding-left: 10px;
     margin-top: 10px;
     letter-spacing: 1px;
@@ -53,7 +53,7 @@
     transition: background-color .25s;
 }
 .course__code {
-    font-size: 14px;
+    font-size: 13px;
 }
 .course__term {
     text-transform: uppercase;

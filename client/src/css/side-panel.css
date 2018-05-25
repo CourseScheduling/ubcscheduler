@@ -1,5 +1,5 @@
 .side-panel {
-    background-color: #F0F8FF;
+    background-color: #f3f3f3;
     min-width: 300px;
 }
 
@@ -10,9 +10,8 @@
 }
 
 .control__container {
-    background-color: #EEE;
+    background-color: #b5cfff;
     border-radius: 2px;
     overflow: hidden;
     width: 90%;
-    border: 1px solid #c5c5c5;
 }
