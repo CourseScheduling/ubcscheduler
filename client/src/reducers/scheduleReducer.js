@@ -69,6 +69,8 @@ export default function(state = initialState, action) {
             newState = state
             break;
     }
+    console.log("newstate.schedules.t1", newState)
+    // if (!newState.schedules) return state
     if (newState.schedules.t1.length === 0 || newState.schedules.t2.length === 0) {
         console.log("No schedules found!")
         // Merge old breaks and newState.breaks to take the less constrained option

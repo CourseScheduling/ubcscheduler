@@ -17,7 +17,8 @@ const schedulerMiddleware = (store) => (next) => (action) => {
         if (idx === -1) {
           courses.push(action.payload)
           action.schedules = schedule(courses, state.scheduler.breaks, state.scheduler.lockedSections)
-          
+        } else {
+          action.schedules = state.scheduler.schedules
         }
         break;   
       case REMOVE_COURSE:
