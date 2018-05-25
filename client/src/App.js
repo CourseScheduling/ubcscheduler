@@ -22,6 +22,7 @@ import CalendarIndex from './components/CalendarIndex';
 import CalendarTerms from './components/CalendarTerms';
 import Control from './components/Control';
 import BreakForm from './components/BreakForm';
+import CreateCourseForm from './components/createCourseForm';
 
 import store from './store';
 
@@ -50,6 +51,7 @@ class App extends Component {
             <div className="side-panel__contents">
               <Control />
               <BreakForm />
+              <CreateCourseForm />
               {/* Add Breaks
               Lock Sections
               Create STT  */}
