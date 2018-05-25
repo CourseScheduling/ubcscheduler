@@ -4,18 +4,21 @@
 }
 .calendar__term {
     display: inline-block;
-    border-radius: 3px;
-    border: 1px solid grey;
-    padding: 5px;
+    border-radius: 2px;
+    border: 2px solid #2b4aa5;
+    color: #2b4aa5;
+    padding: 7px;
     background-color: #fff;
     margin: 5px;
     cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
 }
 .calendar__term:hover {
     background-color: #eee;
 }
 .calendar__term--selected {
-    background-color: #ddd
+    background-color: #edf2ff;
 }
 
 .calendarsContainer-wrapper {
@@ -95,17 +98,19 @@ table, th, td {
 
 .index__jump-btn {
     display: inline-block;
-    border-radius: 3px;
-    padding: 5px 10px;
+    border-radius: 2px;
+    border: 2px solid #2b4aa5;
+    color: #2b4aa5;
     background-color: #fff;
     margin: 5px;
     cursor: pointer;
+    padding: 5px 12px;
     line-height: 30px;
     font-size: 15px;
-    color: white;
-    background-color: #0055B7;
+    text-transform: uppercase;
+    font-weight: 500;
 }
 
 .index__jump-btn:hover {
-    background-color: #50a1ff
+    background-color: #eee;
 }
