@@ -1,4 +1,5 @@
 import { ADD_COURSE, TOGGLE_COURSE_TERM, JUMP_TO, REMOVE_COURSE, TOGGLE_TERM, UPDATE_BREAKS, TOGGLE_LOCK } from '../actions/types';
+import { alertNoSchedule } from '../js/userAlerts';
 
 const initialState = {
     schedules: {t1:[[]], t2:[[]]},
@@ -69,10 +70,10 @@ export default function(state = initialState, action) {
             newState = state
             break;
     }
-    console.log("newstate.schedules.t1", newState)
-    // if (!newState.schedules) return state
+    
     if (newState.schedules.t1.length === 0 || newState.schedules.t2.length === 0) {
         console.log("No schedules found!")
+        alertNoSchedule(action)
         // Merge old breaks and newState.breaks to take the less constrained option
         let lessConstrainedBreaks = {}
         lessConstrainedBreaks.t1 = mergeBreaks(state.breaks.t1, newState.breaks.t1)
