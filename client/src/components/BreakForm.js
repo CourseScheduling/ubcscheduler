@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
+import swal from 'sweetalert2'
 
 import Utils from '../js/utils';
 import { updateBreaks } from '../actions/calendarActions'
@@ -53,6 +54,18 @@ class BreakForm extends Component {
     const breakTime = Utils.stringTimeToInt(startTime, endTime)
 
     const days = this.state.days
+    // If all days are false, return
+    if (days.every((day, i) => {
+      return day === false
+    })) {
+      swal({
+        title: "No day selected",
+        type: 'warning',
+        timer: 2000,
+        showConfirmButton: false
+      })   
+      return
+    }
 
     let newBreakArr = this.state.breaks[term].map((dayBreak, i) => {
       if (days[i]) {

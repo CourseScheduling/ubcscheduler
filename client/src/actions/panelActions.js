@@ -30,6 +30,13 @@ export const addCourse = (courseCode) => dispatch => {
     })
 };
 
+export const addCustomCourse = (course) => dispatch => {
+    dispatch({
+        type: ADD_COURSE,
+        payload: course
+    })
+}
+
 export const removeCourse = (code) => dispatch => {
     dispatch({
         type: REMOVE_COURSE,

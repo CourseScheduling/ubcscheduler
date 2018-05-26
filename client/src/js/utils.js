@@ -104,8 +104,22 @@ class Utils {
                 showConfirmButton: false
             })            
         }
-        return isValid       
-        
+        return isValid    
+    }
+
+    /**
+     *  Returns [m,t,w,r,f] for a section
+     * @param {*} days [bool bool bool bool bool]
+     * @param {*} startTime "08:00"
+     * @param {*} endTime  "08:30"
+     */
+    getSectionTimeArr(days, startTime, endTime) {
+        console.log(days, startTime, endTime)
+        let sectionTimeArr = [0,0,0,0,0]
+        days.forEach((day, i) => {
+            if (day) sectionTimeArr[i] = this.stringTimeToInt(startTime, endTime)
+        })
+        return sectionTimeArr        
     }
 }
 const utils = new Utils()

@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
+import swal from 'sweetalert2'
 
 import Utils from '../js/utils'
+import { addCustomCourse } from '../actions/panelActions'
 
 class CreateCourseForm extends Component {
     constructor(props) {
@@ -23,6 +25,7 @@ class CreateCourseForm extends Component {
         this.addSection = this.addSection.bind(this)
         this.toggleTerm = this.toggleTerm.bind(this)
         this.toggleDay = this.toggleDay.bind(this)
+        this.addCustomCourse = this.addCustomCourse.bind(this)
     }
     toggleTerm = (term) => (e) => {
         if (this.state.term !== term) this.setState({ "term": term })
@@ -48,6 +51,20 @@ class CreateCourseForm extends Component {
         const endTime = document.getElementById("create-course-form__end-time").value
         if (!Utils.validateTimeRange(startTime, endTime)) return
         const days = [...this.state.days]
+        // If all days are false, return
+        if (days.every((day, i) => {
+            return day === false
+        })) {
+            swal({
+            title: "No day selected",
+            type: 'warning',
+            timer: 2000,
+            showConfirmButton: false
+            })   
+            return
+        }
+
+
         const dayStr = days.reduce((acc, curVal, i) => {
             if (curVal) {
                 return acc + Utils.getDay(i)[0]
@@ -66,6 +83,49 @@ class CreateCourseForm extends Component {
         this.setState({ renderedSections: newRenderedSections})
 
     }
+
+    getTermSection(code, term) {
+        const schedule = this.state.renderedSections[term].reduce((acc, section, sectionIdx) => {
+            let sectionTimeArr = Utils.getSectionTimeArr(section.days, section.startTime, section.endTime)
+            console.log("sectiontimearr", sectionTimeArr)
+            for (let i = 0; i < 5; i++) {
+                acc[i] |= sectionTimeArr[i]
+            }
+            return acc
+        }, [0,0,0,0,0])
+
+        return {
+            schedule: schedule,
+            instructors: [],
+            section: "",
+            activity: "Custom",
+            status: "Custom",
+            term: term[1],
+            course: code
+        }
+    }
+
+    addCustomCourse(e) {
+        const code = 'Custom 1'
+        const customSectionT1 = this.getTermSection(code, "t1")
+        const customSectionT2 = this.getTermSection(code, "t2")
+        let course = {
+            code: code,
+            activity_types: ['Custom'],
+            t1: [[customSectionT1]],
+            t2: [[customSectionT2]],
+            active: true,
+            term: "t1"
+        }
+        console.log("Custom course: ", course)
+        // this.props.addCustomCourse(course)
+    }
+
+
+
+
+
+
     renderSectionsByTermJSX(term) {
         return this.state.renderedSections[term].map((renderedSection, i) => (
             <div className="breakform__break" key={"create-course-form__section" + this.state.term + i}>
@@ -119,7 +179,7 @@ class CreateCourseForm extends Component {
                         {this.renderSectionsByTermJSX("t2")}
                     </div>
                 </div>        
-                <div className="btn btn-icon breakform__add-btn create-course-form__add-btn">
+                <div className="btn btn-icon breakform__add-btn create-course-form__add-btn" onClick={this.addCustomCourse}>
                     <i className="material-icons">done_outline</i>
                     <span>add stt</span>
                 </div>
@@ -132,4 +192,4 @@ const mapStateToProps = state => ({
 
 });
 
-export default connect(mapStateToProps, {})(CreateCourseForm)
+export default connect(mapStateToProps, {addCustomCourse})(CreateCourseForm)
