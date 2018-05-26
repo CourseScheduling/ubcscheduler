@@ -1,4 +1,4 @@
-import {FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, UPDATE_BREAKS, TOGGLE_LOCK} from '../actions/types'
+import {FETCH_COURSELIST, ADD_COURSE, ADD_CUSTOM_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, UPDATE_BREAKS, TOGGLE_LOCK} from '../actions/types'
 
 import schedule from './scheduler'
 
@@ -9,6 +9,7 @@ const schedulerMiddleware = (store) => (next) => (action) => {
     let state = store.getState()
     let courses;
     switch (action.type) {
+      case ADD_CUSTOM_COURSE:
       case ADD_COURSE:
         courses = [...state.course.courses]
         let idx = state.course.courses.findIndex(element => {

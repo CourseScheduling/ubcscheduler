@@ -1,4 +1,4 @@
-import { FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, UPDATE_ACTIVE_SECTIONS, TOGGLE_COURSE, ADD_TEMP, REMOVE_TEMP } from '../actions/types';
+import { FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, UPDATE_ACTIVE_SECTIONS, TOGGLE_COURSE, ADD_TEMP, REMOVE_TEMP, ADD_CUSTOM_COURSE } from '../actions/types';
 
 const initialState = {
   courselist: [],
@@ -15,6 +15,7 @@ export default function (state = initialState, action) {
         ...state,
         courselist: action.payload
       };
+    case ADD_CUSTOM_COURSE:
     case ADD_COURSE:
       let idx = state.courses.findIndex(element => {
         return element.code === action.payload.code

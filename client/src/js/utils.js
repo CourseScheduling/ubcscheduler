@@ -114,7 +114,6 @@ class Utils {
      * @param {*} endTime  "08:30"
      */
     getSectionTimeArr(days, startTime, endTime) {
-        console.log(days, startTime, endTime)
         let sectionTimeArr = [0,0,0,0,0]
         days.forEach((day, i) => {
             if (day) sectionTimeArr[i] = this.stringTimeToInt(startTime, endTime)

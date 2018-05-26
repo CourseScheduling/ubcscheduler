@@ -16,8 +16,8 @@ class CreateCourseForm extends Component {
             endTime: "08:30",
             term: "t1",
             days: [false, false, false, false, false],
-            renderedSections: { t1: [], t2: [] }
-        
+            renderedSections: { t1: [], t2: [] },
+            customNumber: 1        
         }
 
         this.onStartChange = this.onStartChange.bind(this)
@@ -87,7 +87,6 @@ class CreateCourseForm extends Component {
     getTermSection(code, term) {
         const schedule = this.state.renderedSections[term].reduce((acc, section, sectionIdx) => {
             let sectionTimeArr = Utils.getSectionTimeArr(section.days, section.startTime, section.endTime)
-            console.log("sectiontimearr", sectionTimeArr)
             for (let i = 0; i < 5; i++) {
                 acc[i] |= sectionTimeArr[i]
             }
@@ -97,7 +96,7 @@ class CreateCourseForm extends Component {
         return {
             schedule: schedule,
             instructors: [],
-            section: "",
+            section: "UBC",
             activity: "Custom",
             status: "Custom",
             term: term[1],
@@ -106,7 +105,8 @@ class CreateCourseForm extends Component {
     }
 
     addCustomCourse(e) {
-        const code = 'Custom 1'
+        if (!(this.state.renderedSections.t1.length + this.state.renderedSections.t2.length)) return;
+        const code = 'Custom ' + this.state.customNumber
         const customSectionT1 = this.getTermSection(code, "t1")
         const customSectionT2 = this.getTermSection(code, "t2")
         let course = {
@@ -118,7 +118,11 @@ class CreateCourseForm extends Component {
             term: "t1"
         }
         console.log("Custom course: ", course)
-        // this.props.addCustomCourse(course)
+        this.setState({
+            renderedSections: { t1: [], t2: [] },
+            days: [false, false, false, false, false]
+        })
+        this.props.addCustomCourse(course)
     }
 
 
@@ -188,8 +192,16 @@ class CreateCourseForm extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+CreateCourseForm.getDerivedStateFromProps = (nextProps, prevState) => {
+    return {
+        ...prevState,
+        customNumber: nextProps.customNumber
+    }
+  }
 
+  
+const mapStateToProps = state => ({
+    customNumber: state.scheduler.customNumber
 });
 
 export default connect(mapStateToProps, {addCustomCourse})(CreateCourseForm)

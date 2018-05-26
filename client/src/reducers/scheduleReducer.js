@@ -1,4 +1,4 @@
-import { ADD_COURSE, TOGGLE_COURSE_TERM, JUMP_TO, REMOVE_COURSE, TOGGLE_TERM, UPDATE_BREAKS, TOGGLE_LOCK } from '../actions/types';
+import { ADD_COURSE, TOGGLE_COURSE_TERM, JUMP_TO, REMOVE_COURSE, TOGGLE_TERM, UPDATE_BREAKS, TOGGLE_LOCK, ADD_CUSTOM_COURSE } from '../actions/types';
 import { alertNoSchedule } from '../js/userAlerts';
 
 const initialState = {
@@ -9,7 +9,8 @@ const initialState = {
         "t1": [0,0,0,0,0],
         "t2": [0,0,0,0,0]
     },
-    lockedSections: []
+    lockedSections: [],
+    customNumber: 1
 }
 
 function mergeBreaks(break1, break2) {
@@ -24,6 +25,14 @@ function mergeBreaks(break1, break2) {
 export default function(state = initialState, action) {
     let newState;
     switch (action.type) {
+        case ADD_CUSTOM_COURSE:
+            newState = {
+                ...state,
+                schedules: action.schedules,
+                index: {t1: 0, t2: 0},
+                customNumber: (state.customNumber+1)%100
+            }
+            break;
         case ADD_COURSE:
         case REMOVE_COURSE:
         case TOGGLE_COURSE_TERM:

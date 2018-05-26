@@ -1,4 +1,4 @@
-import { FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, TOGGLE_COURSE, ADD_TEMP, REMOVE_TEMP } from '../actions/types';
+import { FETCH_COURSELIST, ADD_COURSE, ADD_CUSTOM_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, TOGGLE_COURSE, ADD_TEMP, REMOVE_TEMP } from '../actions/types';
 
 
 export const fetchCourselist = () => dispatch => {
@@ -32,7 +32,7 @@ export const addCourse = (courseCode) => dispatch => {
 
 export const addCustomCourse = (course) => dispatch => {
     dispatch({
-        type: ADD_COURSE,
+        type: ADD_CUSTOM_COURSE,
         payload: course
     })
 }
