@@ -16,8 +16,8 @@ class BreakForm extends Component {
       endTime: "08:30",
       term: "t1",
       days: [false, false, false, false, false],
-      renderedBreaks: {t1:[], t2:[]},
-      breaks: {t1: [0,0,0,0,0], t2: [0,0,0,0,0]}
+      renderedBreaks: { t1: [], t2: [] },
+      breaks: { t1: [0, 0, 0, 0, 0], t2: [0, 0, 0, 0, 0] }
     }
 
     this.onStartChange = this.onStartChange.bind(this)
@@ -25,23 +25,24 @@ class BreakForm extends Component {
     this.toggleDay = this.toggleDay.bind(this)
     this.toggleTerm = this.toggleTerm.bind(this)
     this.addBreak = this.addBreak.bind(this)
+    this.removeBreak = this.removeBreak.bind(this)
   }
 
   onStartChange(e) {
-    this.setState({"startTime" : e.target.value})
+    this.setState({ "startTime": e.target.value })
   }
   onEndChange(e) {
-    this.setState({"endTime" : e.target.value})
+    this.setState({ "endTime": e.target.value })
   }
 
   toggleDay = (dayIdx) => (e) => {
     let newDays = [...this.state.days]
     newDays[dayIdx] = !newDays[dayIdx]
-    this.setState({ "days" : newDays}) 
+    this.setState({ "days": newDays })
   }
-  
+
   toggleTerm = (term) => (e) => {
-    if (this.state.term !== term) this.setState({ "term" : term })
+    if (this.state.term !== term) this.setState({ "term": term })
   }
 
   addBreak(e) {
@@ -51,7 +52,7 @@ class BreakForm extends Component {
     const endTime = document.getElementById("breakform__end-time").value
     const breakTime = Utils.stringTimeToInt(startTime, endTime)
 
-    const days = this.state.days 
+    const days = this.state.days
 
     let newBreakArr = this.state.breaks[term].map((dayBreak, i) => {
       if (days[i]) {
@@ -63,6 +64,23 @@ class BreakForm extends Component {
     this.props.updateBreaks(newBreakArr, term)
   }
 
+  removeBreak = (renderedBreak) => (e) => {
+    
+  }
+
+  renderedBreaksByTermJSX(term) {
+    return this.state.renderedBreaks[term].map((renderedBreak, i) => (
+      <div className="breakform__break" key={"breakform__break"+this.state.term+i}>
+        <span className="break__component">{renderedBreak.day}</span>
+        <span className="break__component">{renderedBreak.startTime}</span>
+        <span className="break__component">to</span>
+        <span className="break__component">{renderedBreak.endTime}</span>
+        <div className="break__remove-btn" onClick={this.removeBreak(renderedBreak)}>
+          <i className="material-icons">&#xE5CD;</i>
+        </div>
+      </div>
+    ));
+  }
 
   render() {
     return (
@@ -79,9 +97,9 @@ class BreakForm extends Component {
           <div className={"panel__btn breakform__day " + (this.state.days[4] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(4)}>Fri</div>
         </div>
         <div className="breakform__input-container">
-          <input type="time" className="breakform__input" id="breakform__start-time" value={this.state.startTime} onChange={this.onStartChange}/>
+          <input type="time" className="breakform__input" id="breakform__start-time" value={this.state.startTime} onChange={this.onStartChange} />
           <span className="breakform__span">to</span>
-          <input type="time" className="breakform__input" id="breakform__end-time" value={this.state.endTime} onChange={this.onEndChange}/>
+          <input type="time" className="breakform__input" id="breakform__end-time" value={this.state.endTime} onChange={this.onEndChange} />
         </div>
         <div className="btn btn-icon breakform__add-btn" onClick={this.addBreak}>
           <i className="material-icons">add</i>
@@ -89,23 +107,11 @@ class BreakForm extends Component {
         </div>
         <div className="breakform__breaks-container">
           <div className="panel__header panel__header--breakform">::Current Breaks::</div>
-          <div className="breakform__break">
-            <span className="break__component">Mon</span>
-            <span className="break__component">12:30</span>
-            <span className="break__component">to</span>
-            <span className="break__component">14:00</span>
-            <div className="break__remove-btn">
-              <i className="material-icons">&#xE5CD;</i>
-            </div>
+          <div className={"breakform__term-breaks " + (this.state.terms === "t1" ? "breakform__term--breaks--selected" : "")}>
+            {this.renderedBreaksByTermJSX("t1")}
           </div>
-          <div className="breakform__break">
-            <span className="break__component">Mon</span>
-            <span className="break__component">12:30</span>
-            <span className="break__component">to</span>
-            <span className="break__component">14:00</span>
-            <div className="break__remove-btn">
-              <i className="material-icons">&#xE5CD;</i>
-            </div>
+          <div className={"breakform__term-breaks " + (this.state.terms === "t2" ? "breakform__term--breaks--selected" : "")}>
+            {this.renderedBreaksByTermJSX("t2")}
           </div>
         </div>
       </div>
@@ -130,7 +136,7 @@ function getRenderedBreaksByTerm(breakArr) {
           endTime: Utils.intToTime(i)
         })
         inBreak = false
-      } 
+      }
       // Just starting a break segment
       else if (!inBreak && isIthBitOne) {
         prevIStart = i
@@ -142,9 +148,14 @@ function getRenderedBreaksByTerm(breakArr) {
 }
 
 BreakForm.getDerivedStateFromProps = (nextProps, prevState) => {
-  let newRenderedBreaks = {
-    t1: getRenderedBreaksByTerm(nextProps.breaks.t1),
-    t2: getRenderedBreaksByTerm(nextProps.breaks.t2)
+  let newRenderedBreaks;
+  if (nextProps.breaks == prevState.breaks) {
+    newRenderedBreaks = prevState.renderedBreaks
+  } else {
+    newRenderedBreaks = {
+      t1: getRenderedBreaksByTerm(nextProps.breaks.t1),
+      t2: getRenderedBreaksByTerm(nextProps.breaks.t2)
+    }
   }
   return {
     startTime: prevState.startTime,
@@ -162,4 +173,4 @@ const mapStateToProps = state => ({
   breaks: state.scheduler.breaks
 });
 
-export default connect(mapStateToProps, {updateBreaks})(BreakForm)
+export default connect(mapStateToProps, { updateBreaks })(BreakForm)
