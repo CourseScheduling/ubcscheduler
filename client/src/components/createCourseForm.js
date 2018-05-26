@@ -3,18 +3,37 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
+import Utils from '../js/utils'
+
 class CreateCourseForm extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
             startTime: "08:00",
-            endTime: "08:30"
+            endTime: "08:30",
+            term: "t1",
+            days: [false, false, false, false, false],
+            renderedSections: { t1: [], t2: [] }
+        
         }
 
         this.onStartChange = this.onStartChange.bind(this)
         this.onEndChange = this.onEndChange.bind(this)
+        this.addSection = this.addSection.bind(this)
+        this.toggleTerm = this.toggleTerm.bind(this)
+        this.toggleDay = this.toggleDay.bind(this)
     }
+    toggleTerm = (term) => (e) => {
+        if (this.state.term !== term) this.setState({ "term": term })
+    }
+
+    toggleDay = (dayIdx) => (e) => {
+        let newDays = [...this.state.days]
+        newDays[dayIdx] = !newDays[dayIdx]
+        this.setState({ "days": newDays })
+    }
+
 
     onStartChange(e) {
         this.setState({ "startTime": e.target.value })
@@ -23,47 +42,84 @@ class CreateCourseForm extends Component {
         this.setState({ "endTime": e.target.value })
     }
 
+    addSection(e) {
+        const term = this.state.term
+        const startTime = document.getElementById("create-course-form__start-time").value
+        const endTime = document.getElementById("create-course-form__end-time").value
+        if (!Utils.validateTimeRange(startTime, endTime)) return
+        const days = [...this.state.days]
+        const dayStr = days.reduce((acc, curVal, i) => {
+            if (curVal) {
+                return acc + Utils.getDay(i)[0]
+            } else {
+                return acc
+            }
+        }, "")
+
+        let newRenderedSections = {...this.state.renderedSections}
+        newRenderedSections[term].push({
+            days: days,
+            dayStr: dayStr,
+            startTime: startTime,
+            endTime: endTime
+        })
+        this.setState({ renderedSections: newRenderedSections})
+
+    }
+    renderSectionsByTermJSX(term) {
+        return this.state.renderedSections[term].map((renderedSection, i) => (
+            <div className="breakform__break" key={"create-course-form__section" + this.state.term + i}>
+                <span className="break__component">{renderedSection.dayStr}</span>
+                <span className="break__component">{renderedSection.startTime}</span>
+                <span className="break__component">to</span>
+                <span className="break__component">{renderedSection.endTime}</span>
+                <div className="break__remove-btn">
+                    <i className="material-icons">&#xE5CD;</i>
+                </div>
+            </div>
+        ));
+    } 
     render() {
         return (
             <div className="tool__container tool__container--breakform">
+                <div className="breakform__terms">
+                    <div className={"btn btn--blue breakform__term " + (this.state.term === "t1" ? "btn--blue--selected" : "")} onClick={this.toggleTerm("t1")}>Term 1</div>
+                    <div className={"btn btn--blue breakform__term " + (this.state.term === "t2" ? "btn--blue--selected" : "")} onClick={this.toggleTerm("t2")}>Term 2</div>
+                </div>
                 <div className="breakform__days">
-                    <div className="panel__btn breakform__day" onClick={this.toggleDay}>Mon</div>
-                    <div className="panel__btn breakform__day" onClick={this.toggleDay}>Tue</div>
-                    <div className="panel__btn breakform__day" onClick={this.toggleDay}>Wed</div>
-                    <div className="panel__btn breakform__day" onClick={this.toggleDay}>Thu</div>
-                    <div className="panel__btn breakform__day" onClick={this.toggleDay}>Fri</div>
+                    <div className={"panel__btn breakform__day " + (this.state.days[0] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(0)}>Mon</div>
+                    <div className={"panel__btn breakform__day " + (this.state.days[1] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(1)}>Tue</div>
+                    <div className={"panel__btn breakform__day " + (this.state.days[2] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(2)}>Wed</div>
+                    <div className={"panel__btn breakform__day " + (this.state.days[3] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(3)}>Thu</div>
+                    <div className={"panel__btn breakform__day " + (this.state.days[4] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(4)}>Fri</div>
                 </div>
                 <div className="breakform__input-container">
-                    <input type="time" className="breakform__input" value={this.state.startTime} onChange={this.onStartChange} />
+                    <input  type="time" 
+                            className="breakform__input" 
+                            id="create-course-form__start-time" 
+                            value={this.state.startTime} 
+                            onChange={this.onStartChange} />
                     <span className="breakform__span">to</span>
-                    <input type="time" className="breakform__input" value={this.state.endTime} onChange={this.onEndChange} />
+                    <input  type="time"
+                            className="breakform__input" 
+                            id="create-course-form__end-time" 
+                            value={this.state.endTime} 
+                            onChange={this.onEndChange} />
                 </div>
-                <div className="btn btn-icon breakform__add-btn">
+                <div className="btn btn-icon breakform__add-btn" onClick={this.addSection}>
                     <i className="material-icons">add</i>
                     <span>add time</span>
                 </div>
                 <div className="breakform__breaks-container">
                     <div className="panel__header panel__header--breakform">::Current Sections::</div>
-                    <div className="breakform__break">
-                        <span className="break__component">Mon</span>
-                        <span className="break__component">12:30</span>
-                        <span className="break__component">to</span>
-                        <span className="break__component">14:00</span>
-                        <div className="break__remove-btn">
-                            <i className="material-icons">&#xE5CD;</i>
-                        </div>
+                    <div className={"breakform__term-breaks " + (this.state.term === "t1" ? "breakform__term-breaks--selected" : "")}>
+                        {this.renderSectionsByTermJSX("t1")}
                     </div>
-                    <div className="breakform__break">
-                        <span className="break__component">Mon</span>
-                        <span className="break__component">12:30</span>
-                        <span className="break__component">to</span>
-                        <span className="break__component">14:00</span>
-                        <div className="break__remove-btn">
-                            <i className="material-icons">&#xE5CD;</i>
-                        </div>
+                    <div className={"breakform__term-breaks " + (this.state.term === "t2" ? "breakform__term-breaks--selected" : "")}>
+                        {this.renderSectionsByTermJSX("t2")}
                     </div>
-                </div>
-                <div className="btn btn-icon breakform__add-btn">
+                </div>        
+                <div className="btn btn-icon breakform__add-btn create-course-form__add-btn">
                     <i className="material-icons">done_outline</i>
                     <span>add stt</span>
                 </div>

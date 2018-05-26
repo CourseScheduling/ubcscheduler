@@ -14,6 +14,7 @@ import './css/calendar-block.css';
 import './css/saved-schedules.css';
 import './css/breakform.css';
 import './css/register.css';
+import './css/create-course-form.css';
 
 import { Provider } from 'react-redux';
 
@@ -23,7 +24,7 @@ import CalendarIndex from './components/CalendarIndex';
 import CalendarTerms from './components/CalendarTerms';
 import Control from './components/Control';
 import BreakForm from './components/BreakForm';
-import CreateCourseForm from './components/createCourseForm';
+import CreateCourseForm from './components/CreateCourseForm';
 import Register from './components/Register';
 
 import store from './store';

@@ -1,8 +1,8 @@
+import swal from 'sweetalert2'
+
 class Utils {
     constructor() {
-    }
-    
-    
+    }    
 
     // elementsFromPoint polyfill
     elementsFromPoint(x, y) {
@@ -67,6 +67,45 @@ class Utils {
             intSchedule |= (1 << i)
         }
         return intSchedule
+    }
+
+    // Validates time within correct range (8:00am ~ 10:00pm), 30 minute increments, start < end
+    validateTimeRange(startTime, endTime) {
+        let isValid = true
+        let msg = ""
+        let start = parseInt(startTime.replace(":", ""))
+        let end = parseInt(endTime.replace(":", ""))
+        if (start % 100) start += 20
+        if (end % 100) end += 20
+
+        const startInvalid = start < 800 || start > 2200
+        const endInvalid = end < 800 || end > 2200
+        const startNot30 = (start % 50) && 1
+        const endNot30 = (end % 50) && 1
+        if (startInvalid || endInvalid) {
+            msg += "Time not in range (8:00am ~ 10:00pm)!<br/><br/>"
+            isValid = false
+        }
+        if (startNot30 || endNot30) {
+            msg += "Time should be 30 minute increments!<br/><br/>"
+            isValid = false
+        }
+        if (start >= end) {
+            msg += "Start time should be less than end time!<br/>"
+            isValid = false
+        }
+
+        if (!isValid) {
+            swal({
+                title: "Invalid time",
+                html: msg,
+                type: 'error',
+                timer: 2000,
+                showConfirmButton: false
+            })            
+        }
+        return isValid       
+        
     }
 }
 const utils = new Utils()

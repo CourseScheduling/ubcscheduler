@@ -49,6 +49,7 @@ class BreakForm extends Component {
     const term = this.state.term
     const startTime = document.getElementById("breakform__start-time").value
     const endTime = document.getElementById("breakform__end-time").value
+    if (!Utils.validateTimeRange(startTime, endTime)) return
     const breakTime = Utils.stringTimeToInt(startTime, endTime)
 
     const days = this.state.days

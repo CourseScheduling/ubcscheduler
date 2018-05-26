@@ -22,7 +22,7 @@ export const alertNoSchedule = (action) => {
     }
     swal({
         title: errorMsg,
-        icon: 'error',
+        type: 'error',
         timer: 2000,
         showConfirmButton: false
     })
