@@ -56,3 +56,19 @@
 .btn-icon > span {
     line-height: 26px;
 }
+
+.btn--blue {
+    border: 2px solid #6197ff;
+    color: #6197ff;
+}
+
+.btn--blue:hover {
+    background-color: #6197ff;
+    border: 2px solid #6197ff;
+}
+
+.btn--blue--selected {
+    background-color: #7daaff;
+    border: 2px solid #7daaff;
+    color: #fff;
+}

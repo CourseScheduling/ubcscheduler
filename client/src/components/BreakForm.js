@@ -3,17 +3,28 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
+import Utils from '../js/utils';
+import { updateBreaks } from '../actions/calendarActions'
+
+
 class BreakForm extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
       startTime: "08:00",
-      endTime: "08:30"
+      endTime: "08:30",
+      term: "t1",
+      days: [false, false, false, false, false],
+      pendingBreaks: { t1: [], t2: [] },
+      breaks: {t1: [0,0,0,0,0], t2: [0,0,0,0,0]}
     }
 
     this.onStartChange = this.onStartChange.bind(this)
     this.onEndChange = this.onEndChange.bind(this)
+    this.toggleDay = this.toggleDay.bind(this)
+    this.toggleTerm = this.toggleTerm.bind(this)
+    this.addBreak = this.addBreak.bind(this)
   }
 
   onStartChange(e) {
@@ -23,22 +34,57 @@ class BreakForm extends Component {
     this.setState({"endTime" : e.target.value})
   }
 
+  toggleDay = (dayIdx) => (e) => {
+    let newDays = [...this.state.days]
+    newDays[dayIdx] = !newDays[dayIdx]
+    this.setState({ "days" : newDays}) 
+  }
+  
+  toggleTerm = (term) => (e) => {
+    if (this.state.term !== term) this.setState({ "term" : term })
+  }
+
+  addBreak(e) {
+    console.log("Adding break")
+    const term = this.state.term
+    const startTime = document.getElementById("breakform__start-time").value
+    const endTime = document.getElementById("breakform__end-time").value
+    const breakTime = Utils.stringTimeToInt(startTime, endTime)
+
+    const days = this.state.days 
+
+    let newBreakArr = this.state.breaks[term].map((dayBreak, i) => {
+      if (days[i]) {
+        return dayBreak | breakTime
+      } else {
+        return dayBreak
+      }
+    })
+    console.log(newBreakArr)
+    this.props.updateBreaks(newBreakArr, term)
+  }
+
+
   render() {
     return (
       <div className="tool__container tool__container--breakform">
+        <div className="breakform__terms">
+          <div className={"btn btn--blue breakform__term " + (this.state.term === "t1" ? "btn--blue--selected" : "")} onClick={this.toggleTerm("t1")}>Term 1</div>
+          <div className={"btn btn--blue breakform__term " + (this.state.term === "t2" ? "btn--blue--selected" : "")} onClick={this.toggleTerm("t2")}>Term 2</div>
+        </div>
         <div className="breakform__days">
-          <div className="panel__btn breakform__day" onClick={this.toggleDay}>Mon</div>
-          <div className="panel__btn breakform__day" onClick={this.toggleDay}>Tue</div>
-          <div className="panel__btn breakform__day" onClick={this.toggleDay}>Wed</div>
-          <div className="panel__btn breakform__day" onClick={this.toggleDay}>Thu</div>
-          <div className="panel__btn breakform__day" onClick={this.toggleDay}>Fri</div>
+          <div className={"panel__btn breakform__day " + (this.state.days[0] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(0)}>Mon</div>
+          <div className={"panel__btn breakform__day " + (this.state.days[1] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(1)}>Tue</div>
+          <div className={"panel__btn breakform__day " + (this.state.days[2] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(2)}>Wed</div>
+          <div className={"panel__btn breakform__day " + (this.state.days[3] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(3)}>Thu</div>
+          <div className={"panel__btn breakform__day " + (this.state.days[4] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(4)}>Fri</div>
         </div>
         <div className="breakform__input-container">
-          <input type="time" className="breakform__input" value={this.state.startTime} onChange={this.onStartChange}/>
+          <input type="time" className="breakform__input" id="breakform__start-time" value={this.state.startTime} onChange={this.onStartChange}/>
           <span className="breakform__span">to</span>
-          <input type="time" className="breakform__input" value={this.state.endTime} onChange={this.onEndChange}/>
+          <input type="time" className="breakform__input" id="breakform__end-time" value={this.state.endTime} onChange={this.onEndChange}/>
         </div>
-        <div className="btn btn-icon breakform__add-btn">
+        <div className="btn btn-icon breakform__add-btn" onClick={this.addBreak}>
           <i className="material-icons">add</i>
           <span>add break</span>
         </div>
@@ -68,8 +114,21 @@ class BreakForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+BreakForm.getDerivedStateFromProps = (nextProps, prevState) => {
+  return {
+    startTime: prevState.startTime,
+    endTime: prevState.endTime,
+    term: prevState.term,
+    days: prevState.days,
+    pendingBreaks: prevState.pendingBreaks,
+    breaks: nextProps.breaks
+  }
+}
 
+
+
+const mapStateToProps = state => ({
+  breaks: state.scheduler.breaks
 });
 
-export default connect(mapStateToProps, {})(BreakForm)
+export default connect(mapStateToProps, {updateBreaks})(BreakForm)
