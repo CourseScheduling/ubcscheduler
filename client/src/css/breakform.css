@@ -48,6 +48,14 @@ span.breakform__span {
     border: 2px solid #6197ff;
 }
 
+.breakform__term-breaks  {
+    display: none;
+    transition: height .25s;
+}
+.breakform__term-breaks--selected {
+    display: block;    
+}
+
 .breakform__breaks-container {
     margin-bottom: 20px;
 }

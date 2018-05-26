@@ -46,7 +46,6 @@ class BreakForm extends Component {
   }
 
   addBreak(e) {
-    console.log("Adding break")
     const term = this.state.term
     const startTime = document.getElementById("breakform__start-time").value
     const endTime = document.getElementById("breakform__end-time").value
@@ -65,7 +64,11 @@ class BreakForm extends Component {
   }
 
   removeBreak = (renderedBreak) => (e) => {
-    
+    const term = this.state.term
+    const breakTimeToRemove = Utils.stringTimeToInt(renderedBreak.startTime, renderedBreak.endTime)
+    let newBreakArr = [...this.state.breaks[term]]
+    newBreakArr[renderedBreak.dayIdx] &= ~breakTimeToRemove
+    this.props.updateBreaks(newBreakArr, term)
   }
 
   renderedBreaksByTermJSX(term) {
@@ -107,10 +110,10 @@ class BreakForm extends Component {
         </div>
         <div className="breakform__breaks-container">
           <div className="panel__header panel__header--breakform">::Current Breaks::</div>
-          <div className={"breakform__term-breaks " + (this.state.terms === "t1" ? "breakform__term--breaks--selected" : "")}>
+          <div className={"breakform__term-breaks " + (this.state.term === "t1" ? "breakform__term-breaks--selected" : "")}>
             {this.renderedBreaksByTermJSX("t1")}
           </div>
-          <div className={"breakform__term-breaks " + (this.state.terms === "t2" ? "breakform__term--breaks--selected" : "")}>
+          <div className={"breakform__term-breaks " + (this.state.term === "t2" ? "breakform__term-breaks--selected" : "")}>
             {this.renderedBreaksByTermJSX("t2")}
           </div>
         </div>
@@ -131,6 +134,7 @@ function getRenderedBreaksByTerm(breakArr) {
       //Just fininshed a break segment
       if (inBreak && !isIthBitOne) {
         renderedBreaks.push({
+          dayIdx: dayIdx,
           day: Utils.getDay(dayIdx),
           startTime: Utils.intToTime(prevIStart),
           endTime: Utils.intToTime(i)
