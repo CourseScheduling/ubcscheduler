@@ -16,7 +16,7 @@ class BreakForm extends Component {
       endTime: "08:30",
       term: "t1",
       days: [false, false, false, false, false],
-      pendingBreaks: { t1: [], t2: [] },
+      renderedBreaks: {t1:[], t2:[]},
       breaks: {t1: [0,0,0,0,0], t2: [0,0,0,0,0]}
     }
 
@@ -60,7 +60,6 @@ class BreakForm extends Component {
         return dayBreak
       }
     })
-    console.log(newBreakArr)
     this.props.updateBreaks(newBreakArr, term)
   }
 
@@ -114,13 +113,45 @@ class BreakForm extends Component {
   }
 }
 
+
+function getRenderedBreaksByTerm(breakArr) {
+  let renderedBreaks = []
+  breakArr.forEach((dayBreak, dayIdx) => {
+    let inBreak = false
+    let prevIStart = 0
+
+    for (let i = 0; i < 32; i++) {
+      let isIthBitOne = (dayBreak >> i & 1 === 1)
+      //Just fininshed a break segment
+      if (inBreak && !isIthBitOne) {
+        renderedBreaks.push({
+          day: Utils.getDay(dayIdx),
+          startTime: Utils.intToTime(prevIStart),
+          endTime: Utils.intToTime(i)
+        })
+        inBreak = false
+      } 
+      // Just starting a break segment
+      else if (!inBreak && isIthBitOne) {
+        prevIStart = i
+        inBreak = true
+      }
+    }
+  })
+  return renderedBreaks
+}
+
 BreakForm.getDerivedStateFromProps = (nextProps, prevState) => {
+  let newRenderedBreaks = {
+    t1: getRenderedBreaksByTerm(nextProps.breaks.t1),
+    t2: getRenderedBreaksByTerm(nextProps.breaks.t2)
+  }
   return {
     startTime: prevState.startTime,
     endTime: prevState.endTime,
     term: prevState.term,
     days: prevState.days,
-    pendingBreaks: prevState.pendingBreaks,
+    renderedBreaks: newRenderedBreaks,
     breaks: nextProps.breaks
   }
 }

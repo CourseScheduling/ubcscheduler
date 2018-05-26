@@ -1,6 +1,8 @@
 class Utils {
     constructor() {
     }
+    
+    
 
     // elementsFromPoint polyfill
     elementsFromPoint(x, y) {
@@ -20,6 +22,32 @@ class Utils {
         });
         return parents;
     }
+    getDay(dayIdx) {
+        switch(dayIdx) {
+            case 0:
+                return "Mon"
+            case 1:
+                return "Tue"
+            case 2:
+                return "Wed"
+            case 3:
+                return "Thu"
+            case 4:
+                return "Fri"
+            default:
+                break;
+        }
+    }
+
+    intToTime(timeIdx) {
+        timeIdx = timeIdx * 50 + 800
+        if (timeIdx % 100) timeIdx -= 20
+        let timeString = timeIdx.toString()
+        const colonIdx = timeString.length - 2
+        return timeString.substr(0, colonIdx) + ":" + timeString.substr(colonIdx)
+    }
+
+
     timeToInt(stringTime) {
         stringTime = stringTime.replace(":", "");
         let intTime = parseInt(stringTime) - 800;

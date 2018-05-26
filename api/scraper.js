@@ -5,6 +5,14 @@ const cheerio = require('cheerio')
 
 const Rules = require('./rules')
 
+function intToTime(timeIdx) {
+    timeIdx = timeIdx * 50 + 800
+    if (timeIdx % 100) timeIdx -= 30
+    timeString = timeIdx.toString()
+    const colonIdx = timeString.length - 2
+    return timeString.substr(0, colonIdx) + ":" + timeString.substr(colonIdx)
+}
+
 //Converts from format HH:MM to ith 30 minute block from 8:00
 function timeToInt(time) {
     time = time.replace(":", "");
