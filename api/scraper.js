@@ -63,11 +63,15 @@ function parseSection(sectionObj) {
 }
 
 function getActivityIdx(courseObj, section, termString) {
-    let activityIdx = courseObj.activity_types[termString].indexOf(section.activity)
+    let sectionActivity = section.activity
+    if (sectionActivity == "Waiting List") {
+        sectionActivity = "Lecture"
+    }
+    let activityIdx = courseObj.activity_types[termString].indexOf(sectionActivity)
 
     if (activityIdx === -1) {
         activityIdx = courseObj.activity_types[termString].length
-        courseObj.activity_types[termString].push(section.activity)
+        courseObj.activity_types[termString].push(sectionActivity)
         courseObj[termString].push([])
     }
     return activityIdx 

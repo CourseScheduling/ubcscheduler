@@ -14,15 +14,19 @@ export const fetchCourselist = () => dispatch => {
     )
 };
 
+function preprocessCourse(course) {
+    course.code = course.code.replace("_", " ")
+    course.active = true;
+    course.term = "t1";
+}
+
 export const addCourse = (courseCode) => dispatch => {
     console.log("Adding course " + courseCode)
     courseCode = courseCode.replace(" ", "_")
     fetch(`/api/v1/course/${courseCode}`)
     .then(res => res.json())
     .then(course => {
-        course.code = course.code.replace("_", " ")
-        course.active = true;
-        course.term = "t1";
+        preprocessCourse(course)
         dispatch({
             type: ADD_COURSE,
             payload: course
