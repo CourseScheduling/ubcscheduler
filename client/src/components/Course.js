@@ -37,12 +37,14 @@ export default class Course extends Component {
             this.state.isFilteringWaitingList[term] = true
         }
         console.log(this.state.course)
-        e.stopPropagation()
-        this.props.filterWaitingList(this.state.course)        
+         
+        this.props.filterWaitingList(this.state.course)  
+        e.stopPropagation()      
     }
 
-    toggleCourse() {
+    toggleCourse(e) {
         this.setState({ course: { ...this.state.course, active: (this.state.course.active ? false : true) } })
+        e.stopPropagation()
     }
 
     removeCourse(e) {

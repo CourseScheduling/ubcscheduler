@@ -23,6 +23,7 @@ class Register extends Component {
     this.setState({
       sectionNameObj: { ...this.state.sectionNameObjs }
     })
+    e.stopPropagation()
   }
 
   clearClicks(e) {
@@ -31,6 +32,7 @@ class Register extends Component {
     this.setState({
       sectionNameObj: { ...this.state.sectionNameObjs }
     })
+    e.stopPropagation()
   }
 
   renderSectionLinksByTerm(term) {

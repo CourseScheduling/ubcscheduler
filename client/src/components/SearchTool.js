@@ -83,6 +83,7 @@ class SearchTool extends Component {
     resultOnClick = (i) => e => {
         this.setState({'searchText': '', searchResults: [], currentIndex: -1})
         this.props.addCourse(this.state.searchResults[i].code)
+        e.stopPropagation()
     }
 
     render() {

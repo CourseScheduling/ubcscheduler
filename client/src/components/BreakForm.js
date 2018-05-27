@@ -44,10 +44,12 @@ class BreakForm extends Component {
     let newDays = [...this.state.days]
     newDays[dayIdx] = !newDays[dayIdx]
     this.setState({ "days": newDays })
+    e.stopPropagation()
   }
 
   toggleTerm = (term) => (e) => {
     if (this.state.term !== term) this.setState({ "term": term })
+    e.stopPropagation()
   }
 
   addTime(e) {
@@ -79,6 +81,7 @@ class BreakForm extends Component {
       }
     })
     this.props.updateBreaks(newBreakArr, term)
+    e.stopPropagation()
   }
 
   removeBreak = (renderedBreak) => (e) => {
@@ -87,6 +90,7 @@ class BreakForm extends Component {
     let newBreakArr = [...this.state.breaks[term]]
     newBreakArr[renderedBreak.dayIdx] &= ~breakTimeToRemove
     this.props.updateBreaks(newBreakArr, term)
+    e.stopPropagation()
   }
 
   renderedBreaksByTermJSX(term) {

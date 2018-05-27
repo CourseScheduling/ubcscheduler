@@ -43,12 +43,14 @@ class CreateCourseForm extends Component {
     }
     toggleTerm = (term) => (e) => {
         if (this.state.term !== term) this.setState({ "term": term })
+        e.stopPropagation()
     }
 
     toggleDay = (dayIdx) => (e) => {
         let newDays = [...this.state.days]
         newDays[dayIdx] = !newDays[dayIdx]
         this.setState({ "days": newDays })
+        e.stopPropagation()
     }
 
 
@@ -95,15 +97,16 @@ class CreateCourseForm extends Component {
             endTime: endTime
         })
         this.setState({ renderedSections: newRenderedSections })
+        e.stopPropagation()
 
     }
 
     addSection(e) {
-
+        e.stopPropagation()
     }
 
     addActivity(e) {
-
+        e.stopPropagation()
     }
     getTermSection(code, term) {
         const schedule = this.state.renderedSections[term].reduce((acc, section, sectionIdx) => {
@@ -144,6 +147,7 @@ class CreateCourseForm extends Component {
             days: [false, false, false, false, false]
         })
         this.props.addCustomCourse(course)
+        e.stopPropagation()
     }
 
 
