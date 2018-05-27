@@ -22,10 +22,13 @@ const schedule = function (courses, breaks, lockedSections) {
     const t2SectionsbyActivity = t2Courses.reduce((acc, course, i, courses) => acc.concat(course.t2), [])
     console.log("t1SectionsByActivity", t1SectionsByActivity)
     console.log("t2SectionsbyActivity", t2SectionsbyActivity)
+
     const numT1Sections = t1SectionsByActivity.length
     const numT2Sections = t2SectionsbyActivity.length
     console.log("numT1Sections: ", numT1Sections);
     console.log("numT2Sections: ", numT2Sections);
+    
+    
 
     // Filter out lockedSections
     filterLockedSections (t1SectionsByActivity, lockedSections)

@@ -19,9 +19,12 @@ function isSTT(section) {
 function isUnreleased(section) {
     return section.status == "Unreleased"
 }
+function noTimes(section) {
+    return section.schedule.every(daySchedule => daySchedule === 0)
+}
 
 function isInvalid(section) {
-    return isDistanceEducation(section) || isSTT(section) || isUnreleased(section)
+    return isDistanceEducation(section) || isSTT(section) || isUnreleased(section) || noTimes(section)
 }
 module.exports = {
     isInvalid: isInvalid

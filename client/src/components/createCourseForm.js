@@ -103,7 +103,7 @@ class CreateCourseForm extends Component {
             course: code
         }
     }
-
+    //TODO:: Change activity types
     addCustomCourse(e) {
         if (!(this.state.renderedSections.t1.length + this.state.renderedSections.t2.length)) return;
         const code = 'Custom ' + this.state.customNumber

@@ -40,7 +40,7 @@ export default class Course extends Component {
     sectionsByTermJSX(term) {
         return this.state.course[term].map((sectionsByActivity, i) => (
             <div className="course__sections" key={this.state.course.code + "_sections_" + i}>
-                <div className="course__sections__activity">{this.state.course.activity_types[i]}</div>
+                <div className="course__sections__activity">{this.state.course.activity_types[term][i]}</div>
                 {
 
                     sectionsByActivity.map(section => (

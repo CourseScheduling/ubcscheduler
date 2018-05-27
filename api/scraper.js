@@ -62,6 +62,17 @@ function parseSection(sectionObj) {
     return section
 }
 
+function getActivityIdx(courseObj, section, termString) {
+    let activityIdx = courseObj.activity_types[termString].indexOf(section.activity)
+
+    if (activityIdx === -1) {
+        activityIdx = courseObj.activity_types[termString].length
+        courseObj.activity_types[termString].push(section.activity)
+        courseObj[termString].push([])
+    }
+    return activityIdx 
+}
+
 /*
 Scrapes course from UBC
 Writes to database
@@ -77,10 +88,9 @@ module.exports.scrapeCourse = function (course) {
             "code": course,
             "t1": [],
             "t2": [],
-            "activity_types": []
+            "activity_types": { t1: [], t2: []}
         }
-        console.log(dept)
-        console.log(courseCode)
+
         console.log(XML_URL)
         rp(XML_URL)
         .then(xml => {
@@ -95,23 +105,18 @@ module.exports.scrapeCourse = function (course) {
                     section.course = course.replace("_", " ")
                     if (Rules.isInvalid(section)) return;
 
-
-
-                    let activityIdx = courseObj.activity_types.indexOf(section.activity)
-                    if (activityIdx === -1) {
-                        activityIdx = courseObj.activity_types.length
-                        courseObj.activity_types.push(section.activity)
-                        courseObj.t1.push([])
-                        courseObj.t2.push([])
-                    } 
-
+                    let activityIdx1, activityIdx2;
                     if (section.term === "1") {
-                        courseObj.t1[activityIdx].push(section)
+                        activityIdx1 = getActivityIdx(courseObj, section, "t1")
+                        courseObj.t1[activityIdx1].push(section)
                     } else if (section.term === "2") {
-                        courseObj.t2[activityIdx].push(section)
+                        activityIdx2 = getActivityIdx(courseObj, section, "t2")
+                        courseObj.t2[activityIdx2].push(section)
                     } else if (section.term === "1-2") {
-                        courseObj.t1[activityIdx].push(section)
-                        courseObj.t2[activityIdx].push(section)
+                        activityIdx1 = getActivityIdx(courseObj, section, "t1")
+                        activityIdx2 = getActivityIdx(courseObj, section, "t2")
+                        courseObj.t1[activityIdx1].push(section)
+                        courseObj.t2[activityIdx2].push(section)
                     } else {
                         console.log("Term invalid! Section not added", section.section)
                     }
