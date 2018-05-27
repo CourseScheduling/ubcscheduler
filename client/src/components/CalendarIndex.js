@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { jumpTo } from '../actions/calendarActions';
 
+import '../css/components/calendar-index.css';
+
+
 class CalendarIndex extends Component {
     constructor(props) {
         super(props)

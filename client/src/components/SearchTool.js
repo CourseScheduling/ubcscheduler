@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
+import '../css/components/search-tool.css';
+
+
 import { fetchCourselist, addCourse } from '../actions/panelActions';
 
 class SearchTool extends Component {

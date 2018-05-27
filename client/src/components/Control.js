@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import SearchTool from './SearchTool';
 import CourseContainer from './CourseContainer';
 
+import '../css/components/control.css';
+
+
 export default class Control extends Component {
     render() {
         return (

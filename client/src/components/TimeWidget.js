@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import '../css/components/time-widget.css';
+
 export default class TimeWidget extends Component {
     render() {
         return (

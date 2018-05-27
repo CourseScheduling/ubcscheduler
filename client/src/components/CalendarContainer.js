@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
+import '../css/components/calendar-container.css';
+
 import CalendarTable from './CalendarTable';
 import CalendarBlocks from './CalendarBlocks';
 

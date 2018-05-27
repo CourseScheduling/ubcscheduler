@@ -6,7 +6,7 @@
         width: calc(100% - 8px);
         border: 0;
         height: 40px;
-        background: url(../img/glass.png) center left 7.5px no-repeat;
+        background: url(../../img/glass.png) center left 7.5px no-repeat;
         background-size: 25px;
         letter-spacing: 0.5px;
         text-transform: uppercase;

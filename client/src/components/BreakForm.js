@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import swal from 'sweetalert2'
 
+import '../css/components/break-form.css';
+
 import TimeWidget from './TimeWidget'
 
 import Utils from '../js/utils';

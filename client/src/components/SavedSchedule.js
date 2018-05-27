@@ -3,6 +3,8 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import '../css/components/saved-schedule.css';
+
 import ColorManager from '../js/colorManager'
 
 

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
+import '../css/components/course-container.css';
+
 import { removeCourse, toggleCourseTerm, addTemp, removeTemp } from '../actions/panelActions';
 import { toggleLock } from '../actions/scheduleActions';
 import Course from './Course.js'

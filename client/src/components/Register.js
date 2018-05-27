@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
+import '../css/components/register.css';
+
+
 class Register extends Component {
   constructor(props) {
     super(props)

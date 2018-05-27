@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import '../css/components/block-section.css';
+
 import ColorManager from '../js/colorManager'
 import BreakDragHelper from '../js/breakDragHelper'
 import UTILS from '../js/utils'

@@ -9,6 +9,7 @@
 }
 
 .section__indicator {
+    float: left;
     display: inline-flex;
     vertical-align: top;
     margin: 0px 10px;

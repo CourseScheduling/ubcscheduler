@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import '../css/components/calendar-terms.css';
+
 import { toggleTerm } from '../actions/calendarActions';
 
 class CalendarTerms extends Component {

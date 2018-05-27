@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import ColorManager from '../js/colorManager'
 
+import '../css/components/course.css';
 
 import Section from './Section'
 

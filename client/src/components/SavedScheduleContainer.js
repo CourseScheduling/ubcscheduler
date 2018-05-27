@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
+import '../css/components/saved-schedule-container.css';
+
+
 class SavedScheduleContainer extends Component {
   constructor(props) {
     super(props)

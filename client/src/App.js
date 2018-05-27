@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import './css/fonts.css';
-import './css/base.css';
-import './App.css';
+import './css/App.css';
 import './css/layout.css';
 import './css/header.css';
 import './css/side-panel.css';
-import './css/course-container.css';
-import './css/search-tool.css';
-import './css/common.css';
-import './css/calendar.css';
-import './css/calendar-block.css';
-import './css/saved-schedules.css';
-import './css/breakform.css';
-import './css/register.css';
-import './css/create-course-form.css';
+import './css/common.css'
+
+import './css/saved-schedules.css'
 
 import { Provider } from 'react-redux';
 
