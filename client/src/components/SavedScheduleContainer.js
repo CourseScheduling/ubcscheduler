@@ -18,8 +18,11 @@ class SavedScheduleContainer extends Component {
 
   render() {
     return (
-      <div className="tool__container tool__container--breakform">
-
+      <div className="saved-schedules__container">
+        <div className="save__btn">
+          <i className="material-icons">favorite</i>
+          <span> Save Schedule</span>
+        </div>
       </div>
     )
   }

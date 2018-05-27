@@ -1,0 +1,25 @@
+.calendar__term-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.calendar__term {
+    display: inline-block;
+    border-radius: 2px;
+    border: 2px solid #b1b1b1;
+    color: #949494;
+    padding: 7px;
+    background-color: #fff;
+    margin: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.calendar__term:hover {
+    color: #fff;
+    background-color: #9c9c9c;
+    border: 2px solid #9c9c9c;
+}
+.calendar__term--selected {
+    color: #fff;
+    background-color: #b1b1b1;
+}

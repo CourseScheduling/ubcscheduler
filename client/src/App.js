@@ -6,10 +6,7 @@ import './css/header.css';
 import './css/side-panel.css';
 import './css/common.css'
 
-import './css/saved-schedules.css'
-
 import { Provider } from 'react-redux';
-
 
 import CalendarContainer from './components/CalendarContainer';
 import CalendarIndex from './components/CalendarIndex';
@@ -18,6 +15,7 @@ import Control from './components/Control';
 import BreakForm from './components/BreakForm';
 import CreateCourseForm from './components/CreateCourseForm';
 import Register from './components/Register';
+import SavedScheduleContainer from './components/SavedScheduleContainer';
 
 import store from './store';
 
@@ -32,12 +30,7 @@ class App extends Component {
             </div>
 
             <div className="saved-schedules">
-              <div className="saved-schedules__content">
-                <div className="save__btn">
-                  <i className="material-icons">favorite</i>
-                  <span> Save Schedule</span>
-                </div>
-              </div>
+              <SavedScheduleContainer />
             </div>
           </div>
           

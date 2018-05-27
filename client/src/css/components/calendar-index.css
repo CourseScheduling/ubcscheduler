@@ -1,0 +1,59 @@
+.calendar__index-container {
+    display: inline-block;
+}
+.calendar__index {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+
+}
+.arrow-container {
+    line-height: 60px;
+}
+.arrow {
+    display: inline-block;
+    color: rgb(5, 150, 255);
+    cursor: pointer;
+    line-height: normal;
+    vertical-align: middle;
+    
+}
+.arrow:hover {
+    color: rgb(0, 83, 144);
+}
+.arrow i {
+    font-size: 50px;
+}
+
+
+
+.index__break {
+    padding: 10px;
+}
+
+.calendar__index__position {
+    text-align: right;
+    font-size: 14px;
+    padding: 2px;
+    width: 80px;
+}
+
+.index__jump-btn {
+    display: inline-block;
+    border: 2px solid #0596ff;
+    border-radius: 2px;
+    color: #0596ff;
+    background-color: #fff;
+    margin: 5px;
+    cursor: pointer;
+    padding: 5px 12px;
+    line-height: 30px;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.index__jump-btn:hover {
+    color: #fff;
+    background-color: #0596ff;
+}

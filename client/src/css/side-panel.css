@@ -50,3 +50,34 @@
     letter-spacing: 1px;
     text-transform: uppercase;
 }
+.panel__data-container  {
+    display: none;
+    transition: height .25s;
+}
+.panel__data-container--selected {
+    display: block;    
+}
+
+
+.panel__data {
+    line-height: 25px;
+    background-color: #fff;
+    width: 90%;
+    margin: 10px auto;
+    border-radius: 3px;
+    padding: 3px;
+    font-size: 12px;
+}
+.panel__data__component {
+    margin: 5px;
+}
+.panel__data__remove-btn {
+    display: inline-flex;
+    vertical-align: top;
+    color: #ffa29b;
+    font-weight: bold;
+}
+.panel__data__remove-btn:hover {
+    cursor: pointer;
+    color: #ff1100;
+}
