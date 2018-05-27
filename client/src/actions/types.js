@@ -5,7 +5,7 @@ export const REMOVE_COURSE = "REMOVE_COURSE";
 export const TOGGLE_COURSE_TERM = "TOGGLE_COURSE_TERM";
 export const ADD_TEMP = "ADD_TEMP"
 export const REMOVE_TEMP = "REMOVE_TEMP"
-
+export const FILTER_WAITING_LIST = "FILTER_WAITING_LIST"
 
 
 export const JUMP_TO = "JUMP_TO";

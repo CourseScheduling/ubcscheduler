@@ -1,4 +1,4 @@
-import {FETCH_COURSELIST, ADD_COURSE, ADD_CUSTOM_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, UPDATE_BREAKS, TOGGLE_LOCK} from '../actions/types'
+import {FETCH_COURSELIST, ADD_COURSE, ADD_CUSTOM_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, UPDATE_BREAKS, TOGGLE_LOCK, FILTER_WAITING_LIST} from '../actions/types'
 
 import schedule from './scheduler'
 
@@ -63,6 +63,14 @@ const schedulerMiddleware = (store) => (next) => (action) => {
         }
         action.newLockedSections = newLockedSections
         action.schedules = schedule(state.course.courses, state.scheduler.breaks, newLockedSections)
+        break;
+      case FILTER_WAITING_LIST:
+        //Replace course with the same code as action.payload
+        let newCourses = [...state.course.courses]
+        const courseIdx = newCourses.findIndex(course => course.code === action.payload.code)
+        newCourses[courseIdx] = action.payload
+        action.newCourses = newCourses
+        action.schedules = schedule(newCourses, state.scheduler.breaks, state.scheduler.lockedSections)
         break;
       default:
         break;

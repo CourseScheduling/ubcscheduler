@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import '../css/components/course-container.css';
 
-import { removeCourse, toggleCourseTerm, addTemp, removeTemp } from '../actions/panelActions';
+import { removeCourse, toggleCourseTerm, addTemp, removeTemp, filterWaitingList } from '../actions/panelActions';
 import { toggleLock } from '../actions/scheduleActions';
 import Course from './Course.js'
 
@@ -29,6 +29,7 @@ class CourseContainer extends Component {
                     addTemp={this.props.addTemp}
                     removeTemp={this.props.removeTemp}
                     toggleLock={this.props.toggleLock}
+                    filterWaitingList={this.props.filterWaitingList}
                 />
             )
         });
@@ -56,4 +57,4 @@ const mapStateToProps = state => ({
     courses: state.course.courses
 });
 
-export default connect(mapStateToProps, { removeCourse, toggleCourseTerm, addTemp, removeTemp, toggleLock })(CourseContainer)
+export default connect(mapStateToProps, { removeCourse, toggleCourseTerm, addTemp, removeTemp, toggleLock, filterWaitingList })(CourseContainer)

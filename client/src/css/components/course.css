@@ -61,7 +61,10 @@
     text-align: left;
 }
 
-
+.course__waitlist-filter {
+    margin-top: 10px;
+    text-transform: uppercase;
+}
 
 .course__container {
     display: none;

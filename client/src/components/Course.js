@@ -15,10 +15,29 @@ export default class Course extends Component {
         this.state = {
             course: props.course,
             color: ColorManager.add(props.course.code),
+            waitlists: {t1: [], t2: []},
+            isFilteringWaitingList: false
         }
         this.toggleCourse = this.toggleCourse.bind(this)
         this.removeCourse = this.removeCourse.bind(this)
         this.toggleCourseTerm = this.toggleCourseTerm.bind(this)
+        this.filterWaitingList = this.filterWaitingList.bind(this)
+    }
+
+    filterWaitingList = (term) => (e) => {
+        const lectureIdx = this.state.course.activity_types[term].indexOf('Lecture')
+        if (this.state.isFilteringWaitingList) {
+            this.state.course[term][lectureIdx] = this.state.course[term][lectureIdx].concat(this.state.waitlists[term])
+            this.state.waitlists[term] = []
+            this.state.isFilteringWaitingList = false
+        } else {
+            this.state.waitlists[term] = this.state.course[term][lectureIdx].filter(section => section.activity === 'Waiting List')
+            this.state.course[term][lectureIdx] = this.state.course[term][lectureIdx].filter(section => section.activity !== 'Waiting List')
+            this.state.isFilteringWaitingList = true
+        }
+        console.log(this.state.course)
+        e.stopPropagation()
+        this.props.filterWaitingList(this.state.course)        
     }
 
     toggleCourse() {
@@ -81,6 +100,10 @@ export default class Course extends Component {
                     </div>
                     <div className={"course__container " + (this.state.course.term === "t2" ? "course__container--active" : "")}>
                         {this.sectionsByTermJSX("t2")}
+                    </div>
+                    <div className={"course__button course__waitlist-filter " + (this.state.isFilteringWaitingList ? "course__button--selected" : "")}
+                         onClick={this.filterWaitingList("t1")}>
+                         {(this.state.isFilteringWaitingList ? "Unfilter Waitlist" : "Filter Waitlist")}
                     </div>
                 </div>
             )
