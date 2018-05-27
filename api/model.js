@@ -15,7 +15,8 @@ const CourseSchema = mongoose.Schema({
     "code": {type: String, index: true},
     "t1": [[SectionSchema]],
     "t2": [[SectionSchema]],
-    "activity_types": [String]
+    "activity_types": [String],
+    "lastModified": Date
 })
 
 const CourselistSchema = mongoose.Schema({

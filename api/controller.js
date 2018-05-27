@@ -25,7 +25,10 @@ module.exports.getCourse = (req, res) => {
     })
     .exec()
     .then(course => {
-        if (course === null) {
+        let timeSinceInMinutes = (new Date() - course.lastModified) / 60e3
+        console.log(timeSinceInMinutes)
+        const refreshRate = 60 * 12 
+        if (course === null || timeSinceInMinutes > refreshRate) {
             // console.log("No course found. Scraping...")
             Scraper.scrapeCourse(req.params.course)
             .then(Writer.writeCourse)
@@ -77,5 +80,11 @@ module.exports.getCourseList = (req, res) => {
             res.status(200)
             res.send(courselist) 
         }
+    })
+    .catch(error => {
+        res.status(500)
+        res.send({
+            error: error
+        })
     })
 }

@@ -21,7 +21,7 @@ function isUnreleased(section) {
 }
 
 function isInvalid(section) {
-    return isWaitingList(section) || isDistanceEducation(section) || isSTT(section) || isUnreleased(section)
+    return isDistanceEducation(section) || isSTT(section) || isUnreleased(section)
 }
 module.exports = {
     isInvalid: isInvalid
