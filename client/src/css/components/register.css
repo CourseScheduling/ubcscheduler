@@ -15,6 +15,10 @@
     margin: 0px 10px;
     color: grey;
 }
+.section__indicator--clicked {
+    color: green;
+}
+
 
 .section__link {
     display: inline-block;
@@ -25,4 +29,8 @@
 
 .register__section-container {
     margin-bottom: 10px;
+}
+
+.register__clear-btn {
+    margin-bottom: 0px;
 }

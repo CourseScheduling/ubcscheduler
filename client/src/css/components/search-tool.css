@@ -3,7 +3,7 @@
 }
     .search__input {
         padding-left: 40px;
-        width: calc(100% - 8px);
+        width: 100%;
         border: 0;
         height: 40px;
         background: url(../../img/glass.png) center left 7.5px no-repeat;
@@ -16,8 +16,6 @@
         float: left;
         background-color: #FFF;
         border: 1px solid #EEE;
-        border-radius: 5px;
-        margin: 4px;
     }
     .search__result-wrapper {
         display: inline-block;

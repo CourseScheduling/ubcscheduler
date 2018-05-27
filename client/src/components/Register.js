@@ -13,17 +13,39 @@ class Register extends Component {
     this.state = {
       sectionNameObjs: { t1: [], t2: [] }
     }
+
+    this.sectionClicked = this.sectionClicked.bind(this)
+    this.clearClicks = this.clearClicks.bind(this)
+  }
+
+  sectionClicked = (sectionNameObj, term) => (e) => {
+    sectionNameObj.clicked = true
+    this.setState({
+      sectionNameObj: { ...this.state.sectionNameObjs }
+    })
+  }
+
+  clearClicks(e) {
+    this.state.sectionNameObjs.t1.forEach(s => s.clicked = false)
+    this.state.sectionNameObjs.t2.forEach(s => s.clicked = false)
+    this.setState({
+      sectionNameObj: { ...this.state.sectionNameObjs }
+    })
   }
 
   renderSectionLinksByTerm(term) {
     return this.state.sectionNameObjs[term].map(sectionNameObj => (
       <div className="register__section" key={"register__section" + sectionNameObj.dept + sectionNameObj.code + sectionNameObj.section}>
-        <div className="section__indicator">
+        <div className={"section__indicator " + (sectionNameObj.clicked === true ? "display-none" : "")}>
           <i className="material-icons">check_circle_outline</i>
+        </div>
+        <div className={"section__indicator section__indicator--clicked " + (sectionNameObj.clicked === true ? "" : "display-none")}>
+          <i className="material-icons">check_circle</i>
         </div>
         <a className="section__link"
           href={`https://courses.students.ubc.ca/cs/main?pname=subjarea&tname=subjareas&req=5&sessyr=2018&sesscd=W&dept=${sectionNameObj.dept}&course=${sectionNameObj.code}&section=${sectionNameObj.section}`}
-          target="_blank">
+          target="_blank"
+          onClick={this.sectionClicked(sectionNameObj, term)}>
           {`${sectionNameObj.dept} ${sectionNameObj.code} ${sectionNameObj.section}`}
         </a>
       </div>
@@ -33,13 +55,17 @@ class Register extends Component {
   render() {
     return (
       <div className="tool__container tool__container--register">
+        <div className="btn btn-icon time-widget__add-btn register__clear-btn" onClick={this.clearClicks}>
+          <i className="material-icons">clear_all</i>
+          <span>clear</span>
+        </div>
         <div className="panel__header panel__header--register">::Term 1::</div>
         <div className="register__section-container">
-          { this.renderSectionLinksByTerm("t1") }
+          {this.renderSectionLinksByTerm("t1")}
         </div>
         <div className="panel__header panel__header--register">::Term 2::</div>
         <div className="register__section-container">
-          { this.renderSectionLinksByTerm("t2") }
+          {this.renderSectionLinksByTerm("t2")}
         </div>
       </div>
     )
@@ -52,9 +78,10 @@ function mapScheduleToSectionNameObj(schedule) {
     return {
       dept: splitCourseName[0],
       code: splitCourseName[1],
-      section: section.section
+      section: section.section,
+      clicked: false
     }
-  })  
+  })
 }
 Register.getDerivedStateFromProps = (nextProps, prevState) => {
   return {

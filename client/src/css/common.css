@@ -72,3 +72,8 @@
     border: 2px solid #7daaff;
     color: #fff;
 }
+
+
+.display-none {
+    display: none !important; 
+}
