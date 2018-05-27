@@ -79,10 +79,10 @@ export default function(state = initialState, action) {
             newState = state
             break;
     }
-    
-    if (newState.schedules.t1.length === 0 || newState.schedules.t2.length === 0) {
+    const term = newState.term
+    if (newState.schedules[term].length === 0) {
         console.log("No schedules found!")
-        alertNoSchedule(action)
+        alertNoSchedule(action, newState)
         // Merge old breaks and newState.breaks to take the less constrained option
         let lessConstrainedBreaks = {}
         lessConstrainedBreaks.t1 = mergeBreaks(state.breaks.t1, newState.breaks.t1)

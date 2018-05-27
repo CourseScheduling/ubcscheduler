@@ -64,9 +64,12 @@ const schedule = function (courses, breaks, lockedSections) {
     
     recursiveSchedule(numT1Sections, t1Schedules, t1SectionsByActivity, breaks.t1[0], breaks.t1[1], breaks.t1[2], breaks.t1[3], breaks.t1[4], 0, [])
     recursiveSchedule(numT2Sections, t2Schedules, t2SectionsbyActivity, breaks.t2[0], breaks.t2[1], breaks.t2[2], breaks.t2[3], breaks.t2[4], 0, [])
-
+    
+    if (t1Schedules.length === 0) t1Schedules.push([])
+    if (t2Schedules.length === 0) t2Schedules.push([])
     console.log("Valid t1 schedules", t1Schedules)
     console.log("Valid t2 schedules", t2Schedules)
+    
     return {
         "t1" : t1Schedules,
         "t2" : t2Schedules

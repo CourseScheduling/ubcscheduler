@@ -1,14 +1,14 @@
 import { ADD_COURSE, TOGGLE_COURSE_TERM, JUMP_TO, REMOVE_COURSE, TOGGLE_TERM, UPDATE_BREAKS, TOGGLE_LOCK } from '../actions/types';
 import swal from 'sweetalert'
 
-export const alertNoSchedule = (action) => {
+export const alertNoSchedule = (action, newState) => {
     let errorMsg = "No schedules found";
     switch (action.type) {
         case ADD_COURSE:
-            errorMsg = `${errorMsg} adding ${action.payload.code}`
+            errorMsg = `${errorMsg} adding ${action.payload.code} in ${newState.term}`
             break;
         case TOGGLE_COURSE_TERM:
-            errorMsg = `${errorMsg} togging term for ${action.payload.code}`
+            errorMsg = `${errorMsg} toggling term for ${action.payload.code}`
             break;
         case UPDATE_BREAKS:
             errorMsg = `${errorMsg} adding breaks`
