@@ -1,17 +1,17 @@
 .side-panel {
-    background-color: #f3f3f3;
+    background-color: #fff; 
+background-image: 
+linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+linear-gradient(#eee .1em, transparent .1em);
+background-size: 100% 1.2em;
     min-width: 300px;
 }
 
-.side-panel__contents > div {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-}
+
 
 .tool__container {
-    background-color: #b5cfff;
-    border-radius: 2px;
+    /* background-color: #b5cfff; */
+    background-color: #c3e4ff;
     overflow: hidden;
     width: 90%;
     padding-bottom: 10px;

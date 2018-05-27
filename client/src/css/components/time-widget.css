@@ -38,15 +38,15 @@ span.time-widget__span {
 .time-widget__add-btn {
     font-size: 11px;
     padding: 3px 12px;
-    border: 2px solid #6197ff;
-    color: #6197ff;
+    /* border: 2px solid #6197ff;
+    color: #6197ff; */
     margin: 15px 5px;
 }
 .time-widget__add-btn > i {
     margin-right: 5px;
 }
 .time-widget__add-btn:hover {
-    background-color: #6197ff;
     color: #fff;
-    border: 2px solid #6197ff;
+    /* background-color: #6197ff;
+    border: 2px solid #6197ff; */
 }

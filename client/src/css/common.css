@@ -58,18 +58,18 @@
 }
 
 .btn--blue {
-    border: 2px solid #6197ff;
-    color: #6197ff;
+    border: 2px solid #5774ad;
+    color: #5774ad;
 }
 
 .btn--blue:hover {
-    background-color: #6197ff;
-    border: 2px solid #6197ff;
+    background-color: #3e5480;
+    border: 2px solid #3e5480;
 }
 
 .btn--blue--selected {
-    background-color: #7daaff;
-    border: 2px solid #7daaff;
+    background-color: #5774ad;
+    border: 2px solid #5774ad;
     color: #fff;
 }
 

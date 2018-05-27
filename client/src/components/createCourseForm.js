@@ -190,16 +190,16 @@ class CreateCourseForm extends Component {
                     </div>
                 </div>
                 <div className="btn-container">
-                    <div className="btn btn-icon time-widget__add-btn" onClick={this.addSection}>
+                    <div className="btn btn-icon btn--blue time-widget__add-btn" onClick={this.addSection}>
                         <i className="material-icons">add</i>
                         <span>section</span>
                     </div>
-                    <div className="btn btn-icon time-widget__add-btn" onClick={this.addActivity}>
+                    <div className="btn btn-icon btn--blue time-widget__add-btn" onClick={this.addActivity}>
                         <i className="material-icons">add</i>
                         <span>activity</span>
                     </div>
                 </div>
-                <div className="btn btn-icon time-widget__add-btn create-course-form__add-btn" onClick={this.addCustomCourse}>
+                <div className="btn btn-icon btn--blue time-widget__add-btn create-course-form__add-btn" onClick={this.addCustomCourse}>
                     <i className="material-icons">done_outline</i>
                     <span>add stt</span>
                 </div>

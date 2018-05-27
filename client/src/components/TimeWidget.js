@@ -30,7 +30,7 @@ export default class TimeWidget extends Component {
                         value={this.props.endTime}
                         onChange={this.props.onEndChange} />
                 </div>
-                <div className="btn btn-icon time-widget__add-btn" onClick={this.props.addTime}>
+                <div className="btn btn-icon btn--blue time-widget__add-btn" onClick={this.props.addTime}>
                     <i className="material-icons">add</i>
                     <span>time</span>
                 </div>

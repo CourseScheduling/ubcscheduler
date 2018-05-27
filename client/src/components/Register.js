@@ -55,7 +55,7 @@ class Register extends Component {
   render() {
     return (
       <div className="tool__container tool__container--register">
-        <div className="btn btn-icon time-widget__add-btn register__clear-btn" onClick={this.clearClicks}>
+        <div className="btn btn-icon btn--blue time-widget__add-btn register__clear-btn" onClick={this.clearClicks}>
           <i className="material-icons">clear_all</i>
           <span>clear</span>
         </div>

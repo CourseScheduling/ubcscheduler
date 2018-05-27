@@ -16,6 +16,7 @@ import BreakForm from './components/BreakForm';
 import CreateCourseForm from './components/CreateCourseForm';
 import Register from './components/Register';
 import SavedScheduleContainer from './components/SavedScheduleContainer';
+import InstructionWrap from './components/InstructionWrap';
 
 import store from './store';
 
@@ -37,10 +38,23 @@ class App extends Component {
 
           <div className="side-panel">
             <div className="side-panel__contents">
-              <Control />
-              <BreakForm />
-              <CreateCourseForm />
-              <Register />
+              <InstructionWrap 
+                contentComponent={<Control />}
+                instructionType="Add Courses + Lock Sections"
+                instruction="Search and add your courses. Lock/Unlock sections by clicking here or right-clicking on the calendar" 
+              />
+              <InstructionWrap 
+                contentComponent={<BreakForm />}
+                instructionType="Breaks"
+                instruction="Add breaks from the widget or by dragging on the calendar" />
+              <InstructionWrap 
+                contentComponent={<CreateCourseForm />}
+                instructionType="Custom courses"
+                instruction="Create a custom course here for Standard Timetables or courses not found" />
+              <InstructionWrap 
+                contentComponent={<Register />}
+                instructionType="Register"
+                instruction="Follow each of the links and add them to your ssc!" />
             </div>
           </div>
 

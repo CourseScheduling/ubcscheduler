@@ -1,0 +1,45 @@
+.instruction-wrap {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.instruction-wrap > div {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.instruction__header, .instruction__footer {
+    width: 90%;
+}
+.instruction__header {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    /* background-color: #c3e4ff; */
+    /* background-color: #84affd; */
+    background-color: #fda8a8;
+    padding: 10px;
+}
+
+.instruction__footer {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: grey;
+    margin-bottom: 25px;
+    padding: 5px;
+    color: #ddd;
+    background-color: #575757;
+}
+
+.instruction__type {
+    text-transform: uppercase;
+    padding: 5px;
+    font-weight: 500;
+    font-size: 15px;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+.instruction__msg {
+    text-align: justify;
+    font-size: 14px;
+    padding: 5px 10px;
+}
