@@ -12,6 +12,7 @@ function filterLockedSections (sectionsByActivity, lockedSections) {
 const schedule = function (courses, breaks, lockedSections) {
     console.log("scheduling")
     console.log(courses)
+    const startTime = Date.now()
 
     const t1Courses = courses.filter(course => course.term == "t1")    
     const t2Courses = courses.filter(course => course.term == "t2")
@@ -19,12 +20,12 @@ const schedule = function (courses, breaks, lockedSections) {
     console.log("t2 courses", t2Courses)
 
     const t1SectionsByActivity = t1Courses.reduce((acc, course, i, courses) => acc.concat(course.t1), [])
-    const t2SectionsbyActivity = t2Courses.reduce((acc, course, i, courses) => acc.concat(course.t2), [])
+    const t2SectionsByActivity = t2Courses.reduce((acc, course, i, courses) => acc.concat(course.t2), [])
     console.log("t1SectionsByActivity", t1SectionsByActivity)
-    console.log("t2SectionsbyActivity", t2SectionsbyActivity)
+    console.log("t2SectionsbyActivity", t2SectionsByActivity)
 
     const numT1Sections = t1SectionsByActivity.length
-    const numT2Sections = t2SectionsbyActivity.length
+    const numT2Sections = t2SectionsByActivity.length
     console.log("numT1Sections: ", numT1Sections);
     console.log("numT2Sections: ", numT2Sections);
     
@@ -32,8 +33,14 @@ const schedule = function (courses, breaks, lockedSections) {
 
     // Filter out lockedSections
     filterLockedSections (t1SectionsByActivity, lockedSections)
-    filterLockedSections (t2SectionsbyActivity, lockedSections)
+    filterLockedSections (t2SectionsByActivity, lockedSections)
     console.log(t1SectionsByActivity, lockedSections)
+
+    // Optimization: Sort from least number of sections in course-activity group to largest
+    // t1SectionsByActivity.sort((secGroup1, secGroup2) => secGroup1.length - secGroup2.length)
+    // t2SectionsByActivity.sort((secGroup1, secGroup2) => secGroup1.length - secGroup2.length)
+    // console.log("t1sectionsByActivity: ", t1SectionsByActivity)
+    // console.log("t2sectionsByActivity: ", t2SectionsByActivity)
 
     let t1Schedules = []
     let t2Schedules = []
@@ -66,13 +73,13 @@ const schedule = function (courses, breaks, lockedSections) {
     }
     
     recursiveSchedule(numT1Sections, t1Schedules, t1SectionsByActivity, breaks.t1[0], breaks.t1[1], breaks.t1[2], breaks.t1[3], breaks.t1[4], 0, [])
-    recursiveSchedule(numT2Sections, t2Schedules, t2SectionsbyActivity, breaks.t2[0], breaks.t2[1], breaks.t2[2], breaks.t2[3], breaks.t2[4], 0, [])
+    recursiveSchedule(numT2Sections, t2Schedules, t2SectionsByActivity, breaks.t2[0], breaks.t2[1], breaks.t2[2], breaks.t2[3], breaks.t2[4], 0, [])
     
     if (t1Schedules.length === 0) t1Schedules.push([])
     if (t2Schedules.length === 0) t2Schedules.push([])
     console.log("Valid t1 schedules", t1Schedules)
     console.log("Valid t2 schedules", t2Schedules)
-    
+    console.log("It took ", Date.now() - startTime)
     return {
         "t1" : t1Schedules,
         "t2" : t2Schedules
