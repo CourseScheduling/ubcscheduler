@@ -1,4 +1,4 @@
-import { FETCH_COURSELIST, ADD_COURSE, ADD_CUSTOM_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, TOGGLE_COURSE, ADD_TEMP, REMOVE_TEMP, FILTER_WAITING_LIST } from '../actions/types';
+import { FETCH_COURSELIST, ADD_COURSE, ADD_CUSTOM_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, TOGGLE_COURSE, ADD_TEMP, REMOVE_TEMP, FILTER_WAITING_LIST, TOGGLE_INSTRUCTION_WRAP } from '../actions/types';
 
 
 export const fetchCourselist = () => dispatch => {
@@ -74,5 +74,12 @@ export const filterWaitingList = (course) => dispatch => {
     dispatch({
         type: FILTER_WAITING_LIST,
         payload: course
+    })
+}
+
+export const toggleInsructionWrap = (instructionId) => dispatch => {
+    dispatch({
+        type: TOGGLE_INSTRUCTION_WRAP,
+        payload: instructionId
     })
 }

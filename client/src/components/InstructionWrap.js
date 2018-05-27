@@ -1,19 +1,25 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
+import { toggleInsructionWrap } from '../actions/panelActions'
 import '../css/components/instruction-wrap.css';
 
-export default class InstructionWrap extends Component {
+class InstructionWrap extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      expanded: false
+      expanded: false,
+      instructionId: this.props.instructionId
     }
 
     this.expand = this.expand.bind(this)
   }
+
   expand(e) {
-    this.setState({expanded: !this.state.expanded})
+    this.props.toggleInsructionWrap(this.state.instructionId)
   }
+
   render() {
     return (
       <div className="instruction-wrap">
@@ -31,3 +37,16 @@ export default class InstructionWrap extends Component {
     )
   }
 }
+
+InstructionWrap.getDerivedStateFromProps = (nextProps, prevState) => {
+  return {
+    ...prevState,
+    expanded: nextProps.expandedInstructions[prevState.instructionId]
+  }
+}
+
+const mapStateToProps = state => ({
+  expandedInstructions: state.sidepanel.expandedInstructions
+});
+
+export default connect(mapStateToProps, { toggleInsructionWrap })(InstructionWrap)
