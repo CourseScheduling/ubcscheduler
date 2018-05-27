@@ -175,7 +175,7 @@ class CreateCourseForm extends Component {
                     <span>add time</span>
                 </div>
                 <div className="breakform__breaks-container">
-                    <div className="panel__header panel__header--breakform">::Current Sections::</div>
+                    <div className="panel__header panel__header--breakform">::Current Times::</div>
                     <div className={"breakform__term-breaks " + (this.state.term === "t1" ? "breakform__term-breaks--selected" : "")}>
                         {this.renderSectionsByTermJSX("t1")}
                     </div>
