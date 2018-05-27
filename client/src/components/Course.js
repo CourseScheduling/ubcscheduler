@@ -13,7 +13,7 @@ export default class Course extends Component {
         super(props)
         this.state = {
             course: props.course,
-            color: ColorManager.add(props.course.code)
+            color: ColorManager.add(props.course.code),
         }
         this.toggleCourse = this.toggleCourse.bind(this)
         this.removeCourse = this.removeCourse.bind(this)
@@ -21,7 +21,7 @@ export default class Course extends Component {
     }
 
     toggleCourse() {
-        this.props.toggleCourse(this.state.course)
+        this.setState({ course: { ...this.state.course, active: (this.state.course.active ? false : true) } })
     }
 
     removeCourse(e) {
@@ -44,7 +44,7 @@ export default class Course extends Component {
                 {
 
                     sectionsByActivity.map(section => (
-                        <Section 
+                        <Section
                             key={this.state.course.code + "_sections_" + section.section}
                             section={section}
                             addTemp={this.props.addTemp}
@@ -65,7 +65,7 @@ export default class Course extends Component {
             { 'course--active': this.state.course.active }
         );
         const courseStyle = {
-            'backgroundColor' : this.state.color
+            'backgroundColor': this.state.color
         }
         let courseExtra;
         if (this.state.course.active) {
@@ -76,12 +76,12 @@ export default class Course extends Component {
                         <div className={"course__button course__term course__term--two " + (this.state.course.term === "t2" ? "course__term--selected" : "")} onClick={this.toggleCourseTerm("t2")}>Term 2</div>
                     </div>
                     <div className={"course__container " + (this.state.course.term === "t1" ? "course__container--active" : "")}>
-                        { this.sectionsByTermJSX("t1") }
+                        {this.sectionsByTermJSX("t1")}
                     </div>
                     <div className={"course__container " + (this.state.course.term === "t2" ? "course__container--active" : "")}>
-                        { this.sectionsByTermJSX("t2") }
+                        {this.sectionsByTermJSX("t2")}
                     </div>
-                </div>              
+                </div>
             )
         }
         return (
@@ -96,3 +96,9 @@ export default class Course extends Component {
     }
 }
 
+Course.getDerivedStateFromProps = (nextProps, prevState) => {
+    return {
+        ...prevState,
+        course: nextProps.course
+    }
+}

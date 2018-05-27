@@ -3,7 +3,6 @@ export const ADD_COURSE = "ADD_COURSE";
 export const ADD_CUSTOM_COURSE = "ADD_CUSTOM_COURSE";
 export const REMOVE_COURSE = "REMOVE_COURSE";
 export const TOGGLE_COURSE_TERM = "TOGGLE_COURSE_TERM";
-export const TOGGLE_COURSE = "TOGGLE_COURSE"
 export const ADD_TEMP = "ADD_TEMP"
 export const REMOVE_TEMP = "REMOVE_TEMP"
 

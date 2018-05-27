@@ -55,12 +55,7 @@ export const toggleCourseTerm = (code, term) => dispatch => {
     })
 }
 
-export const toggleCourse = (course) => dispatch => {
-    dispatch({
-        type: TOGGLE_COURSE,
-        payload: course
-    })
-}
+
 
 export const addTemp = (section) => dispatch => {
     dispatch({
