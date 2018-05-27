@@ -33,7 +33,7 @@ class CalendarContainer extends Component {
             <div className="calendarsContainer-wrapper">
                 <div className="calendarsContainer">
 
-                    <div className="calendarContainer">
+                    <div className={"calendarContainer " + (this.state.term === "t1" ? "calendarContainer--selected" : "")}>
                         <CalendarTable 
                             term="t1" 
                             updateBreaks={this.props.updateBreaks}
@@ -46,7 +46,7 @@ class CalendarContainer extends Component {
                             lockedSections={this.state.lockedSections}                          
                         />
                     </div>
-                    <div className="calendarContainer">
+                    <div className={"calendarContainer " + (this.state.term === "t2" ? "calendarContainer--selected" : "")}>
                         <CalendarTable 
                             term="t2" 
                             updateBreaks={this.props.updateBreaks}

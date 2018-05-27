@@ -1,0 +1,41 @@
+.hamburger {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: transparent;
+}
+.hamburger__logoContainer {
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    text-align: left;    
+    z-index: 1500;
+}
+.hamburger__logoWrap {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.hamburger__logo {
+    display: inline-block;
+    cursor: pointer;
+    color: #525252;
+}
+.hamburger__logo:hover {
+    color: #000;
+}
+
+.hamburger__logo > i {
+    line-height: 50px;
+    font-size: 30px;
+}
+
+.hamburger__content {
+    height: 100%;
+    display: none;
+}
+.hamburger__content--active {
+    display: block;
+
+}
