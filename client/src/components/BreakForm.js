@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import swal from 'sweetalert2'
 
+import TimeWidget from './TimeWidget'
+
 import Utils from '../js/utils';
 import { updateBreaks } from '../actions/calendarActions'
 
@@ -25,7 +27,7 @@ class BreakForm extends Component {
     this.onEndChange = this.onEndChange.bind(this)
     this.toggleDay = this.toggleDay.bind(this)
     this.toggleTerm = this.toggleTerm.bind(this)
-    this.addBreak = this.addBreak.bind(this)
+    this.addTime = this.addTime.bind(this)
     this.removeBreak = this.removeBreak.bind(this)
   }
 
@@ -46,7 +48,7 @@ class BreakForm extends Component {
     if (this.state.term !== term) this.setState({ "term": term })
   }
 
-  addBreak(e) {
+  addTime(e) {
     const term = this.state.term
     const startTime = document.getElementById("breakform__start-time").value
     const endTime = document.getElementById("breakform__end-time").value
@@ -63,7 +65,7 @@ class BreakForm extends Component {
         type: 'warning',
         timer: 2000,
         showConfirmButton: false
-      })   
+      })
       return
     }
 
@@ -87,7 +89,7 @@ class BreakForm extends Component {
 
   renderedBreaksByTermJSX(term) {
     return this.state.renderedBreaks[term].map((renderedBreak, i) => (
-      <div className="breakform__break" key={"breakform__break"+this.state.term+i}>
+      <div className="breakform__break" key={"breakform__break" + this.state.term + i}>
         <span className="break__component">{renderedBreak.day}</span>
         <span className="break__component">{renderedBreak.startTime}</span>
         <span className="break__component">to</span>
@@ -102,26 +104,17 @@ class BreakForm extends Component {
   render() {
     return (
       <div className="tool__container tool__container--breakform">
-        <div className="breakform__terms">
-          <div className={"btn btn--blue breakform__term " + (this.state.term === "t1" ? "btn--blue--selected" : "")} onClick={this.toggleTerm("t1")}>Term 1</div>
-          <div className={"btn btn--blue breakform__term " + (this.state.term === "t2" ? "btn--blue--selected" : "")} onClick={this.toggleTerm("t2")}>Term 2</div>
-        </div>
-        <div className="breakform__days">
-          <div className={"panel__btn breakform__day " + (this.state.days[0] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(0)}>Mon</div>
-          <div className={"panel__btn breakform__day " + (this.state.days[1] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(1)}>Tue</div>
-          <div className={"panel__btn breakform__day " + (this.state.days[2] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(2)}>Wed</div>
-          <div className={"panel__btn breakform__day " + (this.state.days[3] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(3)}>Thu</div>
-          <div className={"panel__btn breakform__day " + (this.state.days[4] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(4)}>Fri</div>
-        </div>
-        <div className="breakform__input-container">
-          <input type="time" className="breakform__input" id="breakform__start-time" value={this.state.startTime} onChange={this.onStartChange} />
-          <span className="breakform__span">to</span>
-          <input type="time" className="breakform__input" id="breakform__end-time" value={this.state.endTime} onChange={this.onEndChange} />
-        </div>
-        <div className="btn btn-icon breakform__add-btn" onClick={this.addBreak}>
-          <i className="material-icons">add</i>
-          <span>add break</span>
-        </div>
+        <TimeWidget term={this.state.term}
+                    days={this.state.days}
+                    startTime={this.state.startTime}
+                    endTime={this.state.endTime}
+                    toggleTerm={this.toggleTerm}
+                    toggleDay={this.toggleDay}
+                    onStartChange={this.onStartChange}
+                    onEndChange={this.onEndChange}
+                    addTime={this.addTime} 
+                    startTimeInputId="breakform__start-time"
+                    endTimeInputId="breakform__end-time"/>
         <div className="breakform__breaks-container">
           <div className="panel__header panel__header--breakform">::Current Breaks::</div>
           <div className={"breakform__term-breaks " + (this.state.term === "t1" ? "breakform__term-breaks--selected" : "")}>

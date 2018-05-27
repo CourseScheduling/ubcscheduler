@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import swal from 'sweetalert2'
 
+import TimeWidget from './TimeWidget'
+
 import Utils from '../js/utils'
 import { addCustomCourse } from '../actions/panelActions'
 
@@ -17,12 +19,22 @@ class CreateCourseForm extends Component {
             term: "t1",
             days: [false, false, false, false, false],
             renderedSections: { t1: [], t2: [] },
-            customNumber: 1        
+            course: {
+                code: 'Custom 1',
+                t1: [[]],
+                t2: [[]],
+                activity_types: {t1: ['A1'], t2: ['A1']}, 
+                active: true,
+                term: "t1"
+            },
+            customNumber: 1
         }
 
         this.onStartChange = this.onStartChange.bind(this)
         this.onEndChange = this.onEndChange.bind(this)
         this.addSection = this.addSection.bind(this)
+        this.addTime = this.addTime.bind(this)
+        this.addActivity = this.addActivity.bind(this)
         this.toggleTerm = this.toggleTerm.bind(this)
         this.toggleDay = this.toggleDay.bind(this)
         this.addCustomCourse = this.addCustomCourse.bind(this)
@@ -45,7 +57,7 @@ class CreateCourseForm extends Component {
         this.setState({ "endTime": e.target.value })
     }
 
-    addSection(e) {
+    addTime(e) {
         const term = this.state.term
         const startTime = document.getElementById("create-course-form__start-time").value
         const endTime = document.getElementById("create-course-form__end-time").value
@@ -56,11 +68,11 @@ class CreateCourseForm extends Component {
             return day === false
         })) {
             swal({
-            title: "No day selected",
-            type: 'warning',
-            timer: 2000,
-            showConfirmButton: false
-            })   
+                title: "No day selected",
+                type: 'warning',
+                timer: 2000,
+                showConfirmButton: false
+            })
             return
         }
 
@@ -73,17 +85,24 @@ class CreateCourseForm extends Component {
             }
         }, "")
 
-        let newRenderedSections = {...this.state.renderedSections}
+        let newRenderedSections = { ...this.state.renderedSections }
         newRenderedSections[term].push({
             days: days,
             dayStr: dayStr,
             startTime: startTime,
             endTime: endTime
         })
-        this.setState({ renderedSections: newRenderedSections})
+        this.setState({ renderedSections: newRenderedSections })
 
     }
 
+    addSection(e) {
+
+    }
+
+    addActivity(e) {
+
+    }
     getTermSection(code, term) {
         const schedule = this.state.renderedSections[term].reduce((acc, section, sectionIdx) => {
             let sectionTimeArr = Utils.getSectionTimeArr(section.days, section.startTime, section.endTime)
@@ -91,7 +110,7 @@ class CreateCourseForm extends Component {
                 acc[i] |= sectionTimeArr[i]
             }
             return acc
-        }, [0,0,0,0,0])
+        }, [0, 0, 0, 0, 0])
 
         return {
             schedule: schedule,
@@ -142,39 +161,24 @@ class CreateCourseForm extends Component {
                 </div>
             </div>
         ));
-    } 
+    }
     render() {
         return (
             <div className="tool__container tool__container--breakform">
-                <div className="breakform__terms">
-                    <div className={"btn btn--blue breakform__term " + (this.state.term === "t1" ? "btn--blue--selected" : "")} onClick={this.toggleTerm("t1")}>Term 1</div>
-                    <div className={"btn btn--blue breakform__term " + (this.state.term === "t2" ? "btn--blue--selected" : "")} onClick={this.toggleTerm("t2")}>Term 2</div>
-                </div>
-                <div className="breakform__days">
-                    <div className={"panel__btn breakform__day " + (this.state.days[0] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(0)}>Mon</div>
-                    <div className={"panel__btn breakform__day " + (this.state.days[1] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(1)}>Tue</div>
-                    <div className={"panel__btn breakform__day " + (this.state.days[2] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(2)}>Wed</div>
-                    <div className={"panel__btn breakform__day " + (this.state.days[3] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(3)}>Thu</div>
-                    <div className={"panel__btn breakform__day " + (this.state.days[4] ? "breakform__btn--selected" : "")} onClick={this.toggleDay(4)}>Fri</div>
-                </div>
-                <div className="breakform__input-container">
-                    <input  type="time" 
-                            className="breakform__input" 
-                            id="create-course-form__start-time" 
-                            value={this.state.startTime} 
-                            onChange={this.onStartChange} />
-                    <span className="breakform__span">to</span>
-                    <input  type="time"
-                            className="breakform__input" 
-                            id="create-course-form__end-time" 
-                            value={this.state.endTime} 
-                            onChange={this.onEndChange} />
-                </div>
-                <div className="btn btn-icon breakform__add-btn" onClick={this.addSection}>
-                    <i className="material-icons">add</i>
-                    <span>add time</span>
-                </div>
+                <TimeWidget term={this.state.term}
+                            days={this.state.days}
+                            startTime={this.state.startTime}
+                            endTime={this.state.endTime}
+                            toggleTerm={this.toggleTerm}
+                            toggleDay={this.toggleDay}
+                            onStartChange={this.onStartChange}
+                            onEndChange={this.onEndChange}
+                            addTime={this.addTime}
+                            startTimeInputId="create-course-form__start-time"
+                            endTimeInputId="create-course-form__end-time"/>
+
                 <div className="breakform__breaks-container">
+                    <div className="panel__header panel__header--breakform">::Course::</div>
                     <div className="panel__header panel__header--breakform">::Current Times::</div>
                     <div className={"breakform__term-breaks " + (this.state.term === "t1" ? "breakform__term-breaks--selected" : "")}>
                         {this.renderSectionsByTermJSX("t1")}
@@ -182,7 +186,17 @@ class CreateCourseForm extends Component {
                     <div className={"breakform__term-breaks " + (this.state.term === "t2" ? "breakform__term-breaks--selected" : "")}>
                         {this.renderSectionsByTermJSX("t2")}
                     </div>
-                </div>        
+                </div>
+                <div className="btn-container">
+                    <div className="btn btn-icon breakform__add-btn" onClick={this.addSection}>
+                        <i className="material-icons">add</i>
+                        <span>section</span>
+                    </div>
+                    <div className="btn btn-icon breakform__add-btn" onClick={this.addActivity}>
+                        <i className="material-icons">add</i>
+                        <span>activity</span>
+                    </div>
+                </div>
                 <div className="btn btn-icon breakform__add-btn create-course-form__add-btn" onClick={this.addCustomCourse}>
                     <i className="material-icons">done_outline</i>
                     <span>add stt</span>
@@ -197,11 +211,11 @@ CreateCourseForm.getDerivedStateFromProps = (nextProps, prevState) => {
         ...prevState,
         customNumber: nextProps.customNumber
     }
-  }
+}
 
-  
+
 const mapStateToProps = state => ({
     customNumber: state.scheduler.customNumber
 });
 
-export default connect(mapStateToProps, {addCustomCourse})(CreateCourseForm)
+export default connect(mapStateToProps, { addCustomCourse })(CreateCourseForm)
