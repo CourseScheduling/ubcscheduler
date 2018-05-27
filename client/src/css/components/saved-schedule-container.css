@@ -11,7 +11,7 @@
     border: 2px solid #ff8f8f;
     border-radius: 2px;
     color: #ff8f8f;
-    background-color: #fff;
+    background-color: #353a52;
     margin: 5px;
     cursor: pointer;
     padding: 4px 12px;
@@ -21,7 +21,8 @@
 }
 .save__btn:hover {
     background-color: #ff8f8f;
-    color: #fff;
+    color: #353a52;
+    z-index: 200;
 }
 .save__btn > i {
     display: inline-flex;
