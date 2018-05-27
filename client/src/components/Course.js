@@ -16,7 +16,7 @@ export default class Course extends Component {
             course: props.course,
             color: ColorManager.add(props.course.code),
             waitlists: {t1: [], t2: []},
-            isFilteringWaitingList: false
+            isFilteringWaitingList: {t1: false, t2: false}
         }
         this.toggleCourse = this.toggleCourse.bind(this)
         this.removeCourse = this.removeCourse.bind(this)
@@ -24,16 +24,17 @@ export default class Course extends Component {
         this.filterWaitingList = this.filterWaitingList.bind(this)
     }
 
-    filterWaitingList = (term) => (e) => {
+    filterWaitingList(e) {
+        const term = this.state.course.term
         const lectureIdx = this.state.course.activity_types[term].indexOf('Lecture')
-        if (this.state.isFilteringWaitingList) {
+        if (this.state.isFilteringWaitingList[term]) {
             this.state.course[term][lectureIdx] = this.state.course[term][lectureIdx].concat(this.state.waitlists[term])
             this.state.waitlists[term] = []
-            this.state.isFilteringWaitingList = false
+            this.state.isFilteringWaitingList[term] = false
         } else {
             this.state.waitlists[term] = this.state.course[term][lectureIdx].filter(section => section.activity === 'Waiting List')
             this.state.course[term][lectureIdx] = this.state.course[term][lectureIdx].filter(section => section.activity !== 'Waiting List')
-            this.state.isFilteringWaitingList = true
+            this.state.isFilteringWaitingList[term] = true
         }
         console.log(this.state.course)
         e.stopPropagation()
@@ -101,9 +102,9 @@ export default class Course extends Component {
                     <div className={"course__container " + (this.state.course.term === "t2" ? "course__container--active" : "")}>
                         {this.sectionsByTermJSX("t2")}
                     </div>
-                    <div className={"course__button course__waitlist-filter " + (this.state.isFilteringWaitingList ? "course__button--selected" : "")}
-                         onClick={this.filterWaitingList("t1")}>
-                         {(this.state.isFilteringWaitingList ? "Unfilter Waitlist" : "Filter Waitlist")}
+                    <div className={"course__button course__waitlist-filter " + (this.state.isFilteringWaitingList[this.state.course.term] ? "course__button--selected" : "")}
+                         onClick={this.filterWaitingList}>
+                         {(this.state.isFilteringWaitingList[this.state.course.term] ? "Unfilter Waitlist" : "Filter Waitlist")}
                     </div>
                 </div>
             )
