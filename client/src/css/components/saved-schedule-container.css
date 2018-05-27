@@ -1,6 +1,6 @@
 .saved-schedules {
     text-align: center;
-    border-bottom: 1px solid #ececec;
+    /* border-bottom: 1px solid #ececec; */
 }
 .saved-schedules__container {
     display: inline-block;

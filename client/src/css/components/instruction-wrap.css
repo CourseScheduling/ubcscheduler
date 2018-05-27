@@ -16,7 +16,8 @@
     border-top-right-radius: 3px;
     /* background-color: #c3e4ff; */
     /* background-color: #84affd; */
-    background-color: #fda8a8;
+    /* background-color: #fda8a8; */
+    background-color: #58b2ff;
     padding: 10px;
 }
 
@@ -27,19 +28,21 @@
     margin-bottom: 25px;
     padding: 5px;
     color: #ddd;
-    background-color: #575757;
+    background-color: #424242;
 }
 
 .instruction__type {
     text-transform: uppercase;
     padding: 5px;
     font-weight: 500;
-    font-size: 15px;
+    font-size: 30px;
     text-decoration: underline;
-    text-decoration-style: dotted;
+    text-decoration-style: dashed;
+    font-family: Amatic SC;
 }
 .instruction__msg {
     text-align: justify;
-    font-size: 14px;
+    font-size: 18px;
     padding: 5px 10px;
+    font-family: Josefin Sans;
 }

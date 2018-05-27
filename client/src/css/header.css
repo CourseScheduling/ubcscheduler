@@ -1,5 +1,8 @@
 .header {
-    
+    background-color: #353a52;
+    color: #fff;
+    box-shadow: -3px 2px 3px grey;
+    z-index: 100;
 }
     .header > div {
         display: flex;
@@ -11,11 +14,15 @@
 
 .logo {
     justify-content: center;
-    font-size: 30px;
-    font-weight: 500; 
-    background-color:#123B5C;
-    color: white;
+    font-size: 40px;
+    font-weight: bold; 
+    /* background-color:#123B5C;
+    color: white; */
+    border-right: 1px solid #ddd;
     min-width: 300px;
+    font-family: Amatic SC;    
+    
+    z-index: 100;
 }
 
 
