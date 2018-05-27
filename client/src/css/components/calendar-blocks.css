@@ -1,9 +1,9 @@
 .calendar__blocks {
     position: absolute;
-    top: 30px;
+    top: var(--calendar__row--days-height);
     left: 8%;
     width: 92%;
-    height: calc(100% - 25px);
+    height: calc(100% - var(--calendar__row--days-height));
     pointer-events:none;
 }
 
@@ -20,8 +20,7 @@
     position: absolute;
     color: #FFF;
     border-radius: 5px;
-    font-size: 11px;
-    background-color: #999;
+    font-size: var(--block__section-font-size);
     padding: 2px;
     box-sizing: border-box;
     display: table;
@@ -41,7 +40,7 @@
 }
 .block__section__lock i {
     color: rgba(255, 255, 255, 0.7);
-    font-size: 18px;
+    font-size: var(--block__section-lock-size);
     padding: 4px;
 }
 
@@ -54,12 +53,12 @@
     
 }
 .calendar__row--days {
-    height: 30px;
+    height: var(--calendar__row--days-height);
     text-transform: uppercase;
 }
 .calendar__block {
     width: calc(92% / 5);
-    height: 25px;
+    height: var(--calendar__row-height);
     padding: 0px;
     background-color: #FFF;
 }

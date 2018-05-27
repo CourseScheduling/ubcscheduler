@@ -1,3 +1,6 @@
+.calendar {
+    background-color: var(--calendar-background-color);
+}
 .calendarsContainer-wrapper {
     width: 100%;
 }

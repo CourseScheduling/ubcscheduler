@@ -15,18 +15,18 @@
         box-sizing: border-box;
         float: left;
         background-color: #FFF;
-        border: 1px solid #EEE;
+        border: 1px solid var(--search__result-border-color);
     }
     .search__result-wrapper {
         display: inline-block;
         background-color: #FFF;
-        border-top: 1px solid #EEE;
+        border-top: 1px solid var(--search__result-border-color);
         padding: 0;
         width: 100%;
         float: left;
     }
     .search__result{
-        border-bottom: 1px solid #EEE;
+        border-bottom: 1px solid var(--search__result-border-color);
         width: 100%;
         padding: 10px;
         box-sizing: border-box;
@@ -40,13 +40,13 @@
     }
     .search__result__body {
         font-size: 10px;
-        color: #525252;
+        color: var( --course-container-color);
         float: left;
     }
     .search__result:hover{
-        background-color: #F2f2F2;
+        background-color: var(--search__result--hover-color);
         cursor: pointer;
     }
     .search__result--hover{
-        background-color: rgba(57, 157, 239, 0.3);
+        background-color: var(--search__result--index-hover-color);
     }

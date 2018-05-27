@@ -5,7 +5,7 @@
     text-align: left;
     margin: 5px;
     font-size: 10px;
-    color: #525252;
+    color: var(--course-container-color);
     padding-left: 10px;
     margin-top: 10px;
     letter-spacing: 1px;

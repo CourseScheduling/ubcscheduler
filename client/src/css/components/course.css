@@ -36,7 +36,7 @@
     transition: background-color .25s;
 }
 .course__button--selected {
-    background-color: rgba(255,255,255,0.2); 
+    background-color: var(--course__button--selected-color); 
     color: #FFF;
 }
 .course__code {
@@ -46,7 +46,7 @@
     text-transform: uppercase;
 }
 .course__term--selected {
-    background-color: rgba(255,255,255,0.2); 
+    background-color: var(--course__button--selected-color);
     color: #FFF;
 }
 

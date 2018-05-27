@@ -13,17 +13,17 @@
     display: inline-flex;
     vertical-align: top;
     margin: 0px 10px;
-    color: grey;
+    color: var(--register__indicator-color);
 }
 .section__indicator--clicked {
-    color: green;
+    color: var(--register__indicator--clicked-color);
 }
 
 
 .section__link {
     display: inline-block;
     text-decoration: none;
-    color: black;
+    color: var(--course-container-color);
 }
 
 

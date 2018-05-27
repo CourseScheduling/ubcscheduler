@@ -18,7 +18,7 @@
     width: 40px;
 }
 .time-widget__btn--selected {
-    background-color: rgba(0,0,0,0.15); 
+    background-color: var( --time-widget__btn--selected-color);
     color: #FFF;
 }
 
@@ -33,13 +33,11 @@
 }
 
 span.time-widget__span {
-    color: #525252;
+    color: var(--course-container-color);
 }
 .time-widget__add-btn {
     font-size: 11px;
     padding: 3px 12px;
-    /* border: 2px solid #6197ff;
-    color: #6197ff; */
     margin: 15px 5px;
 }
 .time-widget__add-btn > i {
@@ -47,6 +45,4 @@ span.time-widget__span {
 }
 .time-widget__add-btn:hover {
     color: #fff;
-    /* background-color: #6197ff;
-    border: 2px solid #6197ff; */
 }

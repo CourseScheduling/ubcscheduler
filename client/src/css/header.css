@@ -1,5 +1,5 @@
 .header {
-    background-color: #353a52;
+    background-color: var(--header-background-color);
     color: #fff;
     box-shadow: -3px 2px 3px grey;
     z-index: 100;

@@ -1,5 +1,4 @@
 .side-panel {
-
     background-image: 
     linear-gradient(to right, #eee .1em, transparent .1em), linear-gradient(to bottom, #eee .1em, transparent .1em);
     background-size: 1.2em 1.2em;
@@ -43,7 +42,7 @@
     text-align: left;
     margin: 5px;
     font-size: 10px;
-    color: #525252;
+    color: var( --course-container-color);
     padding-left: 10px;
     margin-top: 10px;
     letter-spacing: 1px;

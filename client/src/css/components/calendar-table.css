@@ -5,8 +5,7 @@
     table-layout: fixed;
     width: 500px;
     overflow: visible;
-    color: #000;
+    color: var(--calendar-color);
     border-collapse: collapse;
     border-spacing: 0px;
-
 }
