@@ -1,13 +1,13 @@
-.breakform__terms {
+.time-widget__terms {
     margin-top: 10px;
 }
-.breakform__term {
+.time-widget__term {
     font-size: 12px;
 }
-.breakform__days {
+.time-widget__days {
     margin: 20px;    
 }
-.breakform__day {
+.time-widget__day {
     display: inline-block;
     padding: 7px;
     background-color: #fff;
@@ -17,51 +17,51 @@
     font-weight: 500;
     width: 40px;
 }
-.breakform__btn--selected {
+.time-widget__btn--selected {
     background-color: rgba(0,0,0,0.15); 
     color: #FFF;
 }
 
-.breakform__input-container > * {
+.time-widget__input-container > * {
     margin: 5px;
 }
 
-.breakform__input {
+.time-widget__input {
     padding: 3px;
     border-radius: 3px;
     border: none;
 }
 
-span.breakform__span {
+span.time-widget__span {
     color: #525252;
 }
-.breakform__add-btn {
+.time-widget__add-btn {
     font-size: 11px;
     padding: 3px 12px;
     border: 2px solid #6197ff;
     color: #6197ff;
     margin: 15px 5px;
 }
-.breakform__add-btn > i {
+.time-widget__add-btn > i {
     margin-right: 5px;
 }
-.breakform__add-btn:hover {
+.time-widget__add-btn:hover {
     background-color: #6197ff;
     color: #fff;
     border: 2px solid #6197ff;
 }
 
-.breakform__term-breaks  {
+.panel__data-container  {
     display: none;
     transition: height .25s;
 }
-.breakform__term-breaks--selected {
+.panel__data-container--selected {
     display: block;    
 }
 
-.breakform__breaks-container {
+.side-panel__data-container {
 }
-.breakform__break {
+.panel__data {
     line-height: 25px;
     background-color: #fff;
     width: 90%;
@@ -70,16 +70,16 @@ span.breakform__span {
     padding: 3px;
     font-size: 12px;
 }
-.break__component {
+.panel__data__component {
     margin: 5px;
 }
-.break__remove-btn {
+.panel__data__remove-btn {
     display: inline-flex;
     vertical-align: top;
     color: #ffa29b;
     font-weight: bold;
 }
-.break__remove-btn:hover {
+.panel__data__remove-btn:hover {
     cursor: pointer;
     color: #ff1100;
 }

@@ -151,12 +151,12 @@ class CreateCourseForm extends Component {
 
     renderSectionsByTermJSX(term) {
         return this.state.renderedSections[term].map((renderedSection, i) => (
-            <div className="breakform__break" key={"create-course-form__section" + this.state.term + i}>
-                <span className="break__component">{renderedSection.dayStr}</span>
-                <span className="break__component">{renderedSection.startTime}</span>
-                <span className="break__component">to</span>
-                <span className="break__component">{renderedSection.endTime}</span>
-                <div className="break__remove-btn">
+            <div className="panel__data" key={"create-course-form__section" + this.state.term + i}>
+                <span className="panel__data__component">{renderedSection.dayStr}</span>
+                <span className="panel__data__component">{renderedSection.startTime}</span>
+                <span className="panel__data__component">to</span>
+                <span className="panel__data__component">{renderedSection.endTime}</span>
+                <div className="panel__data__remove-btn">
                     <i className="material-icons">&#xE5CD;</i>
                 </div>
             </div>
@@ -164,7 +164,7 @@ class CreateCourseForm extends Component {
     }
     render() {
         return (
-            <div className="tool__container tool__container--breakform">
+            <div className="tool__container tool__container--create-course-form">
                 <TimeWidget term={this.state.term}
                             days={this.state.days}
                             startTime={this.state.startTime}
@@ -177,27 +177,27 @@ class CreateCourseForm extends Component {
                             startTimeInputId="create-course-form__start-time"
                             endTimeInputId="create-course-form__end-time"/>
 
-                <div className="breakform__breaks-container">
-                    <div className="panel__header panel__header--breakform">::Course::</div>
-                    <div className="panel__header panel__header--breakform">::Current Times::</div>
-                    <div className={"breakform__term-breaks " + (this.state.term === "t1" ? "breakform__term-breaks--selected" : "")}>
+                <div className="side-panel__data-container">
+                    <div className="panel__header panel__header--create-course-form">::Course::</div>
+                    <div className="panel__header panel__header--create-course-form">::Current Times::</div>
+                    <div className={"panel__data-container " + (this.state.term === "t1" ? "panel__data-container--selected" : "")}>
                         {this.renderSectionsByTermJSX("t1")}
                     </div>
-                    <div className={"breakform__term-breaks " + (this.state.term === "t2" ? "breakform__term-breaks--selected" : "")}>
+                    <div className={"panel__data-container " + (this.state.term === "t2" ? "panel__data-container--selected" : "")}>
                         {this.renderSectionsByTermJSX("t2")}
                     </div>
                 </div>
                 <div className="btn-container">
-                    <div className="btn btn-icon breakform__add-btn" onClick={this.addSection}>
+                    <div className="btn btn-icon time-widget__add-btn" onClick={this.addSection}>
                         <i className="material-icons">add</i>
                         <span>section</span>
                     </div>
-                    <div className="btn btn-icon breakform__add-btn" onClick={this.addActivity}>
+                    <div className="btn btn-icon time-widget__add-btn" onClick={this.addActivity}>
                         <i className="material-icons">add</i>
                         <span>activity</span>
                     </div>
                 </div>
-                <div className="btn btn-icon breakform__add-btn create-course-form__add-btn" onClick={this.addCustomCourse}>
+                <div className="btn btn-icon time-widget__add-btn create-course-form__add-btn" onClick={this.addCustomCourse}>
                     <i className="material-icons">done_outline</i>
                     <span>add stt</span>
                 </div>

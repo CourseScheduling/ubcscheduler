@@ -89,12 +89,12 @@ class BreakForm extends Component {
 
   renderedBreaksByTermJSX(term) {
     return this.state.renderedBreaks[term].map((renderedBreak, i) => (
-      <div className="breakform__break" key={"breakform__break" + this.state.term + i}>
-        <span className="break__component">{renderedBreak.day}</span>
-        <span className="break__component">{renderedBreak.startTime}</span>
-        <span className="break__component">to</span>
-        <span className="break__component">{renderedBreak.endTime}</span>
-        <div className="break__remove-btn" onClick={this.removeBreak(renderedBreak)}>
+      <div className="panel__data" key={"panel__data" + this.state.term + i}>
+        <span className="panel__data__component">{renderedBreak.day}</span>
+        <span className="panel__data__component">{renderedBreak.startTime}</span>
+        <span className="panel__data__component">to</span>
+        <span className="panel__data__component">{renderedBreak.endTime}</span>
+        <div className="panel__data__remove-btn" onClick={this.removeBreak(renderedBreak)}>
           <i className="material-icons">&#xE5CD;</i>
         </div>
       </div>
@@ -115,12 +115,12 @@ class BreakForm extends Component {
                     addTime={this.addTime} 
                     startTimeInputId="breakform__start-time"
                     endTimeInputId="breakform__end-time"/>
-        <div className="breakform__breaks-container">
+        <div className="side-panel__data-container">
           <div className="panel__header panel__header--breakform">::Current Breaks::</div>
-          <div className={"breakform__term-breaks " + (this.state.term === "t1" ? "breakform__term-breaks--selected" : "")}>
+          <div className={"panel__data-container " + (this.state.term === "t1" ? "panel__data-container--selected" : "")}>
             {this.renderedBreaksByTermJSX("t1")}
           </div>
-          <div className={"breakform__term-breaks " + (this.state.term === "t2" ? "breakform__term-breaks--selected" : "")}>
+          <div className={"panel__data-container " + (this.state.term === "t2" ? "panel__data-container--selected" : "")}>
             {this.renderedBreaksByTermJSX("t2")}
           </div>
         </div>
