@@ -7,9 +7,11 @@ import swal from 'sweetalert2'
 import '../css/components/create-course-form.css';
 
 import TimeWidget from './TimeWidget'
+import CustomCourse from './CustomCourse'
 
 import Utils from '../js/utils'
 import { addCustomCourse } from '../actions/panelActions'
+import { addTemp, removeTemp } from '../actions/panelActions';
 
 class CreateCourseForm extends Component {
     constructor(props) {
@@ -29,7 +31,9 @@ class CreateCourseForm extends Component {
                 active: true,
                 term: "t1"
             },
-            customNumber: 1
+            customNumber: 1,
+            currentActivity: 1,
+            currentSection: 1
         }
 
         this.onStartChange = this.onStartChange.bind(this)
@@ -40,12 +44,21 @@ class CreateCourseForm extends Component {
         this.toggleTerm = this.toggleTerm.bind(this)
         this.toggleDay = this.toggleDay.bind(this)
         this.addCustomCourse = this.addCustomCourse.bind(this)
+        this.toggleCourseTerm = this.toggleCourseTerm.bind(this)
     }
     toggleTerm = (term) => (e) => {
-        if (this.state.term !== term) this.setState({ "term": term })
+        if (this.state.term !== term) this.setState({ "term": term, "course": {...this.state.course, term: term}})
         e.stopPropagation()
+    }    
+    toggleCourseTerm(term) {
+        if (this.state.course.term === term) return;
+        let newCourse = {...this.state.course}
+        newCourse.term = term
+        this.setState({
+            course: newCourse,
+            term: term
+        })
     }
-
     toggleDay = (dayIdx) => (e) => {
         let newDays = [...this.state.days]
         newDays[dayIdx] = !newDays[dayIdx]
@@ -98,17 +111,35 @@ class CreateCourseForm extends Component {
         })
         this.setState({ renderedSections: newRenderedSections })
         e.stopPropagation()
-
     }
 
     addSection(e) {
+        const term = this.state.term
+        const idx = this.state.course.activity_types[term].length - 1
+        let section = this.getTermSection()
+        let newCourse = {...this.state.course}
+        newCourse[term][idx].push(section)
+        
+        console.log(newCourse)
+        this.setState({
+            course: newCourse
+        })
         e.stopPropagation()
     }
 
     addActivity(e) {
         e.stopPropagation()
     }
-    getTermSection(code, term) {
+
+    // Given current times, gets a section for a term
+    getTermSection() {
+        let code = this.state.course.code
+        let term = this.state.term
+        let activitys = this.state.course.activity_types[term]
+        let activity = activitys[activitys.length - 1]
+        let currentSection = 'A' + this.state.currentActivity + this.state.currentSection
+        this.state.currentSection += 1
+
         const schedule = this.state.renderedSections[term].reduce((acc, section, sectionIdx) => {
             let sectionTimeArr = Utils.getSectionTimeArr(section.days, section.startTime, section.endTime)
             for (let i = 0; i < 5; i++) {
@@ -116,17 +147,22 @@ class CreateCourseForm extends Component {
             }
             return acc
         }, [0, 0, 0, 0, 0])
-
+        this.setState({
+            renderedSections: { t1: [], t2: [] },
+            days: [false, false, false, false, false]
+        })
         return {
             schedule: schedule,
             instructors: [],
-            section: "UBC",
-            activity: "Custom",
+            section: currentSection,
+            activity: activity,
             status: "Custom",
             term: term[1],
-            course: code
+            course: code,
+            active: false
         }
     }
+
     //TODO:: Change activity types
     addCustomCourse(e) {
         if (!(this.state.renderedSections.t1.length + this.state.renderedSections.t2.length)) return;
@@ -185,6 +221,11 @@ class CreateCourseForm extends Component {
 
                 <div className="side-panel__data-container">
                     <div className="panel__header panel__header--create-course-form">::Course::</div>
+                    <CustomCourse   course={this.state.course}
+                                    toggleCourseTerm={this.toggleCourseTerm}
+                                    addTemp={this.props.addTemp}
+                                    removeTemp={this.props.removeTemp}/>
+
                     <div className="panel__header panel__header--create-course-form">::Current Times::</div>
                     <div className={"panel__data-container " + (this.state.term === "t1" ? "panel__data-container--selected" : "")}>
                         {this.renderSectionsByTermJSX("t1")}
@@ -224,4 +265,4 @@ const mapStateToProps = state => ({
     customNumber: state.scheduler.customNumber
 });
 
-export default connect(mapStateToProps, { addCustomCourse })(CreateCourseForm)
+export default connect(mapStateToProps, { addCustomCourse, addTemp, removeTemp })(CreateCourseForm)

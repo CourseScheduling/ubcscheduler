@@ -1,6 +1,9 @@
 class ColorManager {
     constructor() {        
         this.COLORS = [
+            "rgb(66,67,133, 0.6)",
+            "rgb(227,109,186, 0.6)",
+            "rgb(255,172,82, 0.6)",
             "rgb(82,113,255, 0.6)",
             "rgb(82,165,255, 0.6)",            
             "rgb(118,144,173, 0.6)",
@@ -14,10 +17,7 @@ class ColorManager {
             "rgb(94,219,123,0.6)",
             "rgb(118,173,131,0.6)",
             "rgb(255,130,77, 0.6)",
-            "rgb(78,191,135, 0.6)",
-            "rgb(66,67,133, 0.6)",
-            "rgb(227,109,186, 0.6)",
-            "rgb(255,172,82, 0.6)"]
+            "rgb(78,191,135, 0.6)"]
         // Maps courses to indices
         this.colorMap = {}
         // Indicates which colors are in use
