@@ -1,15 +1,15 @@
 .side-panel {
-    padding-top: 50px;
     width: 100%;
     height: 100%;
     border-right: 1px solid  #cecece;
-    overflow-y: scroll;
     background-color: #e4e4e4;
     position: relative;
     min-width: 300px;
 }
 
 .side-panel__contents {
+    box-shadow: 0px 1px 1px rgba(0,0,0,0.4);
+    background-color: white;
     position: absolute;
     width: 100%;
 }

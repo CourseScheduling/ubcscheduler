@@ -33,8 +33,8 @@ class App extends Component {
             <SavedScheduleContainer />
           </div>
 
-          {/* <Hamburger
-            contentComponent={<SidePanel />} /> */}
+          <Hamburger
+            contentComponent={<SidePanel />} />
 
           
 

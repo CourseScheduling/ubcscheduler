@@ -20,13 +20,10 @@ export default class Hamburger extends Component {
     render() {
         return (
             <div className="hamburger">
-                <div className="hamburger__logoContainer">
-                    <div className="hamburger__logoWrap" onClick={this.toggleHamburger}>
-                        <div className="hamburger__logo">
-                            <i className="material-icons">menu</i>
-                        </div>
-                    </div>
+                <div className="hamburger__logo">
+                    <i className="material-icons">menu</i>
                 </div>
+
                 <div className={"hamburger__content " + (this.state.active ? "hamburger__content--active" : "")}>
                     {this.props.contentComponent}
                 </div>
