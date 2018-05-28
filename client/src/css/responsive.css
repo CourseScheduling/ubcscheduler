@@ -41,6 +41,10 @@ html, body, #root, .App {
     display: inline-block;
 }
 
+.links__container {
+    display: none;
+}
+
 @media screen and (min-width: 1100px) {
     .App {
         width: 100%;
@@ -91,6 +95,9 @@ html, body, #root, .App {
     .save__btn:hover {
         background-color: var(--save__btn-color);
         color: var(--header-background-color);
+    }
+    .links__container {
+        display: inline-block;
     }
 }
 
