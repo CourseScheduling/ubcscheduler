@@ -46,6 +46,7 @@ class CreateCourseForm extends Component {
         this.addCustomCourse = this.addCustomCourse.bind(this)
         this.toggleCourseTerm = this.toggleCourseTerm.bind(this)
         this.resetCourse = this.resetCourse.bind(this)
+        this.removeSection = this.removeSection.bind(this)
     }
     toggleTerm = (term) => (e) => {
         if (this.state.term !== term) this.setState({ "term": term, "course": {...this.state.course, term: term}})
@@ -218,7 +219,16 @@ class CreateCourseForm extends Component {
         })
     }
 
-
+    removeSection= (section) => (e) => {
+        let newCourse = {...this.state.course}
+        newCourse[this.state.term] = this.state.course[this.state.term].map(courseSections => {
+            return courseSections.filter(s => s !== section)
+        })
+        
+        this.setState({
+            course: newCourse
+        })
+    }
 
     renderSectionsByTermJSX(term) {
         return this.state.renderedSections[term].map((renderedSection, i) => (
@@ -254,7 +264,8 @@ class CreateCourseForm extends Component {
                                     toggleCourseTerm={this.toggleCourseTerm}
                                     addTemp={this.props.addTemp}
                                     removeTemp={this.props.removeTemp}
-                                    resetCourse={this.resetCourse}/>
+                                    resetCourse={this.resetCourse}
+                                    removeSection={this.removeSection}/>
 
                     <div className="panel__header panel__header--create-course-form">::Current Times::</div>
                     <div className={"panel__data-container " + (this.state.term === "t1" ? "panel__data-container--selected" : "")}>

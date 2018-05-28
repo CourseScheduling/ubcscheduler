@@ -17,9 +17,7 @@ export default class CustomCourse extends Component {
             color: ColorManager.add(props.course.code),
         }        
     }
-    removeSection(e) {
 
-    }
 
     toggleCourseTerm = (term) => e => {
         if (this.state.course.term !== term) {
@@ -40,7 +38,7 @@ export default class CustomCourse extends Component {
                             section={section}
                             addTemp={this.props.addTemp}
                             removeTemp={this.props.removeTemp}
-                            removeSection={this.removeSection}
+                            removeSection={this.props.removeSection(section)}
                         />
                     ))
                 }

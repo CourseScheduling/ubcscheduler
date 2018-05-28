@@ -21,10 +21,13 @@ export default class CustomSection extends Component {
     render() {
         return (
             <div
-                className="course__button course__section" 
+                className="remove-btn-parent course__button course__section"
                 onMouseOver={this.addTemp}
                 onMouseOut={this.removeTemp}
             >
+                <div className="remove-btn" onClick={this.props.removeSection}>
+                    <i className="material-icons">&#xE5CD;</i>
+                </div>
                 {this.props.section.section}
             </div>
         )
