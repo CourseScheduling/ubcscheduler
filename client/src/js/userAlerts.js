@@ -11,10 +11,10 @@ export const alertNoSchedule = (action, newState) => {
             errorMsg = `${errorMsg} toggling term for ${action.payload.code}`
             break;
         case UPDATE_BREAKS:
-            errorMsg = `${errorMsg} adding breaks`
+            errorMsg = `${errorMsg} updating breaks`
             break;
         case TOGGLE_LOCK:
-            errorMsg = `${errorMsg} locking ${action.payload}`
+            errorMsg = `${errorMsg} locking ${action.payload.sectionName}`
             break;
         default:
             errorMsg = `${errorMsg}`
@@ -23,7 +23,7 @@ export const alertNoSchedule = (action, newState) => {
     swal({
         title: errorMsg,
         type: 'error',
-        timer: 2000,
+        timer: 1500,
         showConfirmButton: false
     })
 }

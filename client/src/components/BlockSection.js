@@ -95,7 +95,7 @@ export default class BlockSection extends Component {
     if (this.props.temp) return
     //e.preventDefault()
     const sectionName = e.currentTarget.attributes["data-section"].value
-    this.props.toggleLock(sectionName)
+    this.props.toggleLock(sectionName, this.props.term)
 
   }
 

@@ -42,6 +42,7 @@ export default class CalendarBlocks extends Component {
                                                 name={this.props.tempSection.course + " " + this.props.tempSection.section}
                                                 schedule={this.props.tempSection.schedule[day]}
                                                 temp={true}
+                                                term={this.props.term}
                                             />)
                         }
                         return (
@@ -56,6 +57,7 @@ export default class CalendarBlocks extends Component {
                                                 schedule={section.schedule[day]}
                                                 toggleLock={this.props.toggleLock}
                                                 lockedSections={this.props.lockedSections}
+                                                term={this.props.term}
                                             />
                                         )
                                     })

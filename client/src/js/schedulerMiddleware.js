@@ -46,23 +46,27 @@ const schedulerMiddleware = (store) => (next) => (action) => {
         newBreaks[action.payload.term] = action.payload.breakArr
         action.schedules = schedule(state.course.courses, newBreaks, state.scheduler.lockedSections)
         action.newBreaks = newBreaks
+        action.term = action.payload.term
+        action.courses = courses
         break;
       case TOGGLE_LOCK:
         let newLockedSections;
-        if (state.scheduler.lockedSections.includes(action.payload)) {
+        let sectionToLock = action.payload.sectionName
+        if (state.scheduler.lockedSections.includes(sectionToLock)) {
             // Unlock
-            newLockedSections = state.scheduler.lockedSections.filter(s => s !== action.payload)
+            newLockedSections = state.scheduler.lockedSections.filter(s => s !== sectionToLock)
         } else {
             // Lock
-            let newSectionSplit = action.payload.split(" ")
+            let newSectionSplit = sectionToLock.split(" ")
             // Remove lockedSections of the same course type
             newLockedSections = state.scheduler.lockedSections.filter(section => {
               let sectionSplit = section.split(" ")
               return !(sectionSplit[0] === newSectionSplit[0] && sectionSplit[1] === newSectionSplit[1] && sectionSplit[2][0] === newSectionSplit[2][0])
             })          
  
-            newLockedSections.push(action.payload)
+            newLockedSections.push(sectionToLock)
         }
+        action.term = action.payload.term
         action.newLockedSections = newLockedSections
         action.schedules = schedule(state.course.courses, state.scheduler.breaks, newLockedSections)
         break;

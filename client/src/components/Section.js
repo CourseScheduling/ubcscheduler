@@ -19,7 +19,7 @@ export default class Section extends Component {
         this.props.removeTemp()
     }
     toggleLock(e) {
-        this.props.toggleLock(this.props.section.course + " " + this.props.section.section)
+        this.props.toggleLock(this.props.section.course + " " + this.props.section.section, this.props.term)
         e.stopPropagation()
     }
 

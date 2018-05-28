@@ -21,6 +21,55 @@ function mergeBreaks(break1, break2) {
     return mergedBreaks
 }
 
+function isScheduleEmpty(schedules, term) {
+    // if schedules.term looks like [[]]
+    if (schedules[term].length === 1 && schedules[term][0].length === 0) {
+        return true
+    } else {
+        return false
+    }
+}
+
+function termCourseExists(courses, term) {
+    let termCourse = courses.find(course => course.term === term)
+    if (termCourse) return true
+    else return false
+}
+
+function handleAlerts(prevState, newState, action) {
+    switch (action.type) {
+        // If a schedule for a term is not empty, return newState
+        case ADD_CUSTOM_COURSE:
+        case ADD_COURSE:
+        case REMOVE_COURSE:
+        case TOGGLE_COURSE_TERM:
+        case LOAD_SCHEDULE:
+            if (isScheduleEmpty(newState.schedules, "t1") && isScheduleEmpty(newState.schedules, "t2")) break;
+            return newState
+        // These actions only care about the current term
+        case UPDATE_BREAKS:
+            // Merge old breaks and newState.breaks to take the less constrained option
+            console.log(action)
+            if (isScheduleEmpty(newState.schedules, action.term) && termCourseExists(action.courses, action.term)) {
+                let lessConstrainedBreaks = {}
+                lessConstrainedBreaks.t1 = mergeBreaks(prevState.breaks.t1, newState.breaks.t1)
+                lessConstrainedBreaks.t2 = mergeBreaks(prevState.breaks.t2, newState.breaks.t2)
+                prevState = {...prevState}
+                prevState.breaks = lessConstrainedBreaks
+                break;
+            }
+            return newState;
+        case TOGGLE_LOCK:
+            if (isScheduleEmpty(newState.schedules, action.term)) break;
+            return newState;
+        default: 
+            return newState;
+    }
+    // Only errors get this far
+    alertNoSchedule(action, newState)
+    return prevState
+}
+
 //TODO: Add break, lock section
 export default function(state = initialState, action) {
     let newState;
@@ -89,19 +138,8 @@ export default function(state = initialState, action) {
             newState = state
             return state;
     }
-    const term = newState.term
-    if (newState.schedules[term].length === 1) {
-        console.log("No schedules found!")
-        alertNoSchedule(action, newState)
-        // Merge old breaks and newState.breaks to take the less constrained option
-        let lessConstrainedBreaks = {}
-        lessConstrainedBreaks.t1 = mergeBreaks(state.breaks.t1, newState.breaks.t1)
-        lessConstrainedBreaks.t2 = mergeBreaks(state.breaks.t2, newState.breaks.t2)
-        return {
-            ...state,
-            breaks: lessConstrainedBreaks
-        }
-    } else {
-        return newState
-    }
+
+    newState = handleAlerts(state, newState, action);
+    return newState
 }
+

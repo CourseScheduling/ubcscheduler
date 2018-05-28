@@ -75,6 +75,7 @@ export default class Course extends Component {
                             removeTemp={this.props.removeTemp}
                             toggleLock={this.props.toggleLock}
                             combinedTermSchedule={this.props.combinedTermSchedule}
+                            term={term}
                         />
                     ))
                 }
