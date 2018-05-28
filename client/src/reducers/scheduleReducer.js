@@ -1,4 +1,4 @@
-import { ADD_COURSE, TOGGLE_COURSE_TERM, JUMP_TO, REMOVE_COURSE, TOGGLE_TERM, UPDATE_BREAKS, TOGGLE_LOCK, ADD_CUSTOM_COURSE } from '../actions/types';
+import { LOAD_SCHEDULE, ADD_COURSE, TOGGLE_COURSE_TERM, JUMP_TO, REMOVE_COURSE, TOGGLE_TERM, UPDATE_BREAKS, TOGGLE_LOCK, ADD_CUSTOM_COURSE } from '../actions/types';
 import { alertNoSchedule } from '../js/userAlerts';
 
 const initialState = {
@@ -73,6 +73,16 @@ export default function(state = initialState, action) {
                 schedules: action.schedules,
                 index: {t1: 0, t2: 0},
                 lockedSections : action.newLockedSections,
+            }
+            break;
+        case LOAD_SCHEDULE:
+            newState = {
+                schedules: action.schedules,
+                index: action.index,
+                term: action.term,
+                breaks: action.breaks,
+                lockedSections: action.lockedSections,
+                customNumber: action.customNumber                
             }
             break;
         default:

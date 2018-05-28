@@ -18,13 +18,8 @@ class SavedScheduleContainer extends Component {
   }
 
 
-  load() {
-    
-  }
 
   save(e) {
-    // Save courses from courseReducer
-    // Save index, term, breaks, lockedSections, customNumber from ScheduleReducer
     this.props.saveSchedule()
   }
 
@@ -38,7 +33,10 @@ class SavedScheduleContainer extends Component {
         <div className="saves__container">
           {
             this.state.saves.map(save => (
-              <SavedSchedule save={save} key={"save"+save.id}/>
+              <SavedSchedule 
+                key={"save" + save.id}
+                save={save}
+                loadSchedule={this.props.loadSchedule}  />
             ))
           }
         </div>
@@ -49,7 +47,7 @@ class SavedScheduleContainer extends Component {
 
 SavedScheduleContainer.getDerivedStateFromProps = (nextProps, prevState) => {
   return {
-      saves: nextProps.saves
+    saves: nextProps.saves
   }
 }
 
@@ -57,4 +55,4 @@ const mapStateToProps = state => ({
   saves: state.save.saves
 });
 
-export default connect(mapStateToProps, {saveSchedule, loadSchedule})(SavedScheduleContainer)
+export default connect(mapStateToProps, { saveSchedule, loadSchedule })(SavedScheduleContainer)

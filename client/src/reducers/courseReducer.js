@@ -1,4 +1,4 @@
-import { FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, UPDATE_ACTIVE_SECTIONS, ADD_TEMP, REMOVE_TEMP, ADD_CUSTOM_COURSE, FILTER_WAITING_LIST, TOGGLE_COURSE } from '../actions/types';
+import { LOAD_SCHEDULE, FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, UPDATE_ACTIVE_SECTIONS, ADD_TEMP, REMOVE_TEMP, ADD_CUSTOM_COURSE, FILTER_WAITING_LIST, TOGGLE_COURSE } from '../actions/types';
 
 const initialState = {
   courselist: [],
@@ -77,6 +77,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         courses: newCourses
+      }
+    case LOAD_SCHEDULE:
+      return {
+        ...state,
+        courses: action.courses
       }
     default:
       return state;

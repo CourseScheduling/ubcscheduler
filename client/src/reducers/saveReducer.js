@@ -16,7 +16,7 @@ function getNextId(saves) {
 }
 
 export default function (state = initialState, action) {
-    let errorMsg;
+    let errorMsg, newSaves;
     switch (action.type) {
         case SAVE_SCHEDULE:
             let save = action.payload
@@ -30,15 +30,25 @@ export default function (state = initialState, action) {
                 })
                 return state;
             }
-            let saveString = JSON.stringify(save)
-            // TODO:: Put to localstorage
-            let newSave = JSON.parse(saveString)
-            let newSaves = [...state.saves]
-            newSaves.push(newSave)
+            state.saves.push(save)
+            let saveString = JSON.stringify(state.saves)
+            
+            window.localStorage.setItem('saves', saveString)
+            newSaves = JSON.parse(saveString)
+
             return {
                 saves: newSaves,
                 nextId: getNextId(newSaves)
             }
+        case LOAD_SCHEDULE:
+            newSaves = [...state.saves]
+            newSaves.forEach(save => save.selected = false)
+            //TODO:: Might have to search by id then set to true
+            action.payload.selected = true;
+            return {
+                ...state,
+                saves: newSaves,
+            };
         default:
             return state;
     }
