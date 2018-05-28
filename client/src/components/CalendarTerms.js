@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import Links from './Links'
+
 import '../css/components/calendar-terms.css';
 
 import { toggleTerm } from '../actions/calendarActions';
+
+
 
 class CalendarTerms extends Component {
     constructor(props) {
@@ -34,6 +38,8 @@ class CalendarTerms extends Component {
                     className={"calendar__term " + (this.state.term === "t2" ? "calendar__term--selected" : "")}
                     onClick={this.toggleTerm("t2")}
                 >Term 2</div>
+
+                <Links />
             </div>
         )
     }
