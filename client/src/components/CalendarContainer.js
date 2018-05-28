@@ -8,7 +8,7 @@ import '../css/components/calendar-container.css';
 import CalendarTable from './CalendarTable';
 import CalendarBlocks from './CalendarBlocks';
 
-import { updateActiveSections, updateBreaks } from '../actions/calendarActions';
+import { updateBreaks } from '../actions/calendarActions';
 import { toggleLock } from '../actions/scheduleActions';
 
 class CalendarContainer extends Component {
@@ -66,21 +66,6 @@ class CalendarContainer extends Component {
 }
 
 CalendarContainer.getDerivedStateFromProps = (nextProps, prevState) => {
-    // Set previously rendered sections.active to false    
-    // Set new rendered sections.active to true
-    const prevT1Index = prevState.index.t1
-    const prevT2Index = prevState.index.t2
-    const prevT1Schedule = prevState.schedules.t1[prevT1Index]
-    const prevT2Schedule = prevState.schedules.t2[prevT2Index]
-    const prevSections = [...prevT1Schedule, ...prevT2Schedule]
-
-    const nextT1Index = nextProps.index.t1
-    const nextT2Index = nextProps.index.t2
-    const nextT1Schedule = nextProps.schedules.t1[nextT1Index]
-    const nextT2Schedule = nextProps.schedules.t2[nextT2Index]
-    const nextSections = [...nextT1Schedule, ...nextT2Schedule]
-
-    // nextProps.updateActiveSections(prevSections, nextSections)
 
     return {
         schedules: nextProps.schedules,
@@ -102,4 +87,4 @@ const mapStateToProps = state => ({
 
 });
 
-export default connect(mapStateToProps, { updateActiveSections, updateBreaks, toggleLock })(CalendarContainer)
+export default connect(mapStateToProps, { updateBreaks, toggleLock })(CalendarContainer)

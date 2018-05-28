@@ -1,4 +1,4 @@
-import { LOAD_SCHEDULE, FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, UPDATE_ACTIVE_SECTIONS, ADD_TEMP, REMOVE_TEMP, ADD_CUSTOM_COURSE, FILTER_WAITING_LIST, TOGGLE_COURSE } from '../actions/types';
+import { LOAD_SCHEDULE, FETCH_COURSELIST, ADD_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, ADD_TEMP, REMOVE_TEMP, ADD_CUSTOM_COURSE, FILTER_WAITING_LIST, TOGGLE_COURSE } from '../actions/types';
 
 const initialState = {
   courselist: [],
@@ -43,18 +43,7 @@ export default function (state = initialState, action) {
         courses: action.newCourses
       }
 
-    case UPDATE_ACTIVE_SECTIONS:
-      // ANTI-PATTERN: mutating sections
-      action.prevSections.forEach(section => {
-        section.active = false
-      })
-      action.nextSections.forEach(section => {
-        section.active = true
-      })
-      return {
-        ...state,
-        courses: [...state.courses]
-      }
+    
     case ADD_TEMP:
       return {
         ...state,
@@ -73,7 +62,7 @@ export default function (state = initialState, action) {
     case TOGGLE_COURSE:
       action.payload.active = !action.payload.active
       newCourses = [...state.courses]
-      
+
       return {
         ...state,
         courses: newCourses

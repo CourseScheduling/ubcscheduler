@@ -13,7 +13,7 @@ export default class Section extends Component {
     }
 
     addTemp(e) {
-        if (!this.props.section.active) this.props.addTemp(this.props.section)
+        if (!this.sectionActive()) this.props.addTemp(this.props.section)
     }
     removeTemp(e) {
         this.props.removeTemp()
@@ -23,10 +23,15 @@ export default class Section extends Component {
         e.stopPropagation()
     }
 
+    sectionActive() {
+        const sectionName = this.props.section.course + " " + this.props.section.section
+        return this.props.combinedTermSchedule.find(section => (section.course + " " + section.section) === sectionName)
+        
+    }
     render() {
         return (
             <div
-                className={"course__button course__section " + (this.props.section.active ? "course__button--selected" : "")} 
+                className={"course__button course__section " + (this.sectionActive() ? "course__button--selected" : "")} 
                 onMouseOver={this.addTemp}
                 onMouseOut={this.removeTemp}
                 onClick={this.toggleLock}>

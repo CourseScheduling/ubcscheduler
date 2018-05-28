@@ -14,7 +14,6 @@ export const JUMP_TO = "JUMP_TO"
 export const TOGGLE_TERM = "TOGGLE_TERM"
 export const UPDATE_BREAKS = "UPDATE_BREAKS"
 
-export const UPDATE_ACTIVE_SECTIONS = "UPDATE_ACTIVE_SECTIONS"
 export const TOGGLE_LOCK = "TOGGLE_LOCK"
 
 export const SAVE_SCHEDULE = "SAVE_SCHEDULE"

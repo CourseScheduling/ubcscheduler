@@ -16,7 +16,8 @@ export default class Course extends Component {
             course: props.course,
             color: ColorManager.add(props.course.code),
             waitlists: {t1: [], t2: []},
-            isFilteringWaitingList: {t1: false, t2: false}
+            isFilteringWaitingList: {t1: false, t2: false},
+            combinedTermSchedule: []
         }
         this.toggleCourse = this.toggleCourse.bind(this)
         this.removeCourse = this.removeCourse.bind(this)
@@ -73,6 +74,7 @@ export default class Course extends Component {
                             addTemp={this.props.addTemp}
                             removeTemp={this.props.removeTemp}
                             toggleLock={this.props.toggleLock}
+                            combinedTermSchedule={this.props.combinedTermSchedule}
                         />
                     ))
                 }
@@ -126,6 +128,7 @@ export default class Course extends Component {
 Course.getDerivedStateFromProps = (nextProps, prevState) => {
     return {
         ...prevState,
+        combinedTermSchedule: nextProps.combinedTermSchedule,
         course: nextProps.course
     }
 }

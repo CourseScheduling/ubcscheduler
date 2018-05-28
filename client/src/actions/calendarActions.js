@@ -7,13 +7,6 @@ export const jumpTo = (idx) => dispatch => {
     })
 }
 
-export const updateActiveSections = (prevSections, nextSections) => dispatch => {
-    dispatch({
-        type: UPDATE_ACTIVE_SECTIONS,
-        prevSections:  prevSections,
-        nextSections: nextSections
-    })
-}
 
 export const toggleTerm = (term) => dispatch => {
     dispatch({

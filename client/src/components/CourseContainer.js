@@ -15,7 +15,8 @@ class CourseContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            courses: []
+            courses: [],
+            combinedTermSchedule: []
         }
     }
     render() {
@@ -31,6 +32,7 @@ class CourseContainer extends Component {
                     toggleLock={this.props.toggleLock}
                     filterWaitingList={this.props.filterWaitingList}
                     toggleCourse={this.props.toggleCourse}
+                    combinedTermSchedule={this.state.combinedTermSchedule}
                 />
             )
         });
@@ -49,13 +51,19 @@ CourseContainer.propTypes = {
 }
 
 CourseContainer.getDerivedStateFromProps = (nextProps, prevState)=>  {
+    const t1Schedule = nextProps.schedules.t1[nextProps.index.t1]
+    const t2Schedule = nextProps.schedules.t2[nextProps.index.t2]
+    let combinedTermSchedule = [...t1Schedule, ...t2Schedule]
     return {
-        courses: nextProps.courses
+        courses: nextProps.courses,
+        combinedTermSchedule: combinedTermSchedule
     }
 }
 
 const mapStateToProps = state => ({
-    courses: state.course.courses
+    courses: state.course.courses,
+    schedules: state.scheduler.schedules,
+    index: state.scheduler.index
 });
 
 export default connect(mapStateToProps, { removeCourse, toggleCourseTerm, addTemp, removeTemp, toggleLock, filterWaitingList, toggleCourse })(CourseContainer)
