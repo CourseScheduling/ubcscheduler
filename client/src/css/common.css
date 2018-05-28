@@ -30,7 +30,9 @@
     font-size: 20px;
     font-weight: bold;
 }
-
+.remove-btn--red i {
+    color: red;
+}
 .btn {
     display: inline-block;
     border-radius: 2px;

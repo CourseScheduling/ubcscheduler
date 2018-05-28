@@ -1,4 +1,4 @@
-import { SAVE_SCHEDULE, LOAD_SCHEDULE } from '../actions/types';
+import { SAVE_SCHEDULE, LOAD_SCHEDULE, REMOVE_SAVE } from '../actions/types';
 import swal from 'sweetalert2'
 
 const initialState = {
@@ -16,7 +16,7 @@ function getNextId(saves) {
 }
 
 export default function (state = initialState, action) {
-    let errorMsg, newSaves;
+    let errorMsg, newSaves, saveString;
     switch (action.type) {
         case SAVE_SCHEDULE:
             let save = action.payload
@@ -31,7 +31,7 @@ export default function (state = initialState, action) {
                 return state;
             }
             state.saves.push(save)
-            let saveString = JSON.stringify(state.saves)
+            saveString = JSON.stringify(state.saves)
             
             window.localStorage.setItem('saves', saveString)
             newSaves = JSON.parse(saveString)
@@ -49,6 +49,16 @@ export default function (state = initialState, action) {
                 ...state,
                 saves: newSaves,
             };
+        case REMOVE_SAVE:
+            newSaves = state.saves.filter(save => save.id !== action.payload.id)
+            
+            saveString = JSON.stringify(newSaves)
+            window.localStorage.setItem('saves', saveString)
+            
+            return {
+                ...state,
+                saves: newSaves
+            }
         default:
             return state;
     }

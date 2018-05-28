@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import '../css/components/saved-schedule-container.css';
-import { saveSchedule, loadSchedule } from '../actions/saveActions'
+import { saveSchedule, loadSchedule, removeSave } from '../actions/saveActions'
 
 import SavedSchedule from './SavedSchedule'
 
@@ -36,7 +36,8 @@ class SavedScheduleContainer extends Component {
               <SavedSchedule 
                 key={"save" + save.id}
                 save={save}
-                loadSchedule={this.props.loadSchedule}  />
+                loadSchedule={this.props.loadSchedule}
+                removeSave={this.props.removeSave}  />
             ))
           }
         </div>
@@ -55,4 +56,4 @@ const mapStateToProps = state => ({
   saves: state.save.saves
 });
 
-export default connect(mapStateToProps, { saveSchedule, loadSchedule })(SavedScheduleContainer)
+export default connect(mapStateToProps, { saveSchedule, loadSchedule, removeSave })(SavedScheduleContainer)
