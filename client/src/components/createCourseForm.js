@@ -179,33 +179,32 @@ class CreateCourseForm extends Component {
         }
     }
 
+    filterEmptySectionActivities(course, term) {
+        course.activity_types[term] = course.activity_types[term].filter((activity, i) => {
+            return course[term][i].length > 0
+        })
+
+        course[term] = course[term].filter((sectionActivities, i) => {
+            return sectionActivities.length > 0
+        })
+    }
     //TODO:: Change activity types
     addCustomCourse(e) {
-        if (!(this.state.renderedSections.t1.length + this.state.renderedSections.t2.length)) return;
-        const code = 'Custom ' + this.state.customNumber
-        const customSectionT1 = this.getTermSection(code, "t1")
-        const customSectionT2 = this.getTermSection(code, "t2")
-        let course = {
-            code: code,
-            activity_types: ['Custom'],
-            t1: [[customSectionT1]],
-            t2: [[customSectionT2]],
-            active: true,
-            term: "t1"
-        }
-        console.log("Custom course: ", course)
-        this.setState({
-            renderedSections: { t1: [], t2: [] },
-            days: [false, false, false, false, false]
-        })
-        this.props.addCustomCourse(course)
+        // Filter out empty sections/activities
+        this.filterEmptySectionActivities(this.state.course, "t1")
+        this.filterEmptySectionActivities(this.state.course, "t2")
+        // props.addCustomCourse
+        this.props.addCustomCourse(this.state.course)
+        // reset state
+        this.resetCourse()
+
         e.stopPropagation()
     }
 
 
     resetCourse(e) {
         let newCourse = {
-            code: 'Custom 1',
+            code: 'Custom ' +this.state.customNumber,
             t1: [[]],
             t2: [[]],
             activity_types: {t1: ['A1'], t2: ['A1']}, 
