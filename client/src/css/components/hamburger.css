@@ -25,6 +25,7 @@
 .hamburger__content {
     display: none;
     transition: max-height 2s ease-out;
+    box-shadow: 0px 2px 2px #eee;
 }
 .hamburger__content--active {
     display: block;

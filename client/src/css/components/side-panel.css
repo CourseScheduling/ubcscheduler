@@ -7,7 +7,7 @@
 }
 
 .side-panel__contents {
-    background-color: #ffe7ef;
+    background-color: var(--side-panel--background-color);
     width: 100%;
     min-width: 300px;
 }

@@ -5,5 +5,5 @@
     border-right: 1px solid #ddd;
     min-width: 300px;
     font-family: Amatic SC;    
-    z-index: 100;
+    z-index: 1000;
 }
