@@ -1,6 +1,9 @@
 .instruction-wrap {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    padding-top: 20px;
+}
+
+.instruction-wrap:last-child {
+    padding-bottom: 20px;
 }
 
 .instruction-wrap > div, .instruction-wrap__content > div {

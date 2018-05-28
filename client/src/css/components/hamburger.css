@@ -22,3 +22,11 @@
     font-size: 30px;
 }
 
+.hamburger__content {
+    display: none;
+    transition: max-height 2s ease-out;
+}
+.hamburger__content--active {
+    display: block;
+    transition: max-height 2s ease-in;
+}

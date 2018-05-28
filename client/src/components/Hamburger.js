@@ -12,6 +12,7 @@ export default class Hamburger extends Component {
     }
 
     toggleHamburger(e) {
+        console.log("Toggling hambur")
         this.setState({
             active: !this.state.active
         })
@@ -20,7 +21,7 @@ export default class Hamburger extends Component {
     render() {
         return (
             <div className="hamburger">
-                <div className="hamburger__logo">
+                <div className="hamburger__logo" onClick={this.toggleHamburger}>
                     <i className="material-icons">menu</i>
                 </div>
 
