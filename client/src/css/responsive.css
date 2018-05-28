@@ -83,6 +83,15 @@ html, body, #root, .App {
         position: absolute;
         width: 100%;
     }
+    .save__btn {
+        border: 2px solid var(--save__btn-color);
+        color: var(--save__btn-color);
+        background-color: var(--header-background-color);        
+    }
+    .save__btn:hover {
+        background-color: var(--save__btn-color);
+        color: var(--header-background-color);
+    }
 }
 
 @media screen and (min-width: 1500px) {

@@ -10,8 +10,8 @@
     display: inline-block;
     border: 2px solid var(--save__btn-color);
     color: var(--save__btn-color);
+    background-color: #fff;
     border-radius: 2px;
-    background-color: var(--header-background-color);
     margin: 5px;
     cursor: pointer;
     padding: 4px 12px;
@@ -21,8 +21,7 @@
 }
 .save__btn:hover {
     background-color: var(--save__btn-color);
-    color: var(--header-background-color);
-    z-index: 200;
+    color: #fff;
 }
 .save__btn > i {
     display: inline-flex;
