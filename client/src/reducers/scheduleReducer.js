@@ -87,10 +87,10 @@ export default function(state = initialState, action) {
             break;
         default:
             newState = state
-            break;
+            return state;
     }
     const term = newState.term
-    if (newState.schedules[term].length === 0) {
+    if (newState.schedules[term].length === 1) {
         console.log("No schedules found!")
         alertNoSchedule(action, newState)
         // Merge old breaks and newState.breaks to take the less constrained option

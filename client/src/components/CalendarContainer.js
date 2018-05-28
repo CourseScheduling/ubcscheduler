@@ -80,7 +80,7 @@ CalendarContainer.getDerivedStateFromProps = (nextProps, prevState) => {
     const nextT2Schedule = nextProps.schedules.t2[nextT2Index]
     const nextSections = [...nextT1Schedule, ...nextT2Schedule]
 
-    nextProps.updateActiveSections(prevSections, nextSections)
+    // nextProps.updateActiveSections(prevSections, nextSections)
 
     return {
         schedules: nextProps.schedules,

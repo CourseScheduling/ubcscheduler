@@ -8,6 +8,7 @@ import schedule from './scheduler'
 const schedulerMiddleware = (store) => (next) => (action) => {
     let state = store.getState()
     let courses;
+    action.prevSchedules = state.scheduler.schedules
     switch (action.type) {
       case ADD_CUSTOM_COURSE:
       case ADD_COURSE:
