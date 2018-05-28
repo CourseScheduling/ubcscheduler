@@ -10,7 +10,7 @@ import ColorManager from '../js/colorManager'
 
 import Section from './Section'
 
-export default class Course extends Component {
+export default class SavedSchedule extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -25,10 +25,15 @@ export default class Course extends Component {
 
     render() {
         return (
-            <div className="saved-schedule" onClick={this.load}>
+            <div className={"saved-schedule " + (this.state.save.selected ? "saved-schedule--selected" : "")} onClick={this.load}>
                 {this.state.save.id}
             </div>
         )
     }
 }
 
+SavedSchedule.getDerivedStateFromProps = (nextProps, prevState) => {
+    return {
+      save: nextProps.save
+    }
+  }
