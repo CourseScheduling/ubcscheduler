@@ -1,11 +1,24 @@
 .saved-schedule {
-    background-color: #fff282;
+    background-color: #353b52;
+    border: 2px solid #fff282;    
+    color: #fff282;   
     border-radius: 50%;
-    color: #353b52;
     display: inline-block;
     font-weight: bold;
-    line-height: 2em;
+    line-height: 1.8em;
     margin: 10px;
     text-align: center;
     width: 2em; 
+    cursor: pointer;
+}
+.saved-schedule:hover {
+    background-color: #e4cd00;
+    border: 2px solid #e4cd00;   
+    color: #353b52; 
+}
+
+.saved-schedule--selected {
+    background-color: #fff282;
+    color: #353b52;
+
 }
