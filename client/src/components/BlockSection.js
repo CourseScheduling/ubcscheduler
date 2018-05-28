@@ -24,9 +24,9 @@ export default class BlockSection extends Component {
     }
   }
 
-  getStyle() {
+  getStyle(schedule) {
     const BLOCK_HEIGHT = 25
-    const schedule = this.props.schedule
+    // const schedule = this.props.schedule
 
     let top = this.getStart(schedule)
     let height = this.getHeight(schedule, top)
@@ -76,7 +76,7 @@ export default class BlockSection extends Component {
         BreakDragHelper.addForegroundElement(parentElement)
         lowerElement.dispatchEvent(event)
 
-      case "mouseover": 
+      case "mouseover":
         if (BreakDragHelper.getMousedown()) {
           parentElement.style.pointerEvents = 'none'
           BreakDragHelper.addForegroundElement(parentElement)
@@ -99,37 +99,64 @@ export default class BlockSection extends Component {
 
   }
 
+  //Helper function that returns an int where the start bit to the end - 1 bit is set to 1
+  getBitSchedule(start,end) {
+    let intSchedule = 0;
+    for (var i = start; i < end; i++) {
+        intSchedule |= (1 << i)
+    }
+    return intSchedule
+  }
+
+  //If a section has disjoint times, then split the schedule into parts where the ^ of each section is equal to the original
+  getSchedules(schedule) {
+    let schedules = []
+
+    let inBreak = false
+    let prevIStart = 0
+
+    for (let i = 0; i < 32; i++) {
+      let isIthBitOne = (schedule >> i & 1 === 1)
+      //Just fininshed a break segment
+      if (inBreak && !isIthBitOne) {
+        schedules.push(this.getBitSchedule(prevIStart, i))
+        inBreak = false
+      }
+      // Just starting a break segment
+      else if (!inBreak && isIthBitOne) {
+        prevIStart = i
+        inBreak = true
+      }
+    }
+
+    return schedules
+  }
+
   mapSectionToDivs() {
-    let sections = []
-    sections.map(section => (
-      <div  className={"block__section " + (this.props.lockedSections && this.props.lockedSections.includes(this.props.name) ? "block__section--locked" : "")}
-            style={blockStyle}
-            onMouseDown={this.triggerLower}
-            onMouseOver={this.triggerLower}
-            onContextMenu={this.toggleLock.bind(this)}
-            data-section={this.props.name}>
-        <span>{this.props.name}</span>
-        <div className="block__section__lock">
-          <i className="material-icons">&#xE897;</i>
+    let schedules = this.getSchedules(this.props.schedule)
+    return schedules.map(schedule => {
+      let blockStyle = this.getStyle(schedule)
+      return (
+        <div className={"block__section " + (this.props.lockedSections && this.props.lockedSections.includes(this.props.name) ? "block__section--locked" : "")}
+          style={blockStyle}
+          onMouseDown={this.triggerLower}
+          onMouseOver={this.triggerLower}
+          onContextMenu={this.toggleLock.bind(this)}
+          data-section={this.props.name}>
+          <span>{this.props.name}</span>
+          <div className="block__section__lock">
+            <i className="material-icons">&#xE897;</i>
+          </div>
         </div>
-      </div>
-    ))
+      )
+    })
   }
 
   render() {
-    const blockStyle = this.getStyle()
     return (
-      <div  className={"block__section " + (this.props.lockedSections && this.props.lockedSections.includes(this.props.name) ? "block__section--locked" : "")}
-            style={blockStyle}
-            onMouseDown={this.triggerLower}
-            onMouseOver={this.triggerLower}
-            onContextMenu={this.toggleLock.bind(this)}
-            data-section={this.props.name}>
-        <span>{this.props.name}</span>
-        <div className="block__section__lock">
-          <i className="material-icons">&#xE897;</i>
-        </div>
-      </div>
+      <React.Fragment>
+        {this.mapSectionToDivs()}
+      </React.Fragment>
     )
   }
 }
