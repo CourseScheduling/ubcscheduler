@@ -83,3 +83,10 @@ export const toggleInsructionWrap = (instructionId) => dispatch => {
         payload: instructionId
     })
 }
+
+export const toggleCourse = (course) => dispatch => {
+    dispatch({
+        type: TOGGLE_COURSE,
+        payload: course
+    })
+}

@@ -43,7 +43,7 @@ export default class Course extends Component {
     }
 
     toggleCourse(e) {
-        this.setState({ course: { ...this.state.course, active: (this.state.course.active ? false : true) } })
+        this.props.toggleCourse(this.state.course)
         e.stopPropagation()
     }
 

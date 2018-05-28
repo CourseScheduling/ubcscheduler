@@ -7,7 +7,7 @@ export const ADD_TEMP = "ADD_TEMP"
 export const REMOVE_TEMP = "REMOVE_TEMP"
 export const FILTER_WAITING_LIST = "FILTER_WAITING_LIST"
 export const TOGGLE_INSTRUCTION_WRAP = "TOGGLE_INSTRUCTION_WRAP"
-
+export const TOGGLE_COURSE = "TOGGLE_COURSE"
 
 export const JUMP_TO = "JUMP_TO";
 export const TOGGLE_TERM = "TOGGLE_TERM";
