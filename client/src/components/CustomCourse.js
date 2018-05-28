@@ -74,7 +74,7 @@ export default class CustomCourse extends Component {
         }
         return (
             <div className="remove-btn-parent course course--active" style={courseStyle} >    
-                <div className="remove-btn" onClick={this.removeCourse}>
+                <div className="remove-btn" onClick={this.props.resetCourse}>
                     <i className="material-icons">&#xE5CD;</i>
                 </div>            
                 <div className="course__code">{this.state.course.code}</div>

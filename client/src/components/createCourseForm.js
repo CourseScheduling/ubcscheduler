@@ -45,6 +45,7 @@ class CreateCourseForm extends Component {
         this.toggleDay = this.toggleDay.bind(this)
         this.addCustomCourse = this.addCustomCourse.bind(this)
         this.toggleCourseTerm = this.toggleCourseTerm.bind(this)
+        this.resetCourse = this.resetCourse.bind(this)
     }
     toggleTerm = (term) => (e) => {
         if (this.state.term !== term) this.setState({ "term": term, "course": {...this.state.course, term: term}})
@@ -117,17 +118,31 @@ class CreateCourseForm extends Component {
         const term = this.state.term
         const idx = this.state.course.activity_types[term].length - 1
         let section = this.getTermSection()
+        // TODO:: swal message
+        if (section.schedule.every(day => day === 0)) return
         let newCourse = {...this.state.course}
         newCourse[term][idx].push(section)
-        
-        console.log(newCourse)
         this.setState({
             course: newCourse
         })
         e.stopPropagation()
     }
 
-    addActivity(e) {
+    addActivity(e) {        
+        let newCourse = {...this.state.course}
+        
+        let newActivityNum = this.state.currentActivity + 1
+        let newActivity = 'A' + newActivityNum
+        
+        newCourse.t1.push([])
+        newCourse.t2.push([])
+        newCourse.activity_types.t1.push(newActivity)
+        newCourse.activity_types.t2.push(newActivity)
+
+        this.setState({
+            course: newCourse,
+            currentActivity: newActivityNum
+        })
         e.stopPropagation()
     }
 
@@ -187,7 +202,21 @@ class CreateCourseForm extends Component {
     }
 
 
-
+    resetCourse(e) {
+        let newCourse = {
+            code: 'Custom 1',
+            t1: [[]],
+            t2: [[]],
+            activity_types: {t1: ['A1'], t2: ['A1']}, 
+            active: true,
+            term: "t1"
+        }
+        this.setState({
+            course: newCourse,
+            currentActivity: 1,
+            currentSection: 1
+        })
+    }
 
 
 
@@ -224,7 +253,8 @@ class CreateCourseForm extends Component {
                     <CustomCourse   course={this.state.course}
                                     toggleCourseTerm={this.toggleCourseTerm}
                                     addTemp={this.props.addTemp}
-                                    removeTemp={this.props.removeTemp}/>
+                                    removeTemp={this.props.removeTemp}
+                                    resetCourse={this.resetCourse}/>
 
                     <div className="panel__header panel__header--create-course-form">::Current Times::</div>
                     <div className={"panel__data-container " + (this.state.term === "t1" ? "panel__data-container--selected" : "")}>
@@ -254,8 +284,11 @@ class CreateCourseForm extends Component {
 }
 
 CreateCourseForm.getDerivedStateFromProps = (nextProps, prevState) => {
+    let newCourse = {...prevState.course}
+    newCourse.code = "Custom " + nextProps.customNumber
     return {
         ...prevState,
+        course: newCourse,
         customNumber: nextProps.customNumber
     }
 }
