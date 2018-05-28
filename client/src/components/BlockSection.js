@@ -134,10 +134,11 @@ export default class BlockSection extends Component {
 
   mapSectionToDivs() {
     let schedules = this.getSchedules(this.props.schedule)
-    return schedules.map(schedule => {
+    return schedules.map((schedule, i) => {
       let blockStyle = this.getStyle(schedule)
       return (
-        <div className={"block__section " + (this.props.lockedSections && this.props.lockedSections.includes(this.props.name) ? "block__section--locked" : "")}
+        <div  key={"block__section " + this.props.name + i }
+              className={"block__section " + (this.props.lockedSections && this.props.lockedSections.includes(this.props.name) ? "block__section--locked" : "")}
           style={blockStyle}
           onMouseDown={this.triggerLower}
           onMouseOver={this.triggerLower}

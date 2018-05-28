@@ -3,11 +3,12 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
 import schedulerMiddleware from './js/schedulerMiddleware'
+import saveMiddleware from './js/saveMiddleware'
 
 const initialState = {};
 
 
-const middleware = [thunk, schedulerMiddleware];
+const middleware = [thunk, schedulerMiddleware, saveMiddleware];
 
 const store = createStore(
   rootReducer,

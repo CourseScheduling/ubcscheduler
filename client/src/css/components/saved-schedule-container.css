@@ -5,6 +5,7 @@
 .saved-schedules__container {
     display: inline-block;
     margin-left: 20px;
+    width: 100%;
 }
 .save__btn {
     display: inline-block;
@@ -29,4 +30,8 @@
 }
 .save__btn > span {
     line-height: 26px;
+}
+
+.saves__container {
+    display: inline-block;
 }

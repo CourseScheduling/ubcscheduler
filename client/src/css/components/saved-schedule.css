@@ -1,0 +1,11 @@
+.saved-schedule {
+    background-color: #fff282;
+    border-radius: 50%;
+    color: #353b52;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 2em;
+    margin: 10px;
+    text-align: center;
+    width: 2em; 
+}
