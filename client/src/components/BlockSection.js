@@ -99,6 +99,23 @@ export default class BlockSection extends Component {
 
   }
 
+  mapSectionToDivs() {
+    let sections = []
+    sections.map(section => (
+      <div  className={"block__section " + (this.props.lockedSections && this.props.lockedSections.includes(this.props.name) ? "block__section--locked" : "")}
+            style={blockStyle}
+            onMouseDown={this.triggerLower}
+            onMouseOver={this.triggerLower}
+            onContextMenu={this.toggleLock.bind(this)}
+            data-section={this.props.name}>
+        <span>{this.props.name}</span>
+        <div className="block__section__lock">
+          <i className="material-icons">&#xE897;</i>
+        </div>
+      </div>
+    ))
+  }
+
   render() {
     const blockStyle = this.getStyle()
     return (

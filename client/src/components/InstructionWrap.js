@@ -31,7 +31,7 @@ class InstructionWrap extends Component {
           {this.props.contentComponent}
         </div>        
         <div className="instruction__footer" onClick={this.expand}>
-            Expand
+            {this.state.expanded ? "Collapse" : "Expand"}
         </div>
       </div>
     )

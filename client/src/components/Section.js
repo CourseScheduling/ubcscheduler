@@ -22,14 +22,14 @@ export default class Section extends Component {
         this.props.toggleLock(this.props.section.course + " " + this.props.section.section)
         e.stopPropagation()
     }
+
     render() {
         return (
             <div
                 className={"course__button course__section " + (this.props.section.active ? "course__button--selected" : "")} 
                 onMouseOver={this.addTemp}
                 onMouseOut={this.removeTemp}
-                onClick={this.toggleLock}
-            >
+                onClick={this.toggleLock}>
                 {this.props.section.section}
             </div>
         )
