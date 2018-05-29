@@ -31,7 +31,7 @@
     font-weight: bold;
 }
 .remove-btn--red i {
-    color: red;
+    color: #bb1515;
 }
 .btn {
     display: inline-block;
@@ -43,7 +43,7 @@
     font-weight: 500;
     border: 2px solid #b1b1b1;
     color: #949494;
-    background-color: #fff;
+    background-color: transparent;
 }
 .btn:hover {
     color: #fff;

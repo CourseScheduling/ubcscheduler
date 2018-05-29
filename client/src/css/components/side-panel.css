@@ -15,7 +15,7 @@
 
 .tool__container {
     /* background-color: #b5cfff; */
-    background-color: #c3e4ff;
+    background-color: var(--instruction__content-color);
     overflow: hidden;
     width: 90%;
     padding-bottom: 10px;

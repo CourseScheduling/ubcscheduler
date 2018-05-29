@@ -46,11 +46,12 @@
     background-color: var(--index__jmp-btn-background-color);
     margin: 5px;
     cursor: pointer;
-    padding: 5px 12px;
+    padding: 3px 14px;
     line-height: 30px;
     font-size: 15px;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 600;
+    font-family: Josefin Sans;
 }
 
 .index__jump-btn:hover {

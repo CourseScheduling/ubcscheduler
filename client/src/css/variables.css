@@ -8,9 +8,9 @@
     --course__button--selected-color: rgba(255,255,255,0.2); 
     --remove-btn-color: rgba(0, 0, 0, 0.7);
     --btn--hover-color: #9c9c9c;
-    --btn--blue-color: #5774ad;
+    --btn--blue-color: #1b305a;
     --btn--blue--hover-color: #3e5480;
-    --btn--blue--selected-color: #5774ad;
+    --btn--blue--selected-color: #1b305a;
 
     --header-background-color: #353a52;
     --calendar-background-color: #fdfdfd;
@@ -44,5 +44,6 @@
     --register__indicator-color: grey;
     --register__indicator--clicked-color: #4CAF50;
 
-    --side-panel--background-color: #e0e0e0;
+    --side-panel--background-color: #fdfdfd;
+    --instruction__content-color: #78b4f1;
 }

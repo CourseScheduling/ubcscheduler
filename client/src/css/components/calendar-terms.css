@@ -1,6 +1,9 @@
 .calendar__term-container {
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 10px;    
+}
+.calendar__term-container * {
+    font-family: Josefin Sans;
 }
 .calendar__term {
     display: inline-block;

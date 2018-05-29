@@ -1,9 +1,10 @@
 .logo {
     justify-content: center;
-    font-size: 40px;
+    font-size: 38px;
     font-weight: bold; 
     border-right: 1px solid #ddd;
     min-width: 300px;
     font-family: Amatic SC;    
     z-index: 1000;
+    letter-spacing: 2px;
 }
