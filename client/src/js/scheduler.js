@@ -10,31 +10,24 @@ function filterLockedSections (sectionsByActivity, lockedSections) {
 }
 
 const schedule = function (courses, breaks, lockedSections) {
-    console.log("scheduling")
-    console.log(courses)
     const startTime = Date.now()
 
     const t1Courses = courses.filter(course => course.term == "t1")    
     const t2Courses = courses.filter(course => course.term == "t2")
-    console.log("t1 courses", t1Courses)
-    console.log("t2 courses", t2Courses)
 
     const t1SectionsByActivity = t1Courses.reduce((acc, course, i, courses) => acc.concat(course.t1), [])
     const t2SectionsByActivity = t2Courses.reduce((acc, course, i, courses) => acc.concat(course.t2), [])
-    console.log("t1SectionsByActivity", t1SectionsByActivity)
-    console.log("t2SectionsbyActivity", t2SectionsByActivity)
+
 
     const numT1Sections = t1SectionsByActivity.length
     const numT2Sections = t2SectionsByActivity.length
-    console.log("numT1Sections: ", numT1Sections);
-    console.log("numT2Sections: ", numT2Sections);
+
     
     
 
     // Filter out lockedSections
     filterLockedSections (t1SectionsByActivity, lockedSections)
     filterLockedSections (t2SectionsByActivity, lockedSections)
-    console.log(t1SectionsByActivity, lockedSections)
 
     // Optimization: Sort from least number of sections in course-activity group to largest
     // t1SectionsByActivity.sort((secGroup1, secGroup2) => secGroup1.length - secGroup2.length)
@@ -77,9 +70,8 @@ const schedule = function (courses, breaks, lockedSections) {
     
     if (t1Schedules.length === 0) t1Schedules.push([])
     if (t2Schedules.length === 0) t2Schedules.push([])
-    console.log("Valid t1 schedules", t1Schedules)
-    console.log("Valid t2 schedules", t2Schedules)
-    console.log("It took ", Date.now() - startTime)
+
+    console.log("It took to schedule ", Date.now() - startTime)
     return {
         "t1" : t1Schedules,
         "t2" : t2Schedules

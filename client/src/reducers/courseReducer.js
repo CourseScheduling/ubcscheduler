@@ -21,7 +21,6 @@ export default function (state = initialState, action) {
       let idx = state.courses.findIndex(element => {
         return element.code === action.payload.code
       });
-      console.log(action.payload)
       if (idx !== -1) return state;
 
       newCourses = [...state.courses]

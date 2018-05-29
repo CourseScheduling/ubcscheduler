@@ -16,7 +16,6 @@ class BreakDragHelper {
 
     addForegroundElement(element) {
         this.foregroundElements.push(element)
-        console.log(this.foregroundElements)
     }
 
     resetBlockSections() {

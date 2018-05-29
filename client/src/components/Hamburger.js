@@ -12,7 +12,6 @@ export default class Hamburger extends Component {
     }
 
     toggleHamburger(e) {
-        console.log("Toggling hambur")
         this.setState({
             active: !this.state.active
         })

@@ -17,7 +17,6 @@ const saveMiddleware = (store) => (next) => (action) => {
             id: state.save.nextId,
             selected: false
         }
-        console.log("Save middleware", save)
         action.payload = save
         break; 
       case LOAD_SCHEDULE: 

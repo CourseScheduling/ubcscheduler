@@ -37,7 +37,6 @@ export default class Course extends Component {
             this.state.course[term][lectureIdx] = this.state.course[term][lectureIdx].filter(section => section.activity !== 'Waiting List')
             this.state.isFilteringWaitingList[term] = true
         }
-        console.log(this.state.course)
          
         this.props.filterWaitingList(this.state.course)  
         e.stopPropagation()      

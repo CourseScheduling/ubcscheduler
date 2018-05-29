@@ -45,12 +45,10 @@ function handleAlerts(prevState, newState, action) {
         case TOGGLE_COURSE_TERM:
         case LOAD_SCHEDULE:
             if (isScheduleEmpty(newState.schedules, "t1") && isScheduleEmpty(newState.schedules, "t2")) break;
-            console.log("returning newstate", newState)
             return newState
         // These actions only care about the current term
         case UPDATE_BREAKS:
             // Merge old breaks and newState.breaks to take the less constrained option
-            console.log(action)
             if (isScheduleEmpty(newState.schedules, action.term) && termCourseExists(action.courses, action.term)) {
                 let lessConstrainedBreaks = {}
                 lessConstrainedBreaks.t1 = mergeBreaks(prevState.breaks.t1, newState.breaks.t1)
@@ -67,7 +65,6 @@ function handleAlerts(prevState, newState, action) {
             return newState;
     }
     // Only errors get this far
-    console.log("Error made it here")
     alertNoSchedule(action, newState)
     return prevState
 }
@@ -92,7 +89,6 @@ export default function(state = initialState, action) {
             }
         case ADD_COURSE:        
         case TOGGLE_COURSE_TERM:
-            console.log("Adding course")
             newState = {
                 ...state,
                 schedules: action.schedules,

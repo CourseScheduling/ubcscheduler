@@ -10,7 +10,6 @@ function preprocessCourse(course) {
 }
 
 export const fetchCourselist = () => dispatch => {
-    console.log("Fetching courselist")
     fetch('/api/v1/courselist')
     .then(res => {
         if (res.ok) return res.json()
@@ -27,7 +26,6 @@ export const fetchCourselist = () => dispatch => {
 
 
 export const addCourse = (courseCode) => dispatch => {
-    console.log("Adding course " + courseCode)
     courseCode = courseCode.replace(" ", "_")
     fetch(`/api/v1/course/${courseCode}`)
     .then(res => {

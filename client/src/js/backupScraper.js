@@ -4,7 +4,6 @@ import Utils from './utils'
 import { courselist } from './courselist'
 
 export const getStaticCourselist = (dispatch) => {
-    console.log("scraping courselist")
     dispatch({
         type: FETCH_COURSELIST,
         payload: courselist
@@ -61,7 +60,6 @@ function isSectionInvalid(section) {
 }
 
 export const scrapeCourse = (dispatch, course, preprocessCourse) => {
-    console.log("Scraping course", course)
     course = course.replace("_", " ")
     var courseObj = {
         "code": course,
