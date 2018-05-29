@@ -4,7 +4,6 @@
 }
 .saved-schedules__container {
     display: inline-block;
-    margin-left: 20px;
     width: 100%;
 }
 .save__btn {
@@ -19,6 +18,7 @@
     font-size: 16px;
     text-transform: uppercase;
     font-weight: 500;
+    margin-left: 20px;
 }
 .save__btn:hover {
     background-color: var(--save__btn-color);
