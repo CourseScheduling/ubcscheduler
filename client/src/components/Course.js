@@ -9,9 +9,11 @@ import Section from './Section'
 export default class Course extends Component {
     constructor(props) {
         super(props)
+        let color = ColorManager.add(props.course.code)
+        if (!color) color = 'rgba(82, 165, 255, 0.6)';
         this.state = {
             course: props.course,
-            color: ColorManager.add(props.course.code),
+            color: color,
             waitlists: {t1: [], t2: []},
             isFilteringWaitingList: {t1: false, t2: false},
             combinedTermSchedule: []
