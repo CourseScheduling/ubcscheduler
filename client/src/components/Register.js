@@ -10,13 +10,15 @@ class Register extends Component {
     super(props)
 
     this.state = {
-      sectionNameObjs: { t1: [], t2: [] }
+      sectionNameObjs: { t1: [], t2: [] },
+      t1Schedule: [],
+      t2Schedule: []
     }
 
     this.sectionClicked = this.sectionClicked.bind(this)
     this.clearClicks = this.clearClicks.bind(this)
   }
-
+  
   sectionClicked = (sectionNameObj, term) => (e) => {
     sectionNameObj.clicked = true
     this.setState({
@@ -84,12 +86,16 @@ function mapScheduleToSectionNameObj(schedule) {
     }
   })
 }
+
 Register.getDerivedStateFromProps = (nextProps, prevState) => {
+  if (nextProps.t1Schedule === prevState.t1Schedule && nextProps.t2Schedule === prevState.t2Schedule) return prevState
   return {
     sectionNameObjs: {
       t1: mapScheduleToSectionNameObj(nextProps.t1Schedule),
       t2: mapScheduleToSectionNameObj(nextProps.t2Schedule)
-    }
+    },
+    t1Schedule: nextProps.t1Schedule,
+    t2Schedule: nextProps.t2Schedule
   }
 }
 
