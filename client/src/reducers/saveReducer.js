@@ -24,7 +24,7 @@ export default function (state = initialState, action) {
                 swal({
                     title: errorMsg,
                     type: 'error',
-                    timer: 1000,
+                    timer: 1500,
                     showConfirmButton: false
                 })
                 return state;

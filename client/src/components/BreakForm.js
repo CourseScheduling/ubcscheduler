@@ -65,7 +65,7 @@ class BreakForm extends Component {
       swal({
         title: "No day selected",
         type: 'warning',
-        timer: 2000,
+        timer: 1500,
         showConfirmButton: false
       })
       return

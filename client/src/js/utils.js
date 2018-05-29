@@ -97,7 +97,7 @@ class Utils {
                 title: "Invalid time",
                 html: msg,
                 type: 'error',
-                timer: 2000,
+                timer: 1500,
                 showConfirmButton: false
             })            
         }
