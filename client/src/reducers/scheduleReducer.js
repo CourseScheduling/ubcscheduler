@@ -84,8 +84,13 @@ export default function(state = initialState, action) {
                 customNumber: (state.customNumber+1)%100
             }
             break;
-        case ADD_COURSE:
-        case REMOVE_COURSE:
+        case REMOVE_COURSE:   
+            return {
+                ...state,
+                schedules: action.schedules,
+                index: {t1: 0, t2: 0}
+            }
+        case ADD_COURSE:        
         case TOGGLE_COURSE_TERM:
             console.log("Adding course")
             newState = {
