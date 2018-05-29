@@ -17,7 +17,12 @@ class CalendarIndex extends Component {
         this.jump = this.jump.bind(this)
         this.updatePosition = this.updatePosition.bind(this)
     }
-
+    componentWillReceiveProps(nextProps)  {
+        this.setState ({
+            position: nextProps.position,
+            numSchedules: nextProps.numSchedules
+        })
+    }
     displayPrev(e) {
         const numSchedules = this.state.numSchedules
         let newIdx = (this.state.position - 2) % numSchedules
@@ -64,12 +69,7 @@ class CalendarIndex extends Component {
         )
     }
 }
-CalendarIndex.getDerivedStateFromProps = (nextProps, prevState) => {
-    return {
-        position: nextProps.position,
-        numSchedules: nextProps.numSchedules
-    }
-}
+
 
 const mapStateToProps = state => ({
     position: state.scheduler.index[state.scheduler.term] + 1,

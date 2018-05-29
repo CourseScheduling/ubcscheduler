@@ -4,6 +4,7 @@ import { alertNoSchedule } from '../js/userAlerts';
 const initialState = {
     schedules: {t1:[[]], t2:[[]]},
     index: {t1: 0, t2: 0},
+    tempIndex: 0,
     term: "t1",
     breaks: {
         "t1": [0,0,0,0,0],
