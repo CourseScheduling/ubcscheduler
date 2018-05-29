@@ -1,4 +1,4 @@
-import swal from 'sweetalert2'
+import  Swal from 'sweetalert2'
 
 class Utils {
     // elementsFromPoint polyfill
@@ -93,7 +93,7 @@ class Utils {
         }
 
         if (!isValid) {
-            swal({
+            Swal({
                 title: "Invalid time",
                 html: msg,
                 type: 'error',
