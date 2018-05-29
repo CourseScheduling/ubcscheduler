@@ -17,9 +17,11 @@ export default function (state = initialState, action) {
       };
     case ADD_CUSTOM_COURSE:
     case ADD_COURSE:
+      //Avoid adding duplicates
       let idx = state.courses.findIndex(element => {
         return element.code === action.payload.code
       });
+      console.log(action.payload)
       if (idx !== -1) return state;
 
       newCourses = [...state.courses]

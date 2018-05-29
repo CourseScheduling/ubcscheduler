@@ -1,18 +1,7 @@
 import { FETCH_COURSELIST, ADD_COURSE, ADD_CUSTOM_COURSE, REMOVE_COURSE, TOGGLE_COURSE_TERM, TOGGLE_COURSE, ADD_TEMP, REMOVE_TEMP, FILTER_WAITING_LIST, TOGGLE_INSTRUCTION_WRAP } from '../actions/types';
 
+import { getStaticCourselist, scrapeCourse } from '../js/backupScraper'
 
-export const fetchCourselist = () => dispatch => {
-    console.log("Fetching courselist")
-    fetch('/api/v1/courselist')
-    .then(res => res.json())
-    .then(courselist => {            
-            dispatch({
-                type: FETCH_COURSELIST,
-                payload: courselist.list
-            })
-        }        
-    )
-};
 
 function preprocessCourse(course) {
     course.code = course.code.replace("_", " ")
@@ -20,11 +9,31 @@ function preprocessCourse(course) {
     course.term = "t1";
 }
 
+export const fetchCourselist = () => dispatch => {
+    console.log("Fetching courselist")
+    fetch('/api/v1/courselist')
+    .then(res => {
+        if (res.ok) return res.json()
+        else throw new Error('Fetch error')
+    })
+    .then(courselist => {            
+            dispatch({
+                type: FETCH_COURSELIST,
+                payload: courselist.list
+            })
+        }        
+    ).catch(error => getStaticCourselist(dispatch))
+};
+
+
 export const addCourse = (courseCode) => dispatch => {
     console.log("Adding course " + courseCode)
     courseCode = courseCode.replace(" ", "_")
     fetch(`/api/v1/course/${courseCode}`)
-    .then(res => res.json())
+    .then(res => {
+        if (res.ok) return res.json()
+        else throw new Error('Fetch error')
+    })
     .then(course => {
         preprocessCourse(course)
         dispatch({
@@ -32,6 +41,7 @@ export const addCourse = (courseCode) => dispatch => {
             payload: course
         })
     })
+    .catch(error => scrapeCourse(dispatch, courseCode, preprocessCourse))
 };
 
 export const addCustomCourse = (course) => dispatch => {

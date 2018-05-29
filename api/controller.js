@@ -25,11 +25,12 @@ module.exports.getCourse = (req, res) => {
     })
     .exec()
     .then(course => {
-        
+        throw new Error('forced error')
         const refreshRate = 60 * 12 
         if (course === null || (timeSinceInMinutes = (new Date() - course.lastModified) / 60e3) > refreshRate) {
             if (course) console.log(`Refreshing stale course ${req.params.course} after ${timeSinceInMinutes} minutes`)
             else console.log("No course found. Scraping..." + req.params.course)
+            
             Scraper.scrapeCourse(req.params.course)
             //.then(Writer.writeCourse)
             .then(newCourse => {
@@ -72,6 +73,7 @@ module.exports.getCourseList = (req, res) => {
             //.then(newCourselist => console.log(newCourselist))
             .then(Writer.writeCourselist)
             .then(courselist => {
+                console.log(courselist)
                 res.status(200)
                 res.send(courselist)
             })

@@ -120,6 +120,35 @@ class Utils {
         })
         return sectionTimeArr        
     }
+
+    // Takes "Mon Wed Fri" and returns [true false true false true]
+    getDayArr(days) {
+        let dayArr = [false, false, false, false, false]
+        let splitDays = days.split(" ")
+        splitDays.forEach(day => {
+            switch(day) {
+                case "Mon":
+                    dayArr[0] = true
+                    break;
+                case "Tue":
+                    dayArr[1] = true
+                    break;
+                case "Wed":
+                    dayArr[2] = true
+                    break;
+                case "Thu":
+                    dayArr[3] = true
+                    break;
+                case "Fri":
+                    dayArr[4] = true
+                    break;
+                default:
+                    break;
+            }
+        })
+        return dayArr
+    }
+
 }
 const utils = new Utils()
 export default utils
