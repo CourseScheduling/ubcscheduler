@@ -2,20 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import '../css/components/saved-schedule-container.css';
-import { saveSchedule, loadSchedule, removeSave } from '../actions/saveActions'
+import { saveSchedule, loadSchedule, removeSave, restoreSavesFromLocalStorage } from '../actions/saveActions'
 
 import SavedSchedule from './SavedSchedule'
 
 class SavedScheduleContainer extends Component {
   constructor(props) {
     super(props)
-
+    this.props.restoreSavesFromLocalStorage()
     this.state = {
       saves: []
     }
     this.save = this.save.bind(this)
   }
-
 
 
   save(e) {
@@ -32,11 +31,11 @@ class SavedScheduleContainer extends Component {
         <div className="saves__container">
           {
             this.state.saves.map(save => (
-              <SavedSchedule 
+              <SavedSchedule
                 key={"save" + save.id}
                 save={save}
                 loadSchedule={this.props.loadSchedule}
-                removeSave={this.props.removeSave}  />
+                removeSave={this.props.removeSave} />
             ))
           }
         </div>
@@ -55,4 +54,4 @@ const mapStateToProps = state => ({
   saves: state.save.saves
 });
 
-export default connect(mapStateToProps, { saveSchedule, loadSchedule, removeSave })(SavedScheduleContainer)
+export default connect(mapStateToProps, { saveSchedule, loadSchedule, removeSave, restoreSavesFromLocalStorage })(SavedScheduleContainer)

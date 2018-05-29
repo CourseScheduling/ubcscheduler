@@ -1,4 +1,4 @@
-import { SAVE_SCHEDULE, LOAD_SCHEDULE, REMOVE_SAVE } from '../actions/types';
+import { SAVE_SCHEDULE, LOAD_SCHEDULE, REMOVE_SAVE, RESTORE_SAVES_FROM_LOCAL_STORAGE} from '../actions/types';
 
 export const loadSchedule = (save) => dispatch => {
     dispatch({
@@ -17,5 +17,11 @@ export const removeSave = (save) => dispatch => {
     dispatch({
         type: REMOVE_SAVE,
         payload: save
+    })
+}
+
+export const restoreSavesFromLocalStorage = () => dispatch => {
+    dispatch({
+        type: RESTORE_SAVES_FROM_LOCAL_STORAGE
     })
 }

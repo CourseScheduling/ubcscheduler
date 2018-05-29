@@ -1,4 +1,4 @@
-import { SAVE_SCHEDULE, LOAD_SCHEDULE, REMOVE_SAVE } from '../actions/types';
+import { SAVE_SCHEDULE, LOAD_SCHEDULE, REMOVE_SAVE, RESTORE_SAVES_FROM_LOCAL_STORAGE} from '../actions/types';
 import swal from 'sweetalert2'
 
 const initialState = {
@@ -57,6 +57,13 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 saves: newSaves
+            }
+        case RESTORE_SAVES_FROM_LOCAL_STORAGE:
+            newSaves = JSON.parse(window.localStorage.getItem('saves'))
+            return {
+                ...state,
+                saves: newSaves,
+                nextId: getNextId(newSaves)
             }
         default:
             return state;
