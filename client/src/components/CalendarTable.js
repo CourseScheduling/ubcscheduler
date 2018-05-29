@@ -110,8 +110,12 @@ class CalendarTable extends Component {
     }
 }
 CalendarTable.getDerivedStateFromProps = (nextProps, prevState)=>  {
+    if (nextProps.allBreaks === prevState.allBreaks) {
+        return prevState
+    }
     return {
         ...prevState,
+        allBreaks: nextProps.allBreaks,
         breaks: nextProps.breaks
     }
 }

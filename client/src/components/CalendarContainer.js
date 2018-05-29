@@ -35,7 +35,8 @@ class CalendarContainer extends Component {
                         <CalendarTable 
                             term="t1" 
                             updateBreaks={this.props.updateBreaks}
-                            breaks={this.props.breaks.t1}/>
+                            breaks={this.props.breaks.t1}
+                            allBreaks={this.props.breaks}/>
                         <CalendarBlocks 
                             term="t1"
                             schedule={this.state.schedules.t1[this.state.index.t1]}
@@ -48,7 +49,8 @@ class CalendarContainer extends Component {
                         <CalendarTable 
                             term="t2" 
                             updateBreaks={this.props.updateBreaks}
-                            breaks={this.props.breaks.t2}/>
+                            breaks={this.props.breaks.t2}
+                            allBreaks={this.props.breaks}/>
                         <CalendarBlocks 
                             term="t2" 
                             schedule={this.state.schedules.t2[this.state.index.t2]}
