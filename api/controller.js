@@ -25,7 +25,6 @@ module.exports.getCourse = (req, res) => {
     })
     .exec()
     .then(course => {
-        throw new Error('forced error')
         const refreshRate = 60 * 12 
         if (course === null || (timeSinceInMinutes = (new Date() - course.lastModified) / 60e3) > refreshRate) {
             if (course) console.log(`Refreshing stale course ${req.params.course} after ${timeSinceInMinutes} minutes`)
