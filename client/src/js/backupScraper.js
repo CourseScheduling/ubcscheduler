@@ -62,13 +62,14 @@ function isSectionInvalid(section) {
 
 export const scrapeCourse = (dispatch, course, preprocessCourse) => {
     console.log("Scraping course", course)
+    course = course.replace("_", " ")
     var courseObj = {
         "code": course,
         "t1" : [],
         "t2": [],
         "activity_types": {t1: [], t2: []}
     }
-    let splitCourse = course.split("_")
+    let splitCourse = course.split(" ")
     const courseURL = `https://courses.students.ubc.ca/cs/main?sessyr=2018&sesscd=W&pname=subjarea&tname=subjareas&req=3&dept=${splitCourse[0]}&course=${splitCourse[1]}`
     fetch('https://cors-anywhere.herokuapp.com/' + courseURL)
     .then(response => response.text())

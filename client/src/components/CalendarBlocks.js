@@ -48,7 +48,7 @@ export default class CalendarBlocks extends Component {
                         return (
                             <div className="block__daycol" key={"block__daycol" + day}>
                                 {
-                                    this.props.schedule.map(section => {
+                                    this.state.schedule.map(section => {
                                         if (section.schedule[day] === 0) return
                                         return  (
                                             <BlockSection 
@@ -68,5 +68,12 @@ export default class CalendarBlocks extends Component {
                 })}
             </div>
         )
+    }
+}
+
+CalendarBlocks.getDerivedStateFromProps = (nextProps, prevState)=>  {
+    return {
+        ...prevState,
+        schedule: nextProps.schedule
     }
 }

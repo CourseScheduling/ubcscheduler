@@ -66,7 +66,7 @@ class CalendarContainer extends Component {
 }
 
 CalendarContainer.getDerivedStateFromProps = (nextProps, prevState) => {
-
+    console.log("Derived state", nextProps.schedules)
     return {
         schedules: nextProps.schedules,
         index: nextProps.index,
