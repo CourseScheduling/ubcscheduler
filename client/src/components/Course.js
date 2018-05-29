@@ -41,7 +41,7 @@ export default class Course extends Component {
         }
         this.setState(newState)
          
-        this.props.filterWaitingList(this.state.course)  
+        this.props.filterWaitingList(newState.course)  
         e.stopPropagation()      
     }
 
