@@ -15,7 +15,7 @@ class CalendarTable extends Component {
             addBreak: false,
             mousedown: false,
             mouseupInit: false,
-            
+            allBreaks: props.allBreaks            
         }
         this.toggleBreak = this.toggleBreak.bind(this)
         this.fireUpdateBreaks = this.fireUpdateBreaks.bind(this)
