@@ -60,6 +60,7 @@ export default function (state = initialState, action) {
             }
         case RESTORE_SAVES_FROM_LOCAL_STORAGE:
             newSaves = JSON.parse(window.localStorage.getItem('saves'))
+            if (!newSaves) return state
             return {
                 ...state,
                 saves: newSaves,
