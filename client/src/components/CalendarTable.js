@@ -39,12 +39,12 @@ class CalendarTable extends Component {
         if (!this.state.mouseupInit) {
             // If mouseup after mousedown, schedule action to update breaks in the future
             const onmouseupHandler = (e) => {
-                if (this.state.mousedown === true) this.state.rescheduleTimeout = setTimeout(this.fireUpdateBreaks, 1000);
-                this.state.mousedown = false
+                if (this.state.mousedown === true) this.setState({ rescheduleTimeout : setTimeout(this.fireUpdateBreaks, 1000)});
+                this.setState({ mousedown : false })
                 BreakDragHelper.resetBlockSections()                  
             }
             document.addEventListener('mouseup', onmouseupHandler.bind(this))
-            this.state.mouseupInit = true
+            this.setState({ mouseupInit : true })
         }
 
         const dataDay = parseInt(e.target.attributes["data-day"].value, 10)
@@ -55,8 +55,11 @@ class CalendarTable extends Component {
                 if (e.button === 0) {
                     clearTimeout(this.state.rescheduleTimeout);                            
                     const breakWhereClicked = ((this.state.breaks[dataDay] >> dataTime) & 1)
-                    this.state.addBreak = !breakWhereClicked
-                    this.state.mousedown = true
+
+                    this.setState({
+                        addBreak: !breakWhereClicked,
+                        mousedown: true
+                    })
                     BreakDragHelper.setMousedown(true)
                     updateBreaks.call(this, dataDay, dataTime) 
                 }

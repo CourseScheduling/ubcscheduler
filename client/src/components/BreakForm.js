@@ -164,7 +164,7 @@ function getRenderedBreaksByTerm(breakArr) {
 
 BreakForm.getDerivedStateFromProps = (nextProps, prevState) => {
   let newRenderedBreaks;
-  if (nextProps.breaks == prevState.breaks) {
+  if (nextProps.breaks === prevState.breaks) {
     newRenderedBreaks = prevState.renderedBreaks
   } else {
     newRenderedBreaks = {

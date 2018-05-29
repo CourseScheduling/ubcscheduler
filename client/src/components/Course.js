@@ -25,16 +25,19 @@ export default class Course extends Component {
     filterWaitingList(e) {
         const term = this.state.course.term
         const lectureIdx = this.state.course.activity_types[term].indexOf('Lecture')
+        let newState = {...this.state}
         if (this.state.isFilteringWaitingList[term]) {
-            this.state.course[term][lectureIdx] = this.state.course[term][lectureIdx].concat(this.state.waitlists[term])
-            this.state.waitlists[term] = []
-            this.state.isFilteringWaitingList[term] = false
+            
+            newState.course[term][lectureIdx] = this.state.course[term][lectureIdx].concat(this.state.waitlists[term])
+            newState.waitlists[term] = []
+            newState.isFilteringWaitingList[term] = false
             
         } else {
-            this.state.waitlists[term] = this.state.course[term][lectureIdx].filter(section => section.activity === 'Waiting List')
-            this.state.course[term][lectureIdx] = this.state.course[term][lectureIdx].filter(section => section.activity !== 'Waiting List')
-            this.state.isFilteringWaitingList[term] = true
+            newState.waitlists[term] = this.state.course[term][lectureIdx].filter(section => section.activity === 'Waiting List')
+            newState.course[term][lectureIdx] = this.state.course[term][lectureIdx].filter(section => section.activity !== 'Waiting List')
+            newState.isFilteringWaitingList[term] = true
         }
+        this.setState(newState)
          
         this.props.filterWaitingList(this.state.course)  
         e.stopPropagation()      

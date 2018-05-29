@@ -1,9 +1,6 @@
 import swal from 'sweetalert2'
 
 class Utils {
-    constructor() {
-    }    
-
     // elementsFromPoint polyfill
     elementsFromPoint(x, y) {
         var parents = [];
@@ -50,7 +47,7 @@ class Utils {
 
     timeToInt(stringTime) {
         stringTime = stringTime.replace(":", "");
-        let intTime = parseInt(stringTime) - 800;
+        let intTime = parseInt(stringTime, 10) - 800;
         if ((intTime % 50) !== 0) {
             intTime += 20;
         }
@@ -73,8 +70,8 @@ class Utils {
     validateTimeRange(startTime, endTime) {
         let isValid = true
         let msg = ""
-        let start = parseInt(startTime.replace(":", ""))
-        let end = parseInt(endTime.replace(":", ""))
+        let start = parseInt(startTime.replace(":", ""), 10)
+        let end = parseInt(endTime.replace(":", ""), 10)
         if (start % 100) start += 20
         if (end % 100) end += 20
 

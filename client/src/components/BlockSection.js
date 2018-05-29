@@ -75,7 +75,7 @@ export default class BlockSection extends Component {
         parentElement.style.pointerEvents = 'none'
         BreakDragHelper.addForegroundElement(parentElement)
         lowerElement.dispatchEvent(event)
-
+        break;
       case "mouseover":
         if (BreakDragHelper.getMousedown()) {
           parentElement.style.pointerEvents = 'none'
@@ -116,7 +116,7 @@ export default class BlockSection extends Component {
     let prevIStart = 0
 
     for (let i = 0; i < 32; i++) {
-      let isIthBitOne = (schedule >> i & 1 === 1)
+      let isIthBitOne = (((schedule >> i) & 1) === 1)
       //Just fininshed a break segment
       if (inBreak && !isIthBitOne) {
         schedules.push(this.getBitSchedule(prevIStart, i))

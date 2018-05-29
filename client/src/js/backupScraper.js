@@ -52,7 +52,7 @@ function addSectionToCourse(courseObj, section) {
 
  // Don't do anything if section.activity is "Waiting List" "Distance Education" "STT" "Unreleased" or noTimes
 function isSectionInvalid(section) {
-    return (section.activity === "Waiting List" ||
+    return (
         section.activity === "Distance Education" || 
         section.status === "STT" ||
         section.status === "Unreleased" ||

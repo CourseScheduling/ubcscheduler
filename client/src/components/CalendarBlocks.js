@@ -46,7 +46,7 @@ export default class CalendarBlocks extends Component {
                             <div className="block__daycol" key={"block__daycol" + day}>
                                 {
                                     this.state.schedule.map(section => {
-                                        if (section.schedule[day] === 0) return
+                                        if (section.schedule[day] === 0) return null
                                         return  (
                                             <BlockSection 
                                                 key={section.course + section.section + day} 
