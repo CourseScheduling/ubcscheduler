@@ -31,7 +31,7 @@ module.exports.getCourse = (req, res) => {
             else console.log("No course found. Scraping..." + req.params.course)
             
             Scraper.scrapeCourse(req.params.course)
-            //.then(Writer.writeCourse)
+            .then(Writer.writeCourse)
             .then(newCourse => {
                 // console.log(newCourse)
                 res.status(200)
