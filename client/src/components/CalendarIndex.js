@@ -17,12 +17,7 @@ class CalendarIndex extends Component {
         this.jump = this.jump.bind(this)
         this.updatePosition = this.updatePosition.bind(this)
     }
-    componentWillReceiveProps(nextProps)  {
-        this.setState ({
-            position: nextProps.position,
-            numSchedules: nextProps.numSchedules
-        })
-    }
+
     displayPrev(e) {
         const numSchedules = this.state.numSchedules
         let newIdx = (this.state.position - 2) % numSchedules
@@ -38,8 +33,11 @@ class CalendarIndex extends Component {
     jump(e) {
         // Clip off negative indices and indices larger than numSchedules
         let newIdx = this.state.position - 1;
-        if (newIdx >= this.state.numSchedules) newIdx = this.state.numSchedules - 1
-        else if (newIdx < 0) newIdx = 0
+        if (newIdx >= this.state.numSchedules) {
+            newIdx = this.state.numSchedules - 1
+        } else if (newIdx < 0) {
+            newIdx = 0
+        }
         this.props.jumpTo(newIdx) 
     }
     updatePosition(e) {
@@ -69,11 +67,23 @@ class CalendarIndex extends Component {
         )
     }
 }
+CalendarIndex.getDerivedStateFromProps = (nextProps, prevState) => {
+    if (nextProps.schedules === prevState.schedules && nextProps.index === prevState.index) return prevState
+
+    return {
+        position: nextProps.position,
+        numSchedules: nextProps.numSchedules,
+        schedules: nextProps.schedules,
+        index: nextProps.index
+    }
+}
 
 
 const mapStateToProps = state => ({
     position: state.scheduler.index[state.scheduler.term] + 1,
-    numSchedules: state.scheduler.schedules[state.scheduler.term].length
+    numSchedules: state.scheduler.schedules[state.scheduler.term].length,
+    schedules: state.scheduler.schedules,
+    index: state.scheduler.index
 });
 
 export default connect(mapStateToProps, {jumpTo})(CalendarIndex)
