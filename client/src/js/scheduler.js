@@ -12,8 +12,8 @@ function filterLockedSections (sectionsByActivity, lockedSections) {
 const schedule = function (courses, breaks, lockedSections) {
     const startTime = Date.now()
 
-    const t1Courses = courses.filter(course => course.term == "t1")    
-    const t2Courses = courses.filter(course => course.term == "t2")
+    const t1Courses = courses.filter(course => course.term === "t1")    
+    const t2Courses = courses.filter(course => course.term === "t2")
 
     const t1SectionsByActivity = t1Courses.reduce((acc, course, i, courses) => acc.concat(course.t1), [])
     const t2SectionsByActivity = t2Courses.reduce((acc, course, i, courses) => acc.concat(course.t2), [])

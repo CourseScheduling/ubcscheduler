@@ -1,4 +1,4 @@
-import { JUMP_TO, UPDATE_ACTIVE_SECTIONS, TOGGLE_TERM, UPDATE_BREAKS } from '../actions/types';
+import { JUMP_TO, TOGGLE_TERM, UPDATE_BREAKS } from '../actions/types';
 
 export const jumpTo = (idx) => dispatch => {
     dispatch({

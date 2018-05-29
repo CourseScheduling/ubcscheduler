@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 import ColorManager from '../js/colorManager'
 
@@ -32,6 +29,7 @@ export default class Course extends Component {
             this.state.course[term][lectureIdx] = this.state.course[term][lectureIdx].concat(this.state.waitlists[term])
             this.state.waitlists[term] = []
             this.state.isFilteringWaitingList[term] = false
+            
         } else {
             this.state.waitlists[term] = this.state.course[term][lectureIdx].filter(section => section.activity === 'Waiting List')
             this.state.course[term][lectureIdx] = this.state.course[term][lectureIdx].filter(section => section.activity !== 'Waiting List')
@@ -83,12 +81,6 @@ export default class Course extends Component {
     }
 
     render() {
-
-        const courseClasses = classNames(
-            'remove-btn-parent',
-            'course',
-            { 'course--active': this.state.course.active }
-        );
         const courseStyle = {
             'backgroundColor': this.state.color
         }
@@ -114,7 +106,7 @@ export default class Course extends Component {
             )
         }
         return (
-            <div className={courseClasses} style={courseStyle} onClick={this.toggleCourse}>
+            <div className={'remove-btn-parent course ' + (this.state.course.active ? "course--active" : "")} style={courseStyle} onClick={this.toggleCourse}>
                 <div className="remove-btn" onClick={this.removeCourse}>
                     <i className="material-icons">&#xE5CD;</i>
                 </div>

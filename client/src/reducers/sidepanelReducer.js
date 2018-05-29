@@ -11,7 +11,6 @@ const initialState = {
 
 
 export default function (state = initialState, action) {
-    const instructionType = action.payload
     switch (action.type) {
         case TOGGLE_INSTRUCTION_WRAP:
             const instructionId = action.payload

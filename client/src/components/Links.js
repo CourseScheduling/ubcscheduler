@@ -8,7 +8,7 @@ export default class Links extends Component {
             <div className="links__container">
                 <span>Bugs & Features:</span> 
                 <div className="github__linkWrap">
-                    <a className="github__link" href="https://github.com/chrisjmyoon/ubcscheduler/issues" target="_blank"/>
+                    <a className="github__link" href="https://github.com/chrisjmyoon/ubcscheduler/issues" target="_blank"></a>
                 </div>
             </div>
         )

@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import classNames from 'classnames';
 
 import '../css/components/calendar-table.css';
 
@@ -42,7 +39,7 @@ class CalendarTable extends Component {
         if (!this.state.mouseupInit) {
             // If mouseup after mousedown, schedule action to update breaks in the future
             const onmouseupHandler = (e) => {
-                if (this.state.mousedown == true) this.state.rescheduleTimeout = setTimeout(this.fireUpdateBreaks, 1000);
+                if (this.state.mousedown === true) this.state.rescheduleTimeout = setTimeout(this.fireUpdateBreaks, 1000);
                 this.state.mousedown = false
                 BreakDragHelper.resetBlockSections()                  
             }
@@ -50,14 +47,14 @@ class CalendarTable extends Component {
             this.state.mouseupInit = true
         }
 
-        const dataDay = parseInt(e.target.attributes["data-day"].value)
-        const dataTime = parseInt(e.target.attributes["data-time"].value)    
+        const dataDay = parseInt(e.target.attributes["data-day"].value, 10)
+        const dataTime = parseInt(e.target.attributes["data-time"].value, 10)    
         switch (e.type) {
             case 'mousedown':
                 // Only trigger when left click
                 if (e.button === 0) {
                     clearTimeout(this.state.rescheduleTimeout);                            
-                    const breakWhereClicked = this.state.breaks[dataDay] >> dataTime & 1
+                    const breakWhereClicked = ((this.state.breaks[dataDay] >> dataTime) & 1)
                     this.state.addBreak = !breakWhereClicked
                     this.state.mousedown = true
                     BreakDragHelper.setMousedown(true)
@@ -66,6 +63,7 @@ class CalendarTable extends Component {
                 break;
             case 'mouseover':
                 if (this.state.mousedown) updateBreaks.call(this, dataDay, dataTime)
+                break;
             default:
                 break;
         }
@@ -87,13 +85,13 @@ class CalendarTable extends Component {
                         </tr>
                         {hours.map((hour, hourIdx) => {
                             let calendarBlockTime;
-                            if (hour.substr(-2) == '00') calendarBlockTime = <td className="calendar__block calendar__block--time" rowSpan="2">{hour}</td>
+                            if (hour.substr(-2) === '00') calendarBlockTime = <td className="calendar__block calendar__block--time" rowSpan="2">{hour}</td>
                             return (
                                 <tr className="calendar_row" key={"calendar__row_" + this.props.term + hourIdx}>
                                     {calendarBlockTime}
                                     {[0, 1, 2, 3, 4].map(dayIdx => (
                                         <td key={"block_" + this.props.term + dayIdx + hourIdx}
-                                            className={"calendar__block " + ((this.state.breaks[dayIdx] >> hourIdx & 1) ? "calendar__block--break" : "")} 
+                                            className={"calendar__block " + (( ((this.state.breaks[dayIdx]) >> hourIdx) & 1) ? "calendar__block--break" : "")} 
                                             data-day={dayIdx} 
                                             data-time={hourIdx}
                                             onMouseDown={this.toggleBreak}

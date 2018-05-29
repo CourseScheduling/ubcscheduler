@@ -1,4 +1,4 @@
-import { ADD_COURSE, TOGGLE_COURSE_TERM, JUMP_TO, REMOVE_COURSE, TOGGLE_TERM, UPDATE_BREAKS, TOGGLE_LOCK } from '../actions/types';
+import { ADD_COURSE, TOGGLE_COURSE_TERM, UPDATE_BREAKS, TOGGLE_LOCK } from '../actions/types';
 import swal from 'sweetalert2'
 
 export const alertNoSchedule = (action, newState) => {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
+
 import swal from 'sweetalert2'
 
 import '../css/components/create-course-form.css';
@@ -154,7 +153,7 @@ class CreateCourseForm extends Component {
         let activitys = this.state.course.activity_types[term]
         let activity = activitys[activitys.length - 1]
         let currentSection = 'A' + this.state.currentActivity + this.state.currentSection
-        this.state.currentSection += 1
+        this.setState({currentSection : currentSection + 1 })
 
         const schedule = this.state.renderedSections[term].reduce((acc, section, sectionIdx) => {
             let sectionTimeArr = Utils.getSectionTimeArr(section.days, section.startTime, section.endTime)

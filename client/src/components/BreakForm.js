@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
 import swal from 'sweetalert2'
 
 import '../css/components/break-form.css';
@@ -143,7 +141,7 @@ function getRenderedBreaksByTerm(breakArr) {
     let prevIStart = 0
 
     for (let i = 0; i < 32; i++) {
-      let isIthBitOne = (dayBreak >> i & 1 === 1)
+      let isIthBitOne = (((dayBreak >> i) & 1) === 1)
       //Just fininshed a break segment
       if (inBreak && !isIthBitOne) {
         renderedBreaks.push({

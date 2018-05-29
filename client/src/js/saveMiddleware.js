@@ -28,6 +28,7 @@ const saveMiddleware = (store) => (next) => (action) => {
         action.lockedSections = save.lockedSections
         action.customNumber = save.customNumber
         action.schedules = schedule(action.courses, action.breaks, action.lockedSections)
+        break;
       default:
         break;
     }

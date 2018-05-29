@@ -11,7 +11,6 @@ function getNextId(saves) {
     while(saves.find(save => save.id === nextId)) {
         nextId++
     }
-
     return nextId
 }
 

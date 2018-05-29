@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
+
 
 import '../css/components/course-container.css';
 
@@ -45,10 +44,7 @@ class CourseContainer extends Component {
     }
 }
 
-CourseContainer.propTypes = {
-    removeCourse: PropTypes.func.isRequired,
-    toggleCourseTerm: PropTypes.func.isRequired
-}
+
 
 CourseContainer.getDerivedStateFromProps = (nextProps, prevState)=>  {
     const t1Schedule = nextProps.schedules.t1[nextProps.index.t1]

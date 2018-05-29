@@ -12,7 +12,7 @@ export const getStaticCourselist = (dispatch) => {
 
 function getActivityIdx(courseObj, section, termString) {
     let sectionActivity = section.activity
-    if (sectionActivity == "Waiting List") {
+    if (sectionActivity === "Waiting List") {
         sectionActivity = "Lecture"
     }
     let activityIdx = courseObj.activity_types[termString].indexOf(sectionActivity)

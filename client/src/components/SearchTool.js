@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
+
 
 import '../css/components/search-tool.css';
 
@@ -88,12 +87,8 @@ class SearchTool extends Component {
 
     render() {
         const searchResults = this.state.searchResults.map((result, i) => {
-            const resultClasses = classNames(
-                'search__result',
-                {'search__result--hover': this.state.currentIndex === i}
-            );
             return (
-                <div className={resultClasses} key={result.code + "_result"} onClick={this.resultOnClick(i)}>
+                <div className={'search__result ' + (this.state.currentIndex === i ? "search__result--hover" : "")} key={result.code + "_result"} onClick={this.resultOnClick(i)}>
                     <div className="search__result__head">
                         {result.code}
                     </div>
@@ -122,10 +117,7 @@ class SearchTool extends Component {
     }
 }
 
-SearchTool.propTypes = {
-    fetchCourselist: PropTypes.func.isRequired,
-    addCourse: PropTypes.func.isRequired
-};
+
 
 const mapStateToProps = state => ({
     courselist: state.course.courselist
