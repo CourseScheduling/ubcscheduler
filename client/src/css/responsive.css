@@ -56,7 +56,9 @@ html, body, #root, .App {
             "header saved-schedules"
             "side-panel calendar"
     }
-    
+    .logo {
+        z-index: 2000;
+    }
     .saved-schedules {
         background-color: var(--header-background-color);
         color: #fff;
