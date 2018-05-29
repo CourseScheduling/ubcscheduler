@@ -44,6 +44,10 @@ html, body, #root, .App {
 .links__container {
     display: none;
 }
+.calendar__table {
+    width: 100%;
+}
+
 
 @media screen and (min-width: 1100px) {
     .App {
@@ -56,6 +60,10 @@ html, body, #root, .App {
             "header saved-schedules"
             "side-panel calendar"
     }
+    .calendar__table {
+        width: 500px;
+    }
+    
     .logo {
         z-index: 2000;
     }
