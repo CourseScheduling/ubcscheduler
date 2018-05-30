@@ -79,12 +79,19 @@ export const scrapeCourse = (dispatch, course, preprocessCourse) => {
         let tableBody = sectionTable.getElementsByTagName('tbody')[0]
 
         let rows = tableBody.getElementsByTagName('tr')
-
+        var prevSectionName = ""
         // tds: status, section activity, term, interval, days, starttime, endtime
         Array.from(rows).forEach(row => {
             let tds = row.getElementsByTagName('td')
             let status = tds[0].textContent.trim()
-            let sectionName = tds[1].getElementsByTagName('a')[0].textContent.trim()
+            let sectionName;
+     
+            if (tds[1].getElementsByTagName('a')[0]) {
+                sectionName = tds[1].getElementsByTagName('a')[0].textContent.trim() 
+            } else {
+                sectionName = prevSectionName
+            }
+
             let activity = tds[2].textContent.trim()
             let term = tds[3].textContent.trim()
             let days = tds[5].textContent.trim()
@@ -101,7 +108,7 @@ export const scrapeCourse = (dispatch, course, preprocessCourse) => {
                 instructors: [],
                 schedule: schedule
             }
-           
+            prevSectionName = sectionName
             if (isSectionInvalid(section)) return
             addSectionToCourse(courseObj, section)
         })
