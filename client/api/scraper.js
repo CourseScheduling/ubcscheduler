@@ -84,6 +84,7 @@ resolve scraped course
 */
 module.exports.scrapeCourse = function (course) {
     return new Promise((resolve, reject) => {
+     
         let dept = course.split("_")[0]
         let courseCode = course.split("_")[1]
         const XML_URL = `https://courses.students.ubc.ca/cs/servlets/SRVCourseSchedule?sessyr=2018&sesscd=W&output=5&req=4&dept=${dept}&course=${courseCode}`
@@ -99,6 +100,7 @@ module.exports.scrapeCourse = function (course) {
         rp(XML_URL)
         .then(xml => {
             parser.parseString(xml, (err, result) => {
+                try {
                 result.sections.section.forEach(sectionObj => {
                     try {
                         section = parseSection(sectionObj);
@@ -125,10 +127,16 @@ module.exports.scrapeCourse = function (course) {
                         console.log("Term invalid! Section not added", section.section)
                     }
                 })
+
+            } catch (e) {
+                console.log(xml)
+            }
+
             })
 
             resolve(courseObj)
         })
+
     });
     
 }

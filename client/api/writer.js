@@ -21,7 +21,15 @@ module.exports.writeCourse = function (course) {
 
 module.exports.writeCourselist = function (courselist) {
     return new Promise((resolve, reject) => {
-        Courselist.update({uni: 'ubc'}, courselist, {$set: {ts: new Date()}}, { upsert : true }, (err, newCourselist) => {
+        Courselist.update({uni: 'ubc'}, 
+        {   
+            $currentDate: {
+                lastModified: true
+            },
+            $set: courselist
+        }
+        ,{ upsert : true },
+        (err, newCourselist) => {
             if (err) reject(err);
             console.log("Writing courselist success")
             resolve(courselist)
