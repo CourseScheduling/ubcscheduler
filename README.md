@@ -33,7 +33,7 @@ A major design goal for this scheduler is real-time feedback. Before, when sched
 -   Register sections by clicking on generated links    
 -   Schedule in real-time whenever an action (adding a course, break, locking a section, etc...) is made
 
-![ScreenShot](https://raw.githubusercontent.com/chrisjmyoon/ubcscheduler/master/demo.png)
+![ScreenShot](./demo.png)
 
 
 # Installation
