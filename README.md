@@ -6,7 +6,7 @@ Built in collaboration with https://github.com/shade
   - [UBC Scheduler](#ubc-scheduler)
 - [Features](#features)
 - [Installation](#installation)
-- [How it's built](#how-it's-built)
+- [How it's built](#api)
   * [API](#api)
   * [Client](#client)
     + [store](#store)
