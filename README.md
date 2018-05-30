@@ -191,7 +191,9 @@ A major optimization can be done by expressing schedules as an integer, where ea
 
 eg. 
 10:00am - 11:00am, 4:00pm - 5:00pm => (0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0)<sub>2</sub>
+
 9:00 am - 11:00 am, 1:00pm - 3:00pm=>  (0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 1 1 1 1 0 0)<sub>2</sub>
+
 The & of both is  (0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0) indicating there is a collusion
 
 
