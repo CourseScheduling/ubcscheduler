@@ -2,6 +2,26 @@
 A course scheduler for UBC. Check out the site at <https://www.ubcscheduler.com>
 Built in collaboration with https://github.com/shade
 
+## Contents
+  - [UBC Scheduler](#ubc-scheduler)
+- [Features](#features)
+- [Installation](#installation)
+- [How it's built](#how-it-s-built)
+  * [API](#api)
+  * [Client](#client)
+    + [store](#store)
+    + [reducers](#reducers)
+    + [actions](#actions)
+	+ [Components](#components)
+    + [css](#css)
+    + [JS](#js)
+      - [_design_](#-design-)
+      - [_design_](#-design--1)
+- [Scheduling](#scheduling)
+  * [Locking sections](#locking-sections)
+  * [Adding breaks](#adding-breaks)
+- [Production](#production)
+
 # Features
 A major design goal for this scheduler is real-time feedback. Before, when scheduling happens in stages (user adds courses, adds breaks, locks sections etc) and then schedules, it was very different to find out which courses collude or what exactly caused no schedules to be found. By scheduling in real time and alerting users in real time, users can pinpoint which action was the problem. 
 
