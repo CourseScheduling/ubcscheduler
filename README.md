@@ -1,5 +1,5 @@
 # UBC Scheduler
-A course scheduler for UBC. Check out the site at <https://www.ubcscheduler.com>
+A course scheduler for UBC. Check out the site at <https://www.ubcscheduler.com> <br/>
 Built in collaboration with https://github.com/shade
 
 ## Contents
@@ -32,6 +32,8 @@ A major design goal for this scheduler is real-time feedback. Before, when sched
 -   Create your custom courses (especially useful for Standard Timetables)    
 -   Register sections by clicking on generated links    
 -   Schedule in real-time whenever an action (adding a course, break, locking a section, etc...) is made
+
+![ScreenShot](https://raw.githubusercontent.com/chrisjmyoon/ubcscheduler/master/demo.png)
 
 
 # Installation
