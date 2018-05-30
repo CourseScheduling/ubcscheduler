@@ -151,7 +151,7 @@ LOAD_SCHEDULE  - loads the state from a save object *
 REMOVE_SAVE - removes a save object from saveReducer.saves
 RESTORE_SAVES_FROM_LOCAL_STORAGE - called initially to load saves from localStorage
 ```
-### Components
+### components
 Components uses state from store to render views and connects UI elements to actions. 
 The way I understood them as is that they take in props (like arguments) and uses the props to define its state (like local variables).
 
@@ -163,7 +163,7 @@ But in order to make that change cause the component to rerender,  we need to ma
 ### css 
 css files for a particular component is included in the component itself. 
 
-### JS
+### js
 - ```backupScraper``` - contains getters to get course and courselist using client side scraping or loading courselist from a file
 - ```breakDragHelper``` - coordinates propagating mouseevents from blockSections and table cells to facilitate dragging to add breaks
 	#### _design_
