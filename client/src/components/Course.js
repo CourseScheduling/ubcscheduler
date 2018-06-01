@@ -24,10 +24,8 @@ export default class Course extends Component {
         this.filterWaitingList = this.filterWaitingList.bind(this)
     }
 
-    filterWaitingList(e) {
-        const term = this.state.course.term
+    filterWaitingListHelper(newState, term) {
         const lectureIdx = this.state.course.activity_types[term].indexOf('Lecture')
-        let newState = {...this.state}
         if (this.state.isFilteringWaitingList[term]) {
             
             newState.course[term][lectureIdx] = this.state.course[term][lectureIdx].concat(this.state.waitlists[term])
@@ -40,6 +38,19 @@ export default class Course extends Component {
             newState.isFilteringWaitingList[term] = true
         }
         this.setState(newState)
+    }
+
+    filterWaitingList(e) {
+        const term = this.state.course.term
+        
+        let newState = {...this.state}
+        
+        if (term === "t1-2") {
+            this.filterWaitingListHelper(newState, "t1")
+            this.filterWaitingListHelper(newState, "t2")
+        } else {
+            this.filterWaitingListHelper(newState, term)
+        }
          
         this.props.filterWaitingList(newState.course)  
         e.stopPropagation()      
@@ -94,10 +105,13 @@ export default class Course extends Component {
             courseExtra = (
                 <div className="course__extra">
                     <div className="course__term-container">
-                        <div className={"course__button course__term course__term--one " + (this.state.course.term === "t1" ? "course__term--selected" : "")} onClick={this.toggleCourseTerm("t1")}>Term 1</div>
-                        <div className={"course__button course__term course__term--two " + (this.state.course.term === "t2" ? "course__term--selected" : "")} onClick={this.toggleCourseTerm("t2")}>Term 2</div>
+                        {this.state.course.availableTerms.map(term => (
+                            <div key={"course__term"+this.state.course.code+term}
+                                className={"course__button course__term " + (this.state.course.term === term ? "course__term--selected" : "")} 
+                                onClick={this.toggleCourseTerm(term)}>Term {term.substring(1)}</div>
+                        ))}                        
                     </div>
-                    <div className={"course__container " + (this.state.course.term === "t1" ? "course__container--active" : "")}>
+                    <div className={"course__container " + (this.state.course.term === "t1" || this.state.course.term === "t1-2" ? "course__container--active" : "")}>
                         {this.sectionsByTermJSX("t1")}
                     </div>
                     <div className={"course__container " + (this.state.course.term === "t2" ? "course__container--active" : "")}>
