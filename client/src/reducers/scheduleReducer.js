@@ -42,10 +42,8 @@ function handleAlerts(prevState, newState, action) {
         // If a schedule for a term is not empty, return newState
         case ADD_CUSTOM_COURSE:
         case ADD_COURSE:
-        case REMOVE_COURSE:
-        case TOGGLE_COURSE_TERM:
-        case LOAD_SCHEDULE:
-            if (isScheduleEmpty(newState.schedules, "t1") && isScheduleEmpty(newState.schedules, "t2")) break;
+        case TOGGLE_COURSE_TERM:        
+            if (isScheduleEmpty(newState.schedules, action.term)) break;
             return newState
         // These actions only care about the current term
         case UPDATE_BREAKS:

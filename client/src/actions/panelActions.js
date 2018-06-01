@@ -55,7 +55,8 @@ export const addCourse = (courseCode) => dispatch => {
         preprocessCourse(course)
         dispatch({
             type: ADD_COURSE,
-            payload: course
+            payload: course,
+            term: course.term
         })
     })
     .catch(error => scrapeCourse(dispatch, courseCode, preprocessCourse))
@@ -64,7 +65,8 @@ export const addCourse = (courseCode) => dispatch => {
 export const addCustomCourse = (course) => dispatch => {
     dispatch({
         type: ADD_CUSTOM_COURSE,
-        payload: course
+        payload: course,
+        term: course.term
     })
 }
 
@@ -78,7 +80,8 @@ export const removeCourse = (code) => dispatch => {
 export const toggleCourseTerm = (code, term) => dispatch => {
     dispatch({
         type: TOGGLE_COURSE_TERM,
-        payload: {code: code, term: term}
+        payload: {code: code, term: term},
+        term: term
     })
 }
 
