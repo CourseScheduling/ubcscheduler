@@ -79,21 +79,27 @@ export const scrapeCourse = (dispatch, course, preprocessCourse) => {
         let tableBody = sectionTable.getElementsByTagName('tbody')[0]
 
         let rows = tableBody.getElementsByTagName('tr')
-        var prevSectionName = ""
+        var prevSection = {}
         // tds: status, section activity, term, interval, days, starttime, endtime
         Array.from(rows).forEach(row => {
             let tds = row.getElementsByTagName('td')
             let status = tds[0].textContent.trim()
+            let term = tds[3].textContent.trim()
             let sectionName;
      
             if (tds[1].getElementsByTagName('a')[0]) {
                 sectionName = tds[1].getElementsByTagName('a')[0].textContent.trim() 
             } else {
-                sectionName = prevSectionName
+                // E.g. HIST 346 If section spans two terms
+                if (term !== prevSection.term) {
+                    term = "1-2"
+                    prevSection.term = "1-2"
+                }
+                sectionName = prevSection.course + " " + prevSection.section
             }
 
             let activity = tds[2].textContent.trim()
-            let term = tds[3].textContent.trim()
+            
             let days = tds[5].textContent.trim()
             let startTime = tds[6].textContent.trim()
             let endTime = tds[7].textContent.trim()
@@ -108,14 +114,15 @@ export const scrapeCourse = (dispatch, course, preprocessCourse) => {
                 instructors: [],
                 schedule: schedule
             }
-            prevSectionName = sectionName
+            prevSection = section
             if (isSectionInvalid(section)) return
             addSectionToCourse(courseObj, section)
         })
         preprocessCourse(courseObj)
         dispatch({
             type: ADD_COURSE,
-            payload: courseObj
+            payload: courseObj,
+            term: courseObj.term
         })
     })
     
