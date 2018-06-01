@@ -12,4 +12,4 @@ app.get('/', function (req, res) {
 app.use('/api/v1', api);
 
 
-app.listen(3001, () => console.log('Example app listening on port 8080!'))
+app.listen(8080, () => console.log('Example app listening on port 8080!'))
