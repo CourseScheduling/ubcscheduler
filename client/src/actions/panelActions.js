@@ -7,8 +7,6 @@ function preprocessCourse(course) {
     course.code = course.code.replace("_", " ")
     course.active = true;
     course.availableTerms = []
-    // if course spans both terms
-    console.log(course.t1)
     // if every sectionsByActivity is "1-2"
     if (course.t1.every(sectionsByActivity => 
         sectionsByActivity.every(section => section.term === "1-2")
@@ -17,9 +15,6 @@ function preprocessCourse(course) {
         course.term = "t1-2"
         return
     }
-    
-        
-    
 
     if (course.t1.length !== 0) {
         course.availableTerms.push("t1")

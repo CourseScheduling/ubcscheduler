@@ -32,7 +32,7 @@ function isScheduleEmpty(schedules, term) {
 }
 
 function termCourseExists(courses, term) {
-    let termCourse = courses.find(course => course.term === term || course.term === 'both')
+    let termCourse = courses.find(course => course.term === term || course.term === 't1-2')
     if (termCourse) return true
     else return false
 }
