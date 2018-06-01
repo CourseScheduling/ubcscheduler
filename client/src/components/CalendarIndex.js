@@ -10,7 +10,10 @@ class CalendarIndex extends Component {
         super(props)
         this.state = {
             position: 1,
-            numSchedules: 1
+            numSchedules: 1,
+            schedules: props.schedules,
+            index: props.index,
+            term: props.term
         }
         this.displayPrev = this.displayPrev.bind(this)
         this.displayNext = this.displayNext.bind(this)
@@ -68,13 +71,14 @@ class CalendarIndex extends Component {
     }
 }
 CalendarIndex.getDerivedStateFromProps = (nextProps, prevState) => {
-    if (nextProps.schedules === prevState.schedules && nextProps.index === prevState.index) return prevState
+    if (nextProps.schedules === prevState.schedules && nextProps.index === prevState.index && nextProps.term === prevState.term) return prevState
 
     return {
         position: nextProps.position,
         numSchedules: nextProps.numSchedules,
         schedules: nextProps.schedules,
-        index: nextProps.index
+        index: nextProps.index,
+        term: nextProps.term
     }
 }
 
@@ -83,7 +87,8 @@ const mapStateToProps = state => ({
     position: state.scheduler.index[state.scheduler.term] + 1,
     numSchedules: state.scheduler.schedules[state.scheduler.term].length,
     schedules: state.scheduler.schedules,
-    index: state.scheduler.index
+    index: state.scheduler.index,
+    term: state.scheduler.term
 });
 
 export default connect(mapStateToProps, {jumpTo})(CalendarIndex)
