@@ -8,9 +8,10 @@ function preprocessCourse(course) {
     course.active = true;
     course.availableTerms = []
     // if every sectionsByActivity is "1-2"
-    if (course.t1.every(sectionsByActivity => 
-        sectionsByActivity.every(section => section.term === "1-2")
-    )) {
+    let everySectionT12 = course.t1.every(sectionsByActivity => 
+            sectionsByActivity.every(section => section.term === "1-2")
+        )
+    if (course.t1.length !== 0 && everySectionT12) {
         course.availableTerms.push("t1-2")
         course.term = "t1-2"
         return
