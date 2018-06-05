@@ -28,7 +28,8 @@ class CreateCourseForm extends Component {
                 t2: [[]],
                 activity_types: { t1: ['A1'], t2: ['A1'] },
                 active: true,
-                term: "t1"
+                term: "t1",
+                availableTerms: ["t1", "t2"]
             },
             customNumber: 1,
             currentActivity: 1,
@@ -152,9 +153,8 @@ class CreateCourseForm extends Component {
         let term = this.state.term
         let activitys = this.state.course.activity_types[term]
         let activity = activitys[activitys.length - 1]
-        let currentSection = 'A' + this.state.currentActivity + this.state.currentSection
-        this.setState({ currentSection: currentSection + 1 })
-
+        let section = 'A' + this.state.currentActivity + this.state.currentSection
+        this.setState({ currentSection: this.state.currentSection + 1 })
         const schedule = this.state.renderedSections[term].reduce((acc, section, sectionIdx) => {
             let sectionTimeArr = Utils.getSectionTimeArr(section.days, section.startTime, section.endTime)
             for (let i = 0; i < 5; i++) {
@@ -169,7 +169,7 @@ class CreateCourseForm extends Component {
         return {
             schedule: schedule,
             instructors: [],
-            section: currentSection,
+            section: section,
             activity: activity,
             status: "Custom",
             term: term[1],
@@ -192,6 +192,11 @@ class CreateCourseForm extends Component {
         // Filter out empty sections/activities
         this.filterEmptySectionActivities(this.state.course, "t1")
         this.filterEmptySectionActivities(this.state.course, "t2")
+
+        // Filter out empty terms
+        if (this.state.course.t1.length === 0) this.state.course.availableTerms = this.state.course.availableTerms.filter(term => term !== "t1")
+        if (this.state.course.t2.length === 0) this.state.course.availableTerms = this.state.course.availableTerms.filter(term => term !== "t2")
+
         // props.addCustomCourse
         this.props.addCustomCourse(this.state.course)
         // reset state
@@ -208,7 +213,8 @@ class CreateCourseForm extends Component {
             t2: [[]],
             activity_types: { t1: ['A1'], t2: ['A1'] },
             active: true,
-            term: "t1"
+            term: "t1",
+            availableTerms: ["t1", "t2"]
         }
         this.setState({
             course: newCourse,
