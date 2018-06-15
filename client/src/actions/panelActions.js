@@ -2,6 +2,7 @@ import { FETCH_COURSELIST, ADD_COURSE, ADD_CUSTOM_COURSE, REMOVE_COURSE, TOGGLE_
 
 import { getStaticCourselist, scrapeCourse } from '../js/backupScraper'
 
+import { applyRules } from '../js/fetchCourseRules'
 
 function preprocessCourse(course) {
     course.code = course.code.replace("_", " ")
@@ -26,6 +27,8 @@ function preprocessCourse(course) {
         course.availableTerms.push("t2")
         if (course.term !== "t1") course.term = "t2"
     }
+
+    applyRules(course)
 
 }
 
